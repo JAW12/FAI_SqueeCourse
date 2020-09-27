@@ -31,6 +31,11 @@
                 </li>
                 <li class="nav-item small">
                     <a class="nav-link" href="#">
+                        List of Quizzes
+                    </a>
+                </li>
+                <li class="nav-item small">
+                    <a class="nav-link" href="#">
                         List of Labels
                     </a>
                 </li>
