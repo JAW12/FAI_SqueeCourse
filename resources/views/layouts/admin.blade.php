@@ -7,6 +7,7 @@
     <title>@yield('title')</title>
 
     @include('layouts.head')
+    @yield('style')
 </head>
 <body>
     @include('layouts.admin.header')
@@ -18,5 +19,6 @@
             </main>
         </div>
     </div>
+    @yield('script')
 </body>
 </html>

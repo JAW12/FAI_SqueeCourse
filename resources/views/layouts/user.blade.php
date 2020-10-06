@@ -7,12 +7,37 @@
     <title>@yield('title')</title>
 
     @include('layouts.head')
+    <style>
+        #header{
+            min-height: 55vh;
+            background-image: linear-gradient(to right , #4286f4, #32adff);
+        }
+
+        .linear{
+            background-image: linear-gradient(to right , #4286f4, #32adff);
+        }
+
+        .row.display-flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .row.display-flex > [class*='col-'] {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grey{
+            background-color: rgb(240, 238, 238);
+        }
+    </style>
+    @yield('style')
 </head>
 <body>
     @include('layouts.user.header')
-    <div class="min-vh-100 pt-3">
+    <div class="min-vh-100 grey">
         @yield('content')
     </div>
     @include('layouts.user.footer')
+    @yield('script')
 </body>
 </html>

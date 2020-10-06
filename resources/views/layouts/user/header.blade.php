@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -21,7 +21,7 @@
                     <a class="dropdown-item" href="#">Series 3</a>
                 </div>
             </li>
-            <li class="nav-item"><a href="#" class="nav-link">Explore</a></li>
+            <li class="nav-item"><a href="{{route('explore')}}" class="nav-link">Explore</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Membership</a></li>
         </ul>
@@ -33,7 +33,7 @@
                 </div>
             </div>
         </form>
-        <button class="btn btn-primary ml-2">Sign In</button>
-        <button class="btn btn-primary ml-2">Sign Up</button>
+        <button class="btn btn-primary ml-lg-2 my-3 my-lg-0">Sign In</button>
+        <button class="btn btn-primary ml-lg-2 my-3 my-lg-0">Sign Up</button>
     </div>
 </nav>

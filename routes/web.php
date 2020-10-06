@@ -15,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
+})->name('home');
+
+Route::get('/explore', function(){
+    return view('explore');
+})->name('explore');
+
+Route::get('/series', function(){
+    return view('series');
+});
+
+Route::get('/payment', function(){
+    return view('user.payment');
 });
 
 Route::get('/admin', function(){
