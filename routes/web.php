@@ -29,7 +29,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('series')->group(function(){
     // halaman daftar seri ada apa aja (landing page be like, mirip kea home)
     Route::get('/', [SeriesController::class, 'home'])->name('series.home');
-
     // halaman hasil filter category seri
     Route::get('category/{slug}', [SeriesController::class, 'category'])->name('series.category');
     // halaman hasil filter label seri
