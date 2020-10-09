@@ -34,16 +34,6 @@
                         List of Quizzes
                     </a>
                 </li>
-                <li class="nav-item small">
-                    <a class="nav-link" href="#">
-                        List of Labels
-                    </a>
-                </li>
-                <li class="nav-item small">
-                    <a class="nav-link" href="#">
-                        List of Categories
-                    </a>
-                </li>
             </ul>
 
             <li class="nav-item">
@@ -88,16 +78,6 @@
             <li class="nav-item small">
                 <a class="nav-link" href="#">
                     List of Posts
-                </a>
-            </li>
-            <li class="nav-item small">
-                <a class="nav-link" href="#">
-                    List of Labels
-                </a>
-            </li>
-            <li class="nav-item small">
-                <a class="nav-link" href="#">
-                    List of Categories
                 </a>
             </li>
         </ul>

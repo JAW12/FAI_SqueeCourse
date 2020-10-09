@@ -21,7 +21,7 @@
                     <a class="dropdown-item" href="#">Series 3</a>
                 </div>
             </li>
-            <li class="nav-item"><a href="{{route('explore')}}" class="nav-link">Explore</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Explore</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Membership</a></li>
         </ul>
