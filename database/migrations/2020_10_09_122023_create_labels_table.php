@@ -14,7 +14,15 @@ class CreateLabelsTable extends Migration
     public function up()
     {
         Schema::create('labels', function (Blueprint $table) {
+            // PRIMARY KEY
             $table->id();
+
+            // NOT NULL
+            $table->string('nama');
+            $table->string('slug', 70);
+
+
+            // timestamps
             $table->timestamps();
         });
     }

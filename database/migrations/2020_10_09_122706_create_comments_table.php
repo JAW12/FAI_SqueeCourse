@@ -14,8 +14,31 @@ class CreateCommentsTable extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
+            // PRIMARY KEY
             $table->id();
+
+            // FOREIGN KEY
+            $table->unsignedBigInteger('row_id_user');
+            $table->unsignedBigInteger('row_id_episode');
+
+            // NOT NULL
+            $table->text('isi_komentar');
+
+            // timestamps
             $table->timestamps();
+
+
+        });
+
+        Schema::table('comments', function (Blueprint $table) {
+            // foreign key
+            $table->foreign('row_id_user')
+                ->references('id')
+                ->on('users');
+
+            $table->foreign('row_id_episode')
+                ->references('id')
+                ->on('episodes');
         });
     }
 

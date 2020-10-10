@@ -14,8 +14,28 @@ class CreateEpisodesTable extends Migration
     public function up()
     {
         Schema::create('episodes', function (Blueprint $table) {
+            // PRIMARY KEY
             $table->id();
+
+            // FOREIGN KEY
+            $table->unsignedBigInteger('row_id_seri');
+
+            // NOT NULL
+            $table->string('judul');
+            $table->string('slug', 70);
+            $table->string('url_youtube');
+            $table->integer('durasi');
+            $table->tinyInteger('status_berbayar');
+
+            // timestamps
             $table->timestamps();
+        });
+
+        Schema::table('episodes', function (Blueprint $table) {
+            // foreign key
+            $table->foreign('row_id_seri')
+                    ->references('id')
+                    ->on('series');
         });
     }
 

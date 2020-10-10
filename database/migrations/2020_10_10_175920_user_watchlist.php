@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransactionsTable extends Migration
+class UserWatchlist extends Migration
 {
     /**
      * Run the migrations.
@@ -13,33 +13,29 @@ class CreateTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('user_watchlist', function (Blueprint $table) {
             // PRIMARY KEY
             $table->id();
 
             // FOREIGN KEY
+            $table->unsignedBigInteger('row_id_seri');
             $table->unsignedBigInteger('row_id_user');
-
-            // NOT NULL
-            $table->tinyInteger('jenis_membership');
-            $table->dateTime('waktu_expired_membership');
-            $table->string('bank_asal', 20);
-            $table->string('bank_tujuan', 20);
-            $table->tinyInteger('status_transaksi');
-            $table->integer('total_pembayaran');
 
             // timestamps
             $table->timestamps();
-
         });
 
+        // FOREIGN KEY
+        Schema::table('user_watchlist', function (Blueprint $table) {
+            $table->foreign('row_id_seri')
+                ->references('id')
+                ->on('series');
 
-        // foreign key
-        Schema::table('transactions', function (Blueprint $table) {
             $table->foreign('row_id_user')
                 ->references('id')
                 ->on('users');
         });
+
     }
 
     /**
@@ -49,6 +45,6 @@ class CreateTransactionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('user_watchlist');
     }
 }

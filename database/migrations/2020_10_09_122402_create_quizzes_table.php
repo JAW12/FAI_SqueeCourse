@@ -14,7 +14,14 @@ class CreateQuizzesTable extends Migration
     public function up()
     {
         Schema::create('quizzes', function (Blueprint $table) {
+            // PRIMARY KEY
             $table->id();
+
+            // NOT NULL
+            $table->string('nama');
+            $table->tinyInteger('jumlah_pertanyaan');
+
+            // timestamps
             $table->timestamps();
         });
     }

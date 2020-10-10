@@ -14,7 +14,15 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
+            // PRIMARY KEY
+            // $table->bigInteger('row_id_kategori')->autoIncrement();
             $table->id();
+
+            // NOT NULL
+            $table->string('nama');
+            $table->string('slug', 70);
+
+            // timestamps
             $table->timestamps();
         });
     }
