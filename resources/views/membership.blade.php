@@ -1,5 +1,6 @@
 @extends('layouts.user')
 @section('content')
+
     <div class="container-fluid linear">
         <div class="container py-4 text-center">
             <h1 class="text-light mt-5 font-weight-bold">Choose the membership plan you need</h1>
