@@ -7,20 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    protected $table = "transactions";
+    public $table = "transactions";
 
-    protected $primaryKey = "id";
-    protected $incremental = true;
+    public $primaryKey = "id";
+    public $incremental = true;
 
-    protected $timestamps = true;
+    public $timestamps = true;
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
     // supaya bisa dapetin diffForHumans : https://stackoverflow.com/questions/30991992/how-do-i-get-the-difference-of-time-in-human-readable-format-with-laravel-5
 
-    protected $dates = ['created_at', 'updated_at'];
+    public $dates = ['created_at', 'updated_at'];
 
-    protected $fillable =[
+    public $fillable =[
         'row_id_user',
         'jenis_membership',
         'waktu_expired_membership',

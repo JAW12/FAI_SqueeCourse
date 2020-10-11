@@ -28,7 +28,7 @@
         <div class="col-6 col-md">
             <h5>About</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">FAQ</a></li>
+                <li><a class="text-muted" href="http://telegram.me/SqueeSupportBot">FAQ</a></li>
                 <li><a class="text-muted" href="#">Testimonials</a></li>
                 <li><a class="text-muted" href="#">Privacy</a></li>
                 <li><a class="text-muted" href="#">Terms</a></li>

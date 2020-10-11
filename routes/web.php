@@ -69,8 +69,8 @@ Route::prefix('series')->group(function(){
 Route::get('membership', [TransactionController::class, 'home'])->name('membership.home');
 
 // halaman form pembayaran & post
-Route::get('payment', [TransactionController::class, 'form'])->name('membership.form');
-Route::post('payment', [TransactionController::class, 'submit']);
+Route::get('payment/{paket}', [TransactionController::class, 'form'])->name('membership.form');
+Route::post('payment/{paket}', [TransactionController::class, 'submit']);
 
 
 // KHUSUS USER
@@ -267,6 +267,9 @@ Route::prefix('admin')->group(function(){
         });
     });
 });
+
+//Go to faq page
+Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 
 // Log Out!
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');

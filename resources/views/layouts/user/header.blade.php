@@ -23,7 +23,7 @@
             </li>
             <li class="nav-item"><a href="#" class="nav-link">Explore</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Membership</a></li>
+        <li class="nav-item"><a href="{{ route('membership.home') }}" class="nav-link">Membership</a></li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <div class="input-group">

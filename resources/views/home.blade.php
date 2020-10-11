@@ -282,7 +282,7 @@
 <div class="container-fluid linear">
     <div class="container py-4 text-center">
         <h1 class="text-light mt-5 font-weight-bold">Choose the membership plan you need</h1>
-        <h5 class="text-light mt-3 font-weight-normal">If you enjoy SqueeCourse, you will save a lot of money by choosing <br> <b>Platinum</b> membership plan, because you will got Rp. 198.000 discount <br> from the monthly payments.</h5>
+        <h5 class="text-light mt-3 font-weight-normal">If you enjoy SqueeCourse, you will save a lot of money by choosing <br> <b>Platinum</b> membership plan, because you will get Rp. 198.000 discount <br> from the monthly payments.</h5>
         <div class="card-deck mt-5 mb-3 text-center">
             <div class="card mb-4 shadow-sm">
             <div class="card-header">
