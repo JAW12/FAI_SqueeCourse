@@ -36,7 +36,13 @@ class CreatePostsTable extends Migration
             // foreign key
             $table->foreign('row_id_kategori')
                     ->references('id')
-                    ->on('categories');
+                    ->on('categories')
+            ;
+
+            DB::statement("ALTER TABLE POSTS
+                ADD CONSTRAINT CH_POSTS_STATUS_AKTIF
+                CHECK(STATUS_AKTIF = 0 OR STATUS_AKTIF = 1); ")
+            ;
 
         });
     }

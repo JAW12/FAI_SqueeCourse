@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateSeriesTable extends Migration
 {
@@ -23,11 +24,15 @@ class CreateSeriesTable extends Migration
 
             $table->string('judul');
             $table->string('slug', 70);
-            $table->tinyInteger('tingkat_kesulitan');
+            $table->tinyInteger('tingkat_kesulitan')
+                ->comment("1 = BEGINNER, 2 = INTERMEDIATE, 3 = ADVANCED");
             $table->integer('total_durasi');
-            $table->tinyInteger('status_complete');
-            $table->tinyInteger('status_berbayar');
-            $table->tinyInteger('status_masuk_header');
+            $table->tinyInteger('status_complete')
+                ->comment("0 = BELUM, 1 = SUDAH");
+            $table->tinyInteger('status_berbayar')
+                ->comment("0 = GRATIS, 1 = BERBAYAR");
+            $table->tinyInteger('status_masuk_header')
+                ->comment("0 = TIDAK, 1 = MASUK HEADER");
             $table->string('url_foto_banner')->nullable();
 
             // timestamp

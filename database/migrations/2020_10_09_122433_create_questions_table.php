@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateQuestionsTable extends Migration
 {
@@ -38,6 +39,13 @@ class CreateQuestionsTable extends Migration
             $table->foreign('row_id_kuis')
                     ->references('id')
                     ->on('quizzes');
+
+            DB::statement("ALTER TABLE QUESTIONS
+                ADD CONSTRAINT CH_QUESTION_KUNCI_JAWABAN
+                CHECK(KUNCI_JAWABAN = 'A' OR KUNCI_JAWABAN = 'B' OR
+                        KUNCI_JAWABAN = 'C' OR KUNCI_JAWABAN = 'D');"
+            );
+
         });
     }
 

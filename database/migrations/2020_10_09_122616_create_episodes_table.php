@@ -25,7 +25,8 @@ class CreateEpisodesTable extends Migration
             $table->string('slug', 70);
             $table->string('url_youtube');
             $table->integer('durasi');
-            $table->tinyInteger('status_berbayar');
+            $table->tinyInteger('status_berbayar')
+                ->comment("0 = GRATIS, 1 = BERBAYAR");
 
             // timestamps
             $table->timestamps();
