@@ -16,12 +16,12 @@
                     Series
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Series 1</a>
-                    <a class="dropdown-item" href="#">Series 2</a>
-                    <a class="dropdown-item" href="#">Series 3</a>
+                    <a class="dropdown-item" href="{{route('series.category', 5)}}">PHP</a>
+                    <a class="dropdown-item" href="#">Laravel</a>
+                    <a class="dropdown-item" href="#">CSS</a>
                 </div>
             </li>
-            <li class="nav-item"><a href="#" class="nav-link">Explore</a></li>
+            <li class="nav-item"><a href="{{route('series.home')}}" class="nav-link">Explore</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
         <li class="nav-item"><a href="{{ route('membership.home') }}" class="nav-link">Membership</a></li>
         </ul>
