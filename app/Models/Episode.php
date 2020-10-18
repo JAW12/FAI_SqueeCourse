@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Episode extends Model
 {
+    use HasFactory, Notifiable;
+
     protected $table = "episodes";
 
     protected $primaryKey = "id";
@@ -31,7 +34,7 @@ class Episode extends Model
 
     // ================ RELATION MODEL ============================
 
-    public function getEpisodeComments(){
+    public function comments(){
         return $this->hasMany(
             Comment::class,
             'row_id_episode',
@@ -39,26 +42,10 @@ class Episode extends Model
         );
     }
 
-    public function getEpisodeSeries(){
+    public function series(){
         // related model, related FK di model saat ini, local PK
         return $this->belongsTo(
-            Series::class, 'row_id_seri', 'id');
+            Series::class, 'row_id_seri');
     }
 
-    /* tidak bisa tp eman dibuang. so sed :(
-    public function getDuration($url){
-        parse_str(parse_url($url,PHP_URL_QUERY),$arr);
-        $video_id=$arr['v'];
-
-        $data=@file_get_contents('http://gdata.youtube.com/feeds/api/videos/'.$video_id.'?v=2&alt=jsonc');
-        if (false===$data) return false;
-
-        $obj=json_decode($data);
-
-        return $obj->data->duration;
-
-        // buat manggil :
-        // echo getDuration('http://www.youtube.com/watch?v=rFQc7VRJowk');
-    }
-    */
 }

@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Reply extends Model
 {
+    use HasFactory, Notifiable;
+
     protected $table = "replies";
 
     protected $primaryKey = "id";
@@ -28,12 +31,12 @@ class Reply extends Model
 
     // ================ RELATION MODEL ============================
 
-    public function getReplyComment(){
+    public function comment(){
         // related model, related model dikenali sbg FK apa di model saat ini, PK dari model saat ini
-        return $this->belongsTo(Comment::class, 'row_id_komentar', 'id');
+        return $this->belongsTo(Comment::class, 'row_id_komentar');
     }
 
-    public function getReplyUser(){
-        return $this->belongsTo(User::class, 'row_id_user', 'id');
+    public function user(){
+        return $this->belongsTo(User::class, 'row_id_user');
     }
 }

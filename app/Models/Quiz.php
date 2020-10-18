@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Quiz extends Model
 {
+    use HasFactory, Notifiable;
+
     protected $table = "quizzes";
 
     protected $primaryKey = "id";
@@ -27,20 +30,20 @@ class Quiz extends Model
 
     // ================ RELATION MODEL ============================
 
-    public function getQuizQuestions(){
+    public function questions(){
         return $this->hasMany(
             Question::class, 'row_id_kuis', 'id'
         );
     }
 
-    public function getQuizUser(){
+    public function users(){
         return $this->belongsToMany(
             User::class, 'h_user_kuis','row_id_kuis','row_id_user'
         );
     }
 
     // one to one
-    public function getQuizSeries(){
+    public function series(){
         // related model, model saat ini dikenal sbg FK apa di related model, local PK (PK dari model saat ini)
         return $this->hasOne(
             Series::class, 'row_id_kuis', 'id'

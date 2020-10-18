@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Post extends Model
 {
+    use HasFactory, Notifiable;
+
     protected $table = "posts";
 
     protected $primaryKey = "id";
@@ -31,17 +34,18 @@ class Post extends Model
 
     // ================ RELATION MODEL ============================
 
-    public function getPostCategory(){
+    public function category(){
         return $this->belongsTo(
             Category::class, 'row_id_kategori', 'id');
     }
 
-    public function getPostLabels(){
+    public function labels(){
         return $this->belongsToMany(
-            Posts::class,
+            Post::class,
             'label_post',
             'row_id_post',
             'row_id_label'
         );
     }
+
 }

@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
 
             // NULLABLE
-            $table->string('no_hp', 14);
+            $table->string('no_hp', 14)->nullable();
             $table->string('jenis_kelamin', 1)->nullable()
                 ->comment('opsi values = L / P');
             $table->date('tanggal_lahir')->nullable();

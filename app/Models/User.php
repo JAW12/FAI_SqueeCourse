@@ -68,7 +68,7 @@ class User extends Authenticatable
     // ================ RELATION MODEL ============================
 
     // untuk mendapatkan semua transaksi user
-    public function getUserTransactions(){
+    public function transactions(){
         // related model, local FK, local PK
         return $this->hasMany(
             Transaction::class,
@@ -78,7 +78,7 @@ class User extends Authenticatable
     }
 
     // untuk mendapatkan semua komentar yang dilakukan user
-    public function getUserComments(){
+    public function comments(){
         return $this->hasMany(
             Comment::class,
             'row_id_user',
@@ -88,7 +88,7 @@ class User extends Authenticatable
 
 
     // untuk mendapatkan semua reply yang dilakukan user
-    public function getUserReplies(){
+    public function replies(){
         return $this->hasMany(
             Reply::class,
             'row_id_user',
@@ -97,7 +97,7 @@ class User extends Authenticatable
     }
 
     // untuk mendapatkan semua seri yang ditonton user (watch list)
-    public function getUserWatchlist(){
+    public function watchlist(){
         // related model, pivot table (table hasil relasi), local FK, related FK
         return $this->belongsToMany(
             Series::class,
@@ -108,7 +108,7 @@ class User extends Authenticatable
     }
 
     // untuk mendapatkan semua header kuis yang dilakukan user
-    public function getUserHKuis(){
+    public function hquizzes(){
         return $this->belongsToMany(
             Quiz::class,
             'h_user_kuis',

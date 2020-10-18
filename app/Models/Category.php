@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Category extends Model
 {
+    use HasFactory, Notifiable;
+
     protected $table = "categories";
 
     protected $primaryKey = "id";
@@ -27,7 +30,7 @@ class Category extends Model
 
     // ================ RELATION MODEL ============================
 
-    public function getCategorySeries(){
+    public function series(){
         return $this->hasMany(
             Series::class,
             'row_id_kategori',
@@ -35,7 +38,7 @@ class Category extends Model
         );
     }
 
-    public function getCategoryPosts(){
+    public function posts(){
         return $this->hasMany(
             Post::class,
             'row_id_kategori',

@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Series extends Model
 {
+    use HasFactory, Notifiable;
+
     protected $table = "series";
 
     protected $primaryKey = "id";
@@ -30,12 +33,13 @@ class Series extends Model
         'status_complete',
         'status_berbayar',
         'status_masuk_header',
+        'deskripsi',
         'url_foto_banner'
     ];
 
     // ================ RELATION MODEL ============================
 
-    public function getSeriesEpisodes(){
+    public function episodes(){
         return $this->hasMany(
             Episode::class,
             'row_id_seri',
@@ -43,7 +47,7 @@ class Series extends Model
         );
     }
 
-    public function getSeriesUsers(){
+    public function users(){
         return $this->belongsToMany(
             User::class,
             'user_watchlist',
@@ -52,7 +56,7 @@ class Series extends Model
         );
     }
 
-    public function getSeriesLabels(){
+    public function labels(){
         return $this->belongsToMany(
             Label::class,
             'label_seri',
@@ -62,9 +66,10 @@ class Series extends Model
     }
 
     // one to one (inverse)
-    public function getSeriesCategory(){
+    public function category(){
         // related model, related model dikenali sbg FK apa di class model saat ini
         return $this->belongsTo(Category::class, 'row_id_kategori');
     }
+
 
 }

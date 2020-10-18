@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Label extends Model
 {
+    use HasFactory, Notifiable;
+
     protected $table = "labels";
 
     protected $primaryKey = "id";
@@ -27,7 +30,7 @@ class Label extends Model
 
     // ================ RELATION MODEL ============================
 
-    public function getLabelSeries(){
+    public function series(){
         return $this->belongsToMany(
             Series::class,
             'label_seri',
@@ -36,7 +39,7 @@ class Label extends Model
         );
     }
 
-    public function getLabelPosts(){
+    public function posts(){
         return $this->belongsToMany(
             Posts::class,
             'label_post',

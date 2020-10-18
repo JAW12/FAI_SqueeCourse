@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Transaction extends Model
 {
+    use HasFactory, Notifiable;
+
     public $table = "transactions";
 
     public $primaryKey = "id";
@@ -32,7 +35,7 @@ class Transaction extends Model
 
     // ================ RELATION MODEL ============================
 
-    public function getTransactionUser(){
+    public function user(){
         // one to many (inverse)
         // related model, related model dikenal sbg FK apa di class model saat ini
         return $this->belongsTo(User::class, 'row_id_user');

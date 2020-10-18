@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Comment extends Model
 {
+    use HasFactory, Notifiable;
+
     protected $table = "comments";
 
     protected $primaryKey = "id";
@@ -29,7 +32,7 @@ class Comment extends Model
     // ================ RELATION MODEL ============================
 
     //mendapatkan semua reply yg ada di komentar
-    public function getCommentReplies(){
+    public function replies(){
         return $this->hasMany(
             Reply::class,
             'row_id_komentar',
@@ -38,20 +41,18 @@ class Comment extends Model
     }
 
     // one to many (inverse)
-    public function getCommentUser(){
+    public function user(){
         // related model, related FK di model saat ini, local PK
         return $this->belongsTo(
             User::class,
-            'row_id_user',
-            'id');
+            'row_id_user');
     }
 
-    public function getCommentEpisode(){
+    public function episode(){
         // related model, related FK di model saat ini, local PK
         return $this->belongsTo(
             Episode::class,
-            'row_id_episode',
-            'id');
+            'row_id_episode');
     }
 
 }

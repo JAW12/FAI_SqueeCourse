@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Comment;
 use App\Models\Reply;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ReplyFactory extends Factory
@@ -21,8 +23,13 @@ class ReplyFactory extends Factory
      */
     public function definition()
     {
+        $users = User::pluck('id')->toArray();
+        $comments = Comment::pluck('id')->toArray();
+
         return [
-            //
+            "row_id_user"       => $this->faker->randomElement($users),
+            "row_id_komentar"   => $this->faker->randomElement($comments) ,
+            "isi_reply"         => $this->faker->paragraphs(3, true)
         ];
     }
 }
