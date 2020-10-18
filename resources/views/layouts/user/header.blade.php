@@ -33,7 +33,7 @@
                 </div>
             </div>
         </form>
-        <button class="btn btn-primary ml-lg-2 my-3 my-lg-0">Sign In</button>
-        <button class="btn btn-primary ml-lg-2 my-3 my-lg-0">Sign Up</button>
+        <a href="{{route('login')}}" class="btn btn-primary ml-lg-2 my-3 my-lg-0">Sign In</a>
+        <a href="{{route('register')}}" class="btn btn-primary ml-lg-2 my-3 my-lg-0">Sign Up</a>
     </div>
 </nav>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -23,6 +24,11 @@ use Illuminate\Support\Facades\Route;
 
 // HOMEPAGE
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/login', [HomeController::class, 'loginPage'])->name('login');
+Route::get('/register', [HomeController::class, 'registerPage'])->name('register');
+Route::get('/forgot', [AuthController::class, 'forgotPage'])->name('forgot');
+Route::get('/reset', [AuthController::class, 'resetPage'])->name('reset');
 
 
 // KHUSUS SERI
@@ -130,6 +136,10 @@ Route::prefix('blog')->group(function(){
 
 // KHUSUS ADMIN
 Route::prefix('admin')->group(function(){
+
+    // HALAMAN LOGIN
+    Route::get('/login', [AuthController::class, 'adminLoginPage'])->name('admin.login');
+
     // HALAMAN HOME
     Route::get('/', [AdminController::class, 'index'])->name('admin.home');
 
