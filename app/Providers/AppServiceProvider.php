@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,9 +26,17 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // share data with all views
-        view()->share(
-            'dataNavigasiCategory',
-            Category::orderBy('nama')->get()
-        );
+        try {
+            DB::connection()->getPdo();
+
+            view()->share(
+                'dataNavigasiCategory',
+                Category::orderBy('nama')->get()
+            );
+
+        } catch (\Exception $e) {
+            die("Could not connect to the database.
+                Please check your configuration. error:" . $e);
+        }
     }
 }
