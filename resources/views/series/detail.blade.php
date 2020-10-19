@@ -62,7 +62,7 @@
                                 episodes
                             </p>
                             <p class="col-xs-12 col-lg-3">
-                                <i class="fa fa-level-up mr-2"></i>
+                                <i class="fas fa-level-up-alt mr-2"></i>
                                 @if ($dataSeries->tingkat_kesulitan === 1)
                                     Beginner
                                 @elseif ($dataSeries->tingkat_kesulitan === 2)
@@ -72,11 +72,11 @@
                                 @endif
                             </p>
                             <p class="col-xs-12 col-lg-3">
-                                <i class="fa fa-money mr-2"></i>
+                                <i class="fas fa-money-check-alt mr-2"></i>
                                 @if ($dataSeries->status_berbayar === 0)
                                     Free Series
                                 @elseif ($dataSeries->status_berbayar === 1)
-                                    Premium Series
+                                    Premium
                                 @endif
                             </p>
                         </div>
