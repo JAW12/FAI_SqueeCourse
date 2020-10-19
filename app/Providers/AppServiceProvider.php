@@ -26,17 +26,24 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // share data with all views
-        try {
-            DB::connection()->getPdo();
+        // try {
+        //     DB::connection()->getPdo();
 
+        //     view()->share(
+        //         'dataNavigasiCategory',
+        //         Category::orderBy('nama')->get()
+        //     );
+
+        // } catch (\Exception $e) {
+        //     die("Could not connect to the database.
+        //         Please check your configuration. error:" . $e);
+        // }
+
+        if (! $this->app->runningInConsole()) {
             view()->share(
                 'dataNavigasiCategory',
                 Category::orderBy('nama')->get()
             );
-
-        } catch (\Exception $e) {
-            die("Could not connect to the database.
-                Please check your configuration. error:" . $e);
         }
     }
 }
