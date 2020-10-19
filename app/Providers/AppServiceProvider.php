@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {
+    
     /**
      * Register any application services.
      *
