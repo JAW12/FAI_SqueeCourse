@@ -113,7 +113,7 @@
                                 </div>
                                 <div class="ml-auto my-auto">
                                     <p>
-                                        {{ gmdate('m:s', $episode->durasi) }}
+                                        {{ gmdate('i:s', $episode->durasi) }}
                                     </p>
                                 </div>
                             </div>
