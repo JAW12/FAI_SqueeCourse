@@ -16,9 +16,23 @@
                     Series
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{route('series.category', 5)}}">PHP</a>
-                    <a class="dropdown-item" href="#">Laravel</a>
-                    <a class="dropdown-item" href="#">CSS</a>
+                    {{-- <a class="dropdown-item" href="{{route('series.category', 5)}}">
+                        PHP
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        Laravel
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        CSS
+                    </a> --}}
+
+                    @foreach ($dataNavigasiCategory as $category)
+                        <a class="dropdown-item"
+                            href="{{route('series.category', $category->slug)}}">
+                            {{ $category->nama }}
+                        </a>
+                    @endforeach
+
                 </div>
             </li>
             <li class="nav-item"><a href="{{route('series.home')}}" class="nav-link">Explore</a></li>
