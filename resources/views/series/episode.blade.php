@@ -1,5 +1,9 @@
 @extends('layouts.user')
 
+@section('title')
+    {{ $dataEpisode->judul }}
+@endsection
+
 @section('content')
     {{--  breadcrumbs --}}
     <nav aria-label="breadcrumb">

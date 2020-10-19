@@ -1,4 +1,9 @@
 @extends('layouts.user')
+
+@section('title')
+    {{ $dataCategory->nama }}
+@endsection
+
 @section('content')
 <div class="w-100" id="header">
     <div class="container">

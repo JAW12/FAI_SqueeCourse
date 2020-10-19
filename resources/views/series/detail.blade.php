@@ -1,4 +1,9 @@
 @extends('layouts.user')
+
+@section('title')
+    {{ $dataSeries->judul }}
+@endsection
+
 @section('content')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb grey small">

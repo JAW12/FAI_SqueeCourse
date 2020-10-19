@@ -1,4 +1,9 @@
 @extends('layouts.user')
+
+@section('title')
+    All Series
+@endsection
+
 @section('content')
 <div class="container-fluid grey py-4">
     <div class="container">
