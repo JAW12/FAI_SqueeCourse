@@ -27,19 +27,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // share data with all views
-        // try {
-        //     DB::connection()->getPdo();
-
-        //     view()->share(
-        //         'dataNavigasiCategory',
-        //         Category::orderBy('nama')->get()
-        //     );
-
-        // } catch (\Exception $e) {
-        //     die("Could not connect to the database.
-        //         Please check your configuration. error:" . $e);
-        // }
-
+        
+        // cek dulu runningInConsole apa gak. fresh deployment = runningInConsole
+        // kalo ga dicek nanti error waktu composer install
         if (! $this->app->runningInConsole()) {
             view()->share(
                 'dataNavigasiCategory',
