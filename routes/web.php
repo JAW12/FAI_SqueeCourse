@@ -215,7 +215,7 @@ Route::prefix('admin')->group(function(){
         Route::get('add', [AdminController::class, 'addQuiz'])->name('admin.quiz.add');
         Route::post('add', [QuizController::class, 'add']);
 
-        Route::prefix('/{slug}')->group(function(){
+        Route::prefix('/{id}')->group(function(){
             // halaman show quiz
             Route::get('/', [AdminController::class, 'quiz'])->name('admin.quiz');
             Route::post('/', [QuizController::class, 'quiz'])->name('admin.quiz.submit');
@@ -224,7 +224,7 @@ Route::prefix('admin')->group(function(){
             Route::get('edit', [AdminController::class, 'editQuiz'])->name('admin.quiz.edit');
             Route::post('edit', [QuizController::class, 'edit']);
 
-            // hapus episode
+            // hapus quiz
             Route::get('delete', [AdminController::class, 'deleteQuiz'])->name('admin.quiz.delete');
         });
     });

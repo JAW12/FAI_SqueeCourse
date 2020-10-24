@@ -14,7 +14,7 @@
             </li> --}}
             <li class="nav-item">
                 <span class="nav-link" href="#">
-                    <i class="fa fa-file-video-o"></i>
+                    <i class="fas fa-video"></i>
                     Series & Episode
                 </span>
             </li>
