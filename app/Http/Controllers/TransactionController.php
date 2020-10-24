@@ -36,20 +36,21 @@ class TransactionController extends Controller
         ]);
         //prepare insert to db
         $transaction = new Transaction();
-        //$transaction->row_id_user=0;
+        $transaction->row_id_user=1;
+        $time = strtotime($validate['date']);
         if($paket == "Silver"){
             $transaction->jenis_membership=1;
-            $transaction->waktu_expired_membership=date("Y-m-d", strtotime('+1 month'));
+            $transaction->waktu_expired_membership=date("Y-m-d", strtotime('+1 month',$time));
             $transaction->total_pembayaran=120000;
         }
-        if($paket == "Gold"){
+        else if($paket == "Gold"){
             $transaction->jenis_membership=2;
-            $transaction->waktu_expired_membership=date("Y-m-d", strtotime('+3 month'));
+            $transaction->waktu_expired_membership=date("Y-m-d", strtotime('+3 month',$time));
             $transaction->total_pembayaran=288000;
         }
-        if($paket == "Platinum"){
+        else if($paket == "Platinum"){
             $transaction->jenis_membership=3;
-            $transaction->waktu_expired_membership=date("Y-m-d", strtotime('+6 month'));
+            $transaction->waktu_expired_membership=date("Y-m-d", strtotime('+6 month',$time));
             $transaction->total_pembayaran=504000;
         }
         $transaction->bank_asal=$validate['sender'];
@@ -61,7 +62,7 @@ class TransactionController extends Controller
 
         //kembali ke halaman
         if($result){
-            return redirect('home');
+            return redirect()->route('home');
         }
     }
 }

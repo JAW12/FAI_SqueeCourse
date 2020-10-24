@@ -4,8 +4,8 @@
     <div class="container mb-5" style="max-width:90%;">
         <form action="" method="post">
             @csrf
-            @if ($errors->any())
-                <ul>
+                @if ($errors->any())
+                    <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{$error}}</li>
                 @endforeach
