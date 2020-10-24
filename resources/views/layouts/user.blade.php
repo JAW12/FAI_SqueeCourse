@@ -26,8 +26,36 @@
             flex-direction: column;
         }
 
+        #navbarDropdown.pakeP:after{
+            vertical-align: 1rem;
+        }
+
         .grey{
             background-color: rgb(240, 238, 238);
+        }
+
+        #itemProfile:active p, #itemProfile:active h1{
+            color: white !important;
+        }
+
+        @media (max-width: 767px)
+        {
+
+            .navbar{
+                position: static;
+            }
+            #navbarDropdown{
+                display:none;
+            }
+
+            #navbarDropdown+.dropdown-menu{
+                display:block
+            }
+
+            #profile p{
+                text-align: right;
+                /* justify-content: start !important; */
+            }
         }
     </style>
     @yield('style')
@@ -38,6 +66,9 @@
         @yield('content')
     </div>
     @include('layouts.user.footer')
+    <script>
+        $("#navbarDropdown").has("h1").after().toggleClass('pakeP');
+    </script>
     @yield('script')
 </body>
 </html>

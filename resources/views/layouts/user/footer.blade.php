@@ -47,11 +47,11 @@
             <img src="{{asset('images/logo.png')}}" height="50" alt=""> for university project purpose only. References by: <a class="text-primary" href="http://www.parsinta.com">www.parsinta.com</a>
         </div>
         <div class="col-12 col-md-4">
-            <a href="http://www.instagram.com" class="btn btn-dark mt-1"><i class="fa fa-github"></i></a>
-            <a href="http://www.instagram.com" class="btn btn-dark mt-1"><i class="fa fa-youtube"></i></a>
-            <a href="http://www.instagram.com" class="btn btn-dark mt-1"><i class="fa fa-instagram"></i></a>
-            <a href="http://www.instagram.com" class="btn btn-dark mt-1"><i class="fa fa-facebook"></i></a>
-            <a href="http://www.instagram.com" class="btn btn-dark mt-1"><i class="fa fa-twitter"></i></a>
+            <a href="http://www.instagram.com" class="btn btn-dark mt-1"><i class="fab fa-github"></i></a>
+            <a href="http://www.instagram.com" class="btn btn-dark mt-1"><i class="fab fa-youtube"></i></a>
+            <a href="http://www.instagram.com" class="btn btn-dark mt-1"><i class="fab fa-instagram"></i></a>
+            <a href="http://www.instagram.com" class="btn btn-dark mt-1"><i class="fab fa-facebook"></i></a>
+            <a href="http://www.instagram.com" class="btn btn-dark mt-1"><i class="fab fa-twitter"></i></a>
         </div>
     </div>
 </div>

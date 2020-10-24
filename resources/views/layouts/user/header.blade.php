@@ -49,5 +49,47 @@
         </form>
         <a href="{{route('login')}}" class="btn btn-primary ml-lg-2 my-3 my-lg-0">Sign In</a>
         <a href="{{route('register')}}" class="btn btn-primary ml-lg-2 my-3 my-lg-0">Sign Up</a>
+        <?php
+        /*
+        <ul class="navbar-nav mt-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{-- <img src="{{asset('images/contoh/account.png')}}" alt="" height="40" width="40" class="rounded-circle" style="object-fit: cover; object-position: center;"> --}}
+                    <h1 class="d-inline-block p-0" style="font-size: 30pt; margin: 0;" id="iconProfile"><i class="fa fa-user-circle"></i></h1>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right p-0" aria-labelledby="navbarDropdown">
+                <div class="dropdown-item p-3" id="itemProfile">
+                    <a href="/profile/" class="text-decoration-none text-dark">
+                        <div class="d-flex justify-content-between" id="profile">
+                            <div>
+                                {{-- <img src="{{asset('images/contoh/account.png')}}" alt="" height="50" width="50" class="rounded-circle" style="object-fit: cover; object-position: center;"> --}}
+                                <h1 class="p-0 m-0"><i class="fa fa-user-circle"></i></h1>
+                            </div>
+                            <div class="ml-2">
+                                <p class="font-weight-bold mb-1">Name</p>
+                                <p class="text-muted small">Look at your profile!</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <h6 class="dropdown-header">Profile</h6>
+                <a class="dropdown-item p-3" href="#"><i class="fa fa-clock"></i> Your Watchlist</a>
+                <a class="dropdown-item p-3" href="#"><i class="fa fa-user"></i> Change Your Profile</a>
+                <a class="dropdown-item p-3" href="#"><i class="fa fa-lock"></i> Change Your Password</a>
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header">Membership</h6>
+                <a class="dropdown-item p-3" href="#"><i class="fa fa-users"></i> Your Membership</a>
+                <a class="dropdown-item p-3" href="#"><i class="fa fa-money-bill-alt"></i> History Transaction</a>
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header">Quiz</h6>
+                <a class="dropdown-item p-3" href="#"><i class="fa fa-pencil-alt"></i> History Quiz</a>
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header">Auth</h6>
+                <a class="dropdown-item p-3" href="#"><i class="fa fa-sign-out-alt"></i> Sign Out</a>
+                </div>
+            </li>
+        </ul>
+        */
+        ?>
     </div>
 </nav>
