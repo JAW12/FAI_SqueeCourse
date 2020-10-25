@@ -23,15 +23,16 @@
     </style>
 @endsection
 @section('content')
-    <form class="form-signin" method="post" action="{{route('login')}}">
+    <form class="form-signin" method="post" action="{{route('admin.login')}}">
         @csrf
         <div class="text-center">
             <img class="mb-4" src="{{asset('images/logo.png')}}" alt="" width="150" style="margin-top: -15%;">
         </div>
         <h1 class="h3 mb-4 font-weight-normal text-center">Please Sign In as Admin</h1>
+        @include('layouts.alert')
         <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
         </div>
         <div class="form-group">
             <label for="password">Password</label>

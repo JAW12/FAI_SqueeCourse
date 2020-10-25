@@ -23,24 +23,35 @@
     </style>
 @endsection
 @section('content')
-    <form class="form-signin" method="post" action="{{route('login')}}">
+    <form class="form-signin" method="post" action="/login">
         @csrf
         <div class="text-center">
             <img class="mb-4" src="{{asset('images/logo.png')}}" alt="" width="150" style="margin-top: -15%;">
         </div>
         <h1 class="h3 mb-0 font-weight-normal text-center">Please Sign In</h1>
         <p class="mb-4 mt-0 font-weight-normal text-center">Didn't have an account? <a href="{{route('register')}}">Register here.</a></p>
+        @include('layouts.alert')
         <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+            <label for="username">Username</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+            </div>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                </div>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
         </div>
         <div class="form-group d-flex justify-content-between">
             <div>
-                <input type="checkbox" value="remember-me"> Remember me
+                <input type="checkbox" value="remember"> Remember me
             </div>
             <div>
                 <a href="/forgot">Forgot your password?</a>

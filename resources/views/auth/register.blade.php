@@ -30,28 +30,86 @@
         </div>
         <h1 class="h3 mb-0 font-weight-normal text-center">Please Sign Up</h1>
         <p class="mb-4 mt-0 font-weight-normal text-center">Already have an account? <a href="{{route('login')}}">Login here.</a></p>
+        @include('layouts.alert')
+
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" id="username" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Username" value="{{old('username')}}">
+            </div>
+
+            @error('username')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror
         </div>
         <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" class="form-control" placeholder="Name">
+            <label for="nama">Name</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                </div>
+                <input type="text" id="nama" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Name" value="{{old('nama')}}">
+            </div>
+            @error('nama')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="Email address">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
+                </div>
+                <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email address" value="{{old('email')}}">
+            </div>
+            @error('email')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                </div>
+                <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" style="margin-bottom: 0px;" placeholder="Password">
+            </div>
+            @error('password')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="confirm">Confirm Password</label>
-            <input type="password" id="confirm" name="confirm" class="form-control" placeholder="Confirm Password">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                </div>
+                <input type="password" id="confirm" name="confirm" class="form-control @error('confirm') is-invalid @enderror" style="margin-bottom: 0px;" placeholder="Confirm Password">
+            </div>
+            @error('confirm')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror
         </div>
         <div class="form-group">
-            <input type="checkbox" value="policy"> I agree to the <a href="/policy" target="_blank" rel="noopener noreferrer">privacy policy</a>
+            <input type="checkbox" id="policy" name="policy"> I agree to the <a href="/policy" target="_blank" rel="noopener noreferrer">privacy policy</a>
+            @error('policy')
+                <p class="small text-danger">
+                    {{$message}}
+                </p>
+            @enderror
         </div>
 
         <button class="btn btn-lg btn-primary btn-block linear" type="submit">Sign Up</button>

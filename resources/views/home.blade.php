@@ -2,9 +2,7 @@
 
 @section('content')
     @include('series.layout-list')
-
-
-<div class="container-fluid bg-white">
+    <div class="container-fluid bg-white">
     <div class="container py-4">
         <h3 class="text-center">SqueeCourse are recommended <br>by <b>Developer, Teacher, Lecturer</b> and much more.</h1>
         <div class="row w-75 mx-auto my-5">

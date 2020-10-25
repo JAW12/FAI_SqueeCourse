@@ -103,12 +103,8 @@
                                     </div>
                                 @endforeach
                             </div>
-
-
                         </div>
-
                         <hr>
-
                     @endforeach
                 </div>
             </div>

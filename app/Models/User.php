@@ -117,4 +117,9 @@ class User extends Authenticatable
         );
     }
 
+    // untuk mendapatkan image dari email
+    public function gravatar($size = 100){
+        return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->email ) ) ) . "?d=mp&s=" . $size;
+    }
+
 }
