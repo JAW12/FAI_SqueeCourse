@@ -27,6 +27,9 @@ class DUserKuis extends Migration
 
             // timestamps
             $table->timestamps();
+
+            // soft deletes
+            $table->softDeletes();
         });
 
 

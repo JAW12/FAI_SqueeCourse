@@ -20,6 +20,9 @@ class LabelSeri extends Migration
             $table->unsignedBigInteger('row_id_label');
 
             $table->unsignedBigInteger('row_id_seri');
+
+            // soft deletes
+            $table->softDeletes();
         });
 
         Schema::table('label_seri', function (Blueprint $table) {

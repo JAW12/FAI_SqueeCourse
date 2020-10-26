@@ -30,6 +30,9 @@ class CreateEpisodesTable extends Migration
 
             // timestamps
             $table->timestamps();
+
+            // soft deletes
+            $table->softDeletes();
         });
 
         Schema::table('episodes', function (Blueprint $table) {

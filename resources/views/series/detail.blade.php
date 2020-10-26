@@ -26,13 +26,13 @@
                     <div class="d-inline-flex mb-3">
                         <h5>
                             <a class="badge badge-pill badge-light mr-2"
-                            href="{{ url('series/category' . $dataSeries->category->slug) }}">
+                            href="{{ url('/series/category/' . $dataSeries->category->slug) }}">
                                 {{ $dataSeries->category->nama }}
                             </a>
                         </h5>
                         <h5>
                             @foreach ($dataSeries->labels as $label)
-                                <a href="{{ url('category/label' . $label->slug) }}" class="badge badge-pill badge-light">
+                                <a href="{{ url('/category/label/' . $label->slug) }}" class="badge badge-pill badge-light">
                                     {{ $label->nama }}
                                 </a>
                             @endforeach

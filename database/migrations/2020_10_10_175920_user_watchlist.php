@@ -23,6 +23,9 @@ class UserWatchlist extends Migration
 
             // timestamps
             $table->timestamps();
+
+            // soft deletes
+            $table->softDeletes();
         });
 
         // FOREIGN KEY

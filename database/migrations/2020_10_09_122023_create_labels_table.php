@@ -24,6 +24,9 @@ class CreateLabelsTable extends Migration
 
             // timestamps
             $table->timestamps();
+
+            // soft deletes
+            $table->softDeletes();
         });
     }
 

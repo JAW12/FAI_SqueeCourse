@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Episode;
+use App\Models\Label;
 use App\Models\Series;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -72,18 +73,18 @@ class SeriesController extends Controller
     }
 
     public function episode($slugseries, $idepisode){
-        $username = Auth::user()->username;
-        $user = User::where('username', $username)->first();
         $dataEpisode = Episode::where('id', $idepisode)->first();
 
         return view('series.episode', [
             "dataEpisode"   => $dataEpisode,
-            "user"          => $user
         ]);
     }
 
-    public function label(){
-
+    public function label($slug){
+        $dataLabel = Label::where("slug", $slug)->first();
+        return view('series.label', [
+            "dataLabel"      => $dataLabel
+        ]);
     }
 
     public function quiz(){

@@ -23,6 +23,9 @@ class CreateQuizzesTable extends Migration
 
             // timestamps
             $table->timestamps();
+
+            // soft deletes
+            $table->softDeletes();
         });
     }
 

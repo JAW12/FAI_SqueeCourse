@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use UserWatchlist;
 
 class Series extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $table = "series";
 
@@ -71,5 +73,11 @@ class Series extends Model
         return $this->belongsTo(Category::class, 'row_id_kategori');
     }
 
+    public function labelseries(){
+        return $this->hasMany(LabelSeri::class, 'row_id_seri', 'id');
+    }
 
+    public function userwatchlist(){
+        return $this->hasMany(UserWatchlist::class, 'row_id_seri', 'id');
+    }
 }

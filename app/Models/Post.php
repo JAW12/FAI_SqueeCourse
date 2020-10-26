@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use LabelPost;
 
 class Post extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $table = "posts";
 
@@ -46,6 +48,10 @@ class Post extends Model
             'row_id_post',
             'row_id_label'
         );
+    }
+
+    public function labelpost(){
+        return $this->hasMany(LabelPost::class, 'row_id_post', 'id');
     }
 
 }

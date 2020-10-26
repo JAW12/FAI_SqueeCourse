@@ -20,6 +20,9 @@ class LabelPost extends Migration
             $table->unsignedBigInteger('row_id_label');
 
             $table->unsignedBigInteger('row_id_post');
+
+            // soft deletes
+            $table->softDeletes();
         });
 
         Schema::table('label_post', function (Blueprint $table) {

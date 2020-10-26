@@ -1,6 +1,28 @@
 @extends('layouts.user')
 
 @section('content')
+    <div class="w-100" id="header">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="text-light" style="margin-top: 15%">
+                        <h2 class="font-weight-light">Lets Learn</h2>
+                        <h1 class="font-weight-bolder">Together</h1>
+                        <p class="lead mt-4 font-weight-normal">Upgrade your skills with SqueeCourse by pushing your knowledge beyond to the next level, through the series provided here such as Laravel, Vue, React, CSS or JS Framework, and much more.</p>
+                        <form class="mt-4" action="/search" method="post">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="search"><i class="fa fa-search"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Okay, so what's we'll learn today?" aria-label="search" aria-describedby="search">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @include('series.layout-list')
     <div class="container-fluid bg-white">
     <div class="container py-4">

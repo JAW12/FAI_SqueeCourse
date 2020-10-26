@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use HUserKuis;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
 class Quiz extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $table = "quizzes";
 
@@ -50,4 +53,7 @@ class Quiz extends Model
         );
     }
 
+    public function huserkuis(){
+        return $this->HasMany(HUserKuis::class, 'row_id_kuis', 'id');
+    }
 }

@@ -30,6 +30,9 @@ class CreatePostsTable extends Migration
             // timestamp
             $table->timestamps();
 
+            // soft deletes
+            $table->softDeletes();
+
         });
 
         Schema::table('posts', function (Blueprint $table) {

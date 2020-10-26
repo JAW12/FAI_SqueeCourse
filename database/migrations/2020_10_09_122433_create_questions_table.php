@@ -32,6 +32,9 @@ class CreateQuestionsTable extends Migration
 
             // timestamps
             $table->timestamps();
+
+            // soft deletes
+            $table->softDeletes();
         });
 
         Schema::table('questions', function (Blueprint $table) {

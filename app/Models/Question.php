@@ -4,11 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+
+use App\Models\DUserKuis;
 
 class Question extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $table = "questions";
 
@@ -40,6 +44,10 @@ class Question extends Model
         // related model, related model dikenali sbg FK apa di class model saat ini, PK class model saat ini
         return $this->belongsto(
             Quiz::class, 'row_id_kuis', 'id');
+    }
+
+    public function duserkuis(){
+        return $this->HasMany(DUserKuis::class, 'row_id_soal', 'id');
     }
 
 }

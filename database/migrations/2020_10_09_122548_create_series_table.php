@@ -38,6 +38,9 @@ class CreateSeriesTable extends Migration
 
             // timestamp
             $table->timestamps();
+
+            // soft deletes
+            $table->softDeletes();
         });
 
         Schema::table('series', function (Blueprint $table) {

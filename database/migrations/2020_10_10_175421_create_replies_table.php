@@ -27,7 +27,8 @@ class CreateRepliesTable extends Migration
             // timestamps
             $table->timestamps();
 
-
+            // soft deletes
+            $table->softDeletes();
         });
 
 

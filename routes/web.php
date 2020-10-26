@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\EpisodeController;
@@ -68,7 +69,7 @@ Route::prefix('series')->group(function(){
             // post untuk edit komentar
             Route::post('komentar/edit', [CommentController::class, 'editcomment']);
             // post untuk reply
-            Route::post('reply', [CommentController::class, 'reply']);
+            Route::post('komentar/{idkomentar}/reply', [CommentController::class, 'reply'])->name('komentar.reply');
             // post untuk edit reply
             Route::post('reply/edit', [CommentController::class, 'editreply']);
         });;
@@ -174,7 +175,9 @@ Route::prefix('admin')->group(function(){
                 Route::post('edit', [SeriesController::class, 'edit']);
 
                 // hapus series
-                Route::get('delete', [AdminController::class, 'deleteSeries'])->name('admin.series.delete');
+                Route::post('delete', [AdminController::class, 'deleteSeries'])->name('admin.series.delete');
+
+                Route::post('restore', [AdminController::class, 'restoreSeries']);
             });
             // detail series -> list episode dan quiz dari series tersebut
             Route::get('episode', [AdminController::class, 'episodeSeries'])->name('admin.series.episode');
