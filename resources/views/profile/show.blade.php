@@ -90,7 +90,7 @@
 
                             <div class="reply">
                                 @foreach ($comment->replies as $reply)
-                                    <div class="row my-5">
+                                    <div class="row mb-5">
                                         <div class="col-xs-12- col-md ml-5">
                                             <p class="font-weight-bold">
                                                 {{ $reply->user->nama }}

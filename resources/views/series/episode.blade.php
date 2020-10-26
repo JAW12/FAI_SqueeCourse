@@ -57,9 +57,13 @@
                     @foreach ($dataEpisode->comments as $comment)
                         <div class="container my-5">
                             <div class="row my-5">
-                                <div class="col-xs-12 col-md-2">
+                                {{-- <div class="col-xs-12 col-md-2">
                                     <img class="img-fluid"
                                         src="{{ asset("/images/icon.png") }}">
+                                </div> --}}
+                                <div class="col-xs-12 col-md-2 text-center
+                                    @if(Auth::user()->id == $user->id) pt-2 @else pt-5 @endif">
+                                    <img src="{{$user->gravatar()}}" alt="" height="150" width="150" class="rounded-circle" style="object-fit: cover; object-position: center;">
                                 </div>
                                 <div class="col-xs-12- col-md mr-5">
                                     <p class="font-weight-bold">
@@ -82,7 +86,7 @@
 
                             <div class="reply">
                                 @foreach ($comment->replies as $reply)
-                                    <div class="row my-5">
+                                    <div class="row mb-5">
                                         <div class="col-xs-12- col-md ml-5">
                                             <p class="font-weight-bold">
                                                 {{ $reply->user->nama }}
@@ -96,9 +100,13 @@
                                                 {{ $reply->isi_reply }}
                                             </p>
                                         </div>
-                                        <div class="col-xs-12 col-md-2">
+                                        {{-- <div class="col-xs-12 col-md-2">
                                             <img class="img-fluid"
                                                 src="{{ asset("/images/icon.png") }}">
+                                        </div> --}}
+                                        <div class="col-xs-12 col-md-2 text-center
+                                            @if(Auth::user()->id == $user->id) pt-2 @else pt-5 @endif">
+                                            <img src="{{$user->gravatar()}}" alt="" height="150" width="150" class="rounded-circle" style="object-fit: cover; object-position: center;">
                                         </div>
                                     </div>
                                 @endforeach

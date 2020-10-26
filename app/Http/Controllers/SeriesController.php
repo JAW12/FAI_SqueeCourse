@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Episode;
 use App\Models\Series;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SeriesController extends Controller
 {
@@ -70,10 +72,13 @@ class SeriesController extends Controller
     }
 
     public function episode($slugseries, $idepisode){
+        $username = Auth::user()->username;
+        $user = User::where('username', $username)->first();
         $dataEpisode = Episode::where('id', $idepisode)->first();
 
         return view('series.episode', [
-            "dataEpisode"   => $dataEpisode
+            "dataEpisode"   => $dataEpisode,
+            "user"          => $user
         ]);
     }
 
