@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Episode;
 use App\Models\Series;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -52,6 +53,15 @@ class AdminController extends Controller
         ]);
     }
 
+    public function viewDetailSeries($slugSeries){
+        // get all data (soft deleted too)
+        $dataSeries = Series::withTrashed()->where("slug", "=" ,$slugSeries)->first();
+
+        return view('admin.series.detail', [
+            "dataSeries"    => $dataSeries
+        ]);
+    }
+
     public function deleteSeries($slugSeries){
         $series = Series::where("slug", $slugSeries)->first();
         $result = $series->delete();
@@ -78,5 +88,21 @@ class AdminController extends Controller
             return redirect()->back()
                 ->with("error", "You have failed in restoring series " . $series->judul);
         }
+    }
+
+    public function episode($slugseries, $idepisode){
+        $dataEpisode = Episode::withTrashed()->where('id', "=", $idepisode)->first();
+
+        return view('admin.episodes.detail', [
+            "dataEpisode"   => $dataEpisode,
+        ]);
+    }
+
+    public function addEpisode(){
+
+    }
+
+    public function addSeries(){
+        return view("admin.series.add");
     }
 }

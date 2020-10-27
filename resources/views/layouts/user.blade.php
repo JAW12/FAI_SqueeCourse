@@ -10,11 +10,13 @@
     <style>
         #header{
             min-height: 55vh;
-            background-image: linear-gradient(to right , #4286f4, #32adff);
+            /* background-image: linear-gradient(to right , #4286f4, #32adff); */
+            background : linear-gradient(45deg, #5B86E5, #36D1DC)
         }
 
         .linear{
-            background-image: linear-gradient(to right , #4286f4, #32adff);
+            /* background-image: linear-gradient(to right , #4286f4, #32adff); */
+            background : linear-gradient(45deg, #5B86E5, #36D1DC)
         }
 
         .row.display-flex {

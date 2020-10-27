@@ -2,7 +2,10 @@
     <div class="container">
         <div class="row no-gutters shadow">
             <div class="col-12 col-md-6 shadow"
-                style="background-image: url('{{ $dataSeriesHeader->url_foto_banner }}'); background-size: cover;  background-position: center;">
+                style="background-image: url('{{
+                strpos($dataSeriesHeader->url_foto_banner, "https://") === false ?
+                asset("storage/images/$d->gambar") :
+                $dataSeriesHeader->url_foto_banner }}'); background-size: cover;  background-position: center;">
             </div>
             <div class="col-12 col-md-6 bg-light">
                 <div class="p-4">

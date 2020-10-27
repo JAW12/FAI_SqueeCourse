@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->id();
 
             // FOREIGN KEY
-            $table->unsignedBigInteger('row_id_user');
+            $table->unsignedBigInteger('row_id_user')->nullable();
             $table->unsignedBigInteger('row_id_episode');
 
             // NOT NULL

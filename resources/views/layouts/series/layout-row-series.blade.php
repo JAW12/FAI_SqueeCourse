@@ -2,7 +2,7 @@
     <td>{{ $loop->iteration }}</td>
     <td style="width: 25%;">
         <a class="text-dark text-decoration-none" target="_blank"
-        href="{{ url('/series/' . $series->slug) }}">
+        href="{{ url('/admin/series/' . $series->slug) }}">
             {{ $series->judul }}
         </a>
     </td>
@@ -38,7 +38,7 @@
             {{ $series->updated_at->diffForHumans() }}
         </td>
     @endif
-    <td class="text-center">
+    <td class="text-center" style="width: 20%">
         <form method="POST">
             @csrf
             <button type="submit" class="btn btn-warning mx-2">

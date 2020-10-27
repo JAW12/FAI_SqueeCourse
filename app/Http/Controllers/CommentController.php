@@ -18,9 +18,11 @@ class CommentController extends Controller
         ], $customMessages);
 
         $newreply = new Reply();
-        $newreply->row_id_user = Auth::user()->id;
         $newreply->row_id_komentar = $idComment;
         $newreply->isi_reply = $input['comment'];
+        if (Auth::check()) {
+            $newreply->row_id_user = Auth::user()->id;
+        }
         $result = $newreply->save();
 
         if ($result) {
@@ -42,9 +44,11 @@ class CommentController extends Controller
         ], $customMessages);
 
         $newcomment = new Comment();
-        $newcomment->row_id_user = Auth::user()->id;
         $newcomment->row_id_episode = $idEpisode;
         $newcomment->isi_komentar = $input['comment'];
+        if (Auth::check()) {
+            $newcomment->row_id_user = Auth::user()->id;
+        }
         $result = $newcomment->save();
 
         if ($result) {

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    @include('series.layout-list')
+    @include('layouts.series.layout-list')
 @endsection
 
 @section('script')

@@ -4,7 +4,7 @@
     <div class="container py-5">
         @include('layouts.alert')
         <div class="container-fluid">
-            <a class="btn btn-dark float-right">
+            <a class="btn btn-dark float-right" href="{{ route("admin.series.add") }}">
                 Add Series
             </a>
         </div>
@@ -12,7 +12,7 @@
             Displayed Series
         </h1>
         <div class="container">
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-light table-hover dt">
                 <thead class="thead-dark">
                     <th>#</th>
                     <th>Title</th>
@@ -31,7 +31,7 @@
                         </tr>
                     @else
                         @foreach ($dataSeries as $series)
-                            @include('admin.series.layouts.layout-row-series')
+                            @include('layouts.series.layout-row-series')
                         @endforeach
                     @endif
                 </tbody>
@@ -44,7 +44,7 @@
             Deleted Series
         </h1>
         <div class="container">
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-light table-hover dt">
                 <thead class="thead-dark">
                     <th>#</th>
                     <th>Title</th>
@@ -63,11 +63,22 @@
                         </tr>
                     @else
                         @foreach ($dataSeriesDeleted as $series)
-                            @include('admin.series.layouts.layout-row-series')
+                            @include('layouts.series.layout-row-series')
                         @endforeach
                     @endif
                 </tbody>
             </table>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('.dt').DataTable({
+                    "order": [[ 2, "asc" ]]
+                }
+            );
+        });
+    </script>
 @endsection

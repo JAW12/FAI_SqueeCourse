@@ -1,35 +1,12 @@
-@extends('layouts.user')
-
-@section('title')
-    {{ $dataEpisode->judul }}
-@endsection
+@extends('layouts.admin')
 
 @section('content')
-    {{--  breadcrumbs --}}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb grey small">
-            <li class="breadcrumb-item"><a href="{{ url("/") }}">Home</a></li>
-            <li class="breadcrumb-item">
-                <a href="{{ url('series/category/' .
-                    $dataEpisode->series->category->slug) }}">
-                    {{ $dataEpisode->series->category->nama }}
-                </a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{{ url('series/' .
-                    $dataEpisode->series->slug) }}">
-                    {{ Str::limit($dataEpisode->series->judul, 30, '...') }}
-                </a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">
-                {{ Str::limit($dataEpisode->judul, 30, '...') }}
-            </li>
-        </ol>
-    </nav>
-
-    @include('layouts.episode.layout-content-episode')
+    <div class="row">
+        <div class="col-12">
+            @include('layouts.episode.layout-content-episode-admin')
+        </div>
+    </div>
 @endsection
-
 
 @section('script')
     <script>
@@ -69,7 +46,4 @@
             })
         })
     </script>
-
 @endsection
-
-

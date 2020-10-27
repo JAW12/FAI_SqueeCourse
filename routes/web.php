@@ -159,7 +159,6 @@ Route::prefix('admin')->group(function(){
         // HALAMAN HOME
         Route::get('/', [AdminController::class, 'index'])->name('admin.home');
 
-
         // KHUSUS SERIES
         Route::prefix('series')->group(function(){
             // halaman dashboard daftar series
@@ -170,6 +169,9 @@ Route::prefix('admin')->group(function(){
             Route::post('add', [SeriesController::class, 'add']);
 
             Route::prefix('{slug}')->group(function(){
+                //halaman lihat detail
+                Route::get('/', [AdminController::class, 'viewDetailSeries'])->name('admin.series.detail');
+
                 // halaman form edit series
                 Route::get('edit', [AdminController::class, 'editSeries'])->name('admin.series.edit');
                 Route::post('edit', [SeriesController::class, 'edit']);
@@ -178,50 +180,50 @@ Route::prefix('admin')->group(function(){
                 Route::post('delete', [AdminController::class, 'deleteSeries'])->name('admin.series.delete');
 
                 Route::post('restore', [AdminController::class, 'restoreSeries']);
+
+                // KHUSUS EPISODE
+                Route::prefix('episode')->group(function(){
+                    // halaman dashboard daftar episode
+                    Route::get('/', [AdminController::class, 'episodes'])->name('admin.episodes');
+
+                    // halaman form tambah episode
+                    Route::get('add', [AdminController::class, 'addEpisode'])->name('admin.episode.add');
+                    Route::post('add', [EpisodeController::class, 'add']);
+
+                    Route::prefix('/{id}')->group(function(){
+                        // halaman show episode
+                        Route::get('/', [AdminController::class, 'episode'])->name('admin.episode');
+
+                        // halaman form edit episode
+                        Route::get('edit', [AdminController::class, 'editEpisode'])->name('admin.episode.edit');
+                        Route::post('edit', [EpisodeController::class, 'edit']);
+
+                        // masih ada komentar & reply cuman aku bingung, sementara ak buatnya gini
+                        // post untuk komentar
+                        Route::post('komentar', [CommentController::class, 'comment']);
+                        // post untuk edit komentar
+                        Route::post('komentar/edit', [CommentController::class, 'editcomment']);
+                        // post untuk hapus komentar
+                        Route::post('komentar/delete', [CommentController::class, 'deletecomment']);
+
+                        // post untuk reply
+                        Route::post('komentar/{idkomentar}/reply', [CommentController::class, 'reply']);
+                        // post untuk edit reply
+                        Route::post('reply/edit', [CommentController::class, 'editreply']);
+                        // post untuk hapus reply
+                        Route::post('reply/delete', [CommentController::class, 'deletereply']);
+
+                        // hapus episode
+                        Route::get('delete', [AdminController::class, 'deleteEpisode'])->name('admin.episode.delete');
+                    });
+                });
             });
             // detail series -> list episode dan quiz dari series tersebut
-            Route::get('episode', [AdminController::class, 'episodeSeries'])->name('admin.series.episode');
+            Route::get('episode', [AdminController::class, 'episodeSeries'])
+                ->name('admin.series.episode');
 
             // detail series -> list episode dan quiz dari series tersebut
             Route::get('quiz', [AdminController::class, 'quizSeries'])->name('admin.series.quiz');
-        });
-
-
-        // KHUSUS EPISODE
-        Route::prefix('episode')->group(function(){
-            // halaman dashboard daftar episode
-            Route::get('/', [AdminController::class, 'episodes'])->name('admin.episodes');
-
-            // halaman form tambah episode
-            Route::get('add', [AdminController::class, 'addEpisode'])->name('admin.episode.add');
-            Route::post('add', [EpisodeController::class, 'add']);
-
-            Route::prefix('/{slug}')->group(function(){
-                // halaman show episode
-                Route::get('/', [AdminController::class, 'episode'])->name('admin.episode');
-
-                // halaman form edit episode
-                Route::get('edit', [AdminController::class, 'editEpisode'])->name('admin.episode.edit');
-                Route::post('edit', [EpisodeController::class, 'edit']);
-
-                // masih ada komentar & reply cuman aku bingung, sementara ak buatnya gini
-                // post untuk komentar
-                Route::post('komentar', [CommentController::class, 'comment']);
-                // post untuk edit komentar
-                Route::post('komentar/edit', [CommentController::class, 'editcomment']);
-                // post untuk hapus komentar
-                Route::post('komentar/delete', [CommentController::class, 'deletecomment']);
-
-                // post untuk reply
-                Route::post('reply', [CommentController::class, 'reply']);
-                // post untuk edit reply
-                Route::post('reply/edit', [CommentController::class, 'editreply']);
-                // post untuk hapus reply
-                Route::post('reply/delete', [CommentController::class, 'deletereply']);
-
-                // hapus episode
-                Route::get('delete', [AdminController::class, 'deleteEpisode'])->name('admin.episode.delete');
-            });
         });
 
         // KHUSUS QUIZ
