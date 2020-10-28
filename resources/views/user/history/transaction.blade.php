@@ -32,7 +32,11 @@
                                     @if ($date_10 == "a")
                                         <td>This membership is about to expire</td>
                                     @elseif($item->waktu_expired_membership > $date)
-                                        <td>-</td>
+                                        @if ($item->status_transaksi == 1)
+                                            <td>This membership is currently waiting for confirmation</td>
+                                        @elseif ($item->status_transaksi == 2)
+                                            <td>This membership is currently active</td>
+                                        @endif
                                     @else
                                         <td>This membership has expired</td>
                                     @endif

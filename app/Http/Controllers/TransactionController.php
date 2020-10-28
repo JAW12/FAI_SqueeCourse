@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -12,17 +13,18 @@ class TransactionController extends Controller
     }
 
     public function form($paket){
+        $nama = Auth::user()->nama;
         if($paket == "Silver"){
             $hasil_rupiah = "Rp " . number_format(120000,2,',','.');
-            return view('user.payment', ['paket' => $paket, 'harga' => $hasil_rupiah]);
+            return view('user.payment', ['paket' => $paket, 'harga' => $hasil_rupiah, 'nama' => $nama]);
         }
         if($paket == "Gold"){
             $hasil_rupiah = "Rp " . number_format(288000,2,',','.');
-            return view('user.payment', ['paket' => $paket, 'harga' => $hasil_rupiah]);
+            return view('user.payment', ['paket' => $paket, 'harga' => $hasil_rupiah, 'nama' => $nama]);
         }
         if($paket == "Platinum"){
             $hasil_rupiah = "Rp " . number_format(504000,2,',','.');
-            return view('user.payment', ['paket' => $paket, 'harga' => $hasil_rupiah]);
+            return view('user.payment', ['paket' => $paket, 'harga' => $hasil_rupiah, 'nama' => $nama]);
         }
     }
 
@@ -36,7 +38,7 @@ class TransactionController extends Controller
         ]);
         //prepare insert to db
         $transaction = new Transaction();
-        $transaction->row_id_user=1;
+        $transaction->row_id_user=Auth::id();
         $time = strtotime($validate['date']);
         if($paket == "Silver"){
             $transaction->jenis_membership=1;
@@ -64,5 +66,33 @@ class TransactionController extends Controller
         if($result){
             return redirect()->route('home');
         }
+    }
+
+    public function accept($id){
+        if($id == "all"){
+            Transaction::where('status_transaksi',1)->update([
+                'status_transaksi'=> 2
+            ]);
+        }
+        else{
+            $accept = Transaction::where('id',$id)->first();
+            $accept->status_transaksi = 2;
+            $accept->save();
+        }
+        return redirect()->route('transaction.pending');
+    }
+
+    public function reject($id){
+        if($id == "all"){
+            Transaction::where('status_transaksi',1)->update([
+                'status_transaksi'=> 3
+            ]);
+        }
+        else{
+            $reject = Transaction::where('id',$id)->first();
+            $reject->status_transaksi = 3;
+            $reject->save();
+        }
+        return redirect()->route('transaction.pending');
     }
 }

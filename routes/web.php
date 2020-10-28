@@ -250,6 +250,9 @@ Route::prefix('admin')->group(function(){
             // halaman daftar semua transaction
             Route::get('/', [AdminController::class, 'transaction'])->name('transaction.list');
 
+            //searchinf data
+            Route::post('/', [AdminController::class, 'transaction_search']);
+
             // halaman daftar transaction yang pending
             Route::get('pending', [AdminController::class, 'pendingTransaction'])->name('transaction.pending');
 

@@ -17,7 +17,35 @@ class UserController extends Controller
     public function membership(){
         $transaction = [];
         //row id user
-        $row_id_user = 1;
+        $row_id_user = Auth::id();
+        //get datas
+        $date = date("yy-m-d");
+        $jenis = "";
+        $detail = "";
+        $transaction = Transaction::where('row_id_user', '=', $row_id_user)->where('waktu_expired_membership', '>', $date)->first();
+        if($transaction != ""){
+            if($transaction->jenis_membership == 1){
+                $jenis = "Silver";
+                $detail = "-> 1 month of full access to all of our series \r\n -> Access to our Discord group \r\n -> Make and keep your watchlist";
+            }
+            elseif ($transaction->jenis_membership == 2) {
+                $jenis = "Gold";
+                $detail = "-> 3 months of full access to all of our series \r\n -> Access to our Discord group \r\n -> Make and keep your watchlist \r\n -> 20% discount from the monthly payments";
+            }
+            elseif ($transaction->jenis_membership == 3){
+                $jenis = "Platinum";
+                $detail = "6 months of full access to all of our series \r\n -> Access to our Discord group \r\n -> Make and keep your watchlist \r\n -> 30% discount from the monthly payments";
+
+            }
+        }
+        return view('user.history.membership',["trans" => $transaction,"jenis" => $jenis, "detail" => $detail]);
+    }
+
+    //return halmana history transaksi member
+    public function transaction(){
+        $transaction = [];
+        //row id user
+        $row_id_user = Auth::id();
         //get datas
         $cek = "";
         $date_now = date("yy-m-d");

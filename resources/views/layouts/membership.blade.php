@@ -8,9 +8,9 @@
     <div class="card-body">
         <h1 class="card-title pricing-card-title">Rp. 120.000 <small class="text-muted">/ mo</small></h1>
         <ul class="list-unstyled mt-3 mb-4">
-        <li><b>1 month</b> full access to <b>all</b>. of our series</li>
+        <li><b>1 month of</b> full access to <b>all</b> of our series</li>
         <li>No limitations</li>
-        <li>Join on our Discord group!</li>
+        <li>Access to our Discord group!</li>
         <li>Make and keep your watchlist</li>
         <li>No discount</li>
         </ul>
@@ -25,9 +25,9 @@
     <div class="card-body">
         <h1 class="card-title pricing-card-title">Rp. 288.000</h1>
         <ul class="list-unstyled mt-3 mb-4">
-            <li><b>3 month</b> full access to <b>all</b>. of our series</li>
+            <li><b>3 months of</b> full access to <b>all</b> of our series</li>
             <li>No limitations</li>
-            <li>Join on our Discord group!</li>
+            <li>Access to our Discord group!</li>
             <li>Make and keep your watchlist</li>
             <li>20% discount from the monthly payments</li>
         </ul>
@@ -41,9 +41,9 @@
     <div class="card-body">
         <h1 class="card-title pricing-card-title">Rp. 504.000</h1>
         <ul class="list-unstyled mt-3 mb-4">
-            <li><b>6 month</b> full access to <b>all</b>. of our series</li>
+            <li><b>6 months of</b> full access to <b>all</b> of our series</li>
             <li>No limitations</li>
-            <li>Join on our Discord group!</li>
+            <li>Access to our Discord group!</li>
             <li>Make and keep your watchlist</li>
             <li>30% discount from the monthly payments</li>
         </ul>

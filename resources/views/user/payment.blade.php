@@ -84,7 +84,7 @@
                         <hr>
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" id="name" placeholder="John Doe" class="form-control">
+                                <input type="text" name="name" id="name" value="{{ $nama }}" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="sender">Your Bank</label>

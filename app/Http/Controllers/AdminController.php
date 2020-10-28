@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Episode;
 use App\Models\Series;
+use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use PhpParser\Node\Expr\FuncCall;
 
 class AdminController extends Controller
 {
@@ -104,5 +107,20 @@ class AdminController extends Controller
 
     public function addSeries(){
         return view("admin.series.add");
+    }
+
+    public function transaction(){
+        $data =Transaction::all();
+        return view('admin.transaction.list',['data'=>$data]);
+    }
+
+    public function pendingTransaction(){
+        $data = Transaction::where('status_transaksi','1')->get();
+        return view('admin.transaction.list',['data'=>$data,'cek'=>"a"]);
+    }
+
+    public function transaction_search(Request $req){
+        $data = Transaction::where('status_transaksi',$req->input('statusSelect'))->get();
+        return view('admin.transaction.list',['data'=>$data]);
     }
 }

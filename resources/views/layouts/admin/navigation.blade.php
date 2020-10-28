@@ -44,12 +44,12 @@
             </li>
             <ul class="ml-4 nav flex-column">
                 <li class="nav-item small">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/admin/transaction">
                         List of Transaction
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link small" href="#">
+                    <a class="nav-link small" href="/admin/transaction/pending">
                         List of Pending Transaction
                     </a>
                 </li>

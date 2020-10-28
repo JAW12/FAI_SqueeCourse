@@ -66,7 +66,7 @@
     @auth
         @if(Auth::user()->email_verified_at == null)
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Email has not been yet verified, please click <a href="">here</a> to verify your email
+            Email has not been verified yet, please click <a href="">here</a> to verify your email
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

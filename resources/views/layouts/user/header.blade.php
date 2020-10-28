@@ -80,8 +80,8 @@
                 <div class="dropdown-divider"></div>
                 <div class="dropdown-header" id="clickMember">Membership <i class="fa fa-caret-down"></i></div>
                 <div id="collapseMember" style="display:none">
-                    <a class="dropdown-item p-3" href="#"><i class="fa fa-users"></i> Your Membership</a>
-                    <a class="dropdown-item p-3" href="#"><i class="fa fa-money-bill-alt"></i> History Transaction</a>
+                    <a class="dropdown-item p-3" href="/history/membership"><i class="fa fa-users"></i> Your Membership</a>
+                    <a class="dropdown-item p-3" href="/history/transaction"><i class="fa fa-money-bill-alt"></i> History Transaction</a>
                 </div>
                 <div class="dropdown-divider"></div>
                 <div class="dropdown-header" id="clickQuiz">Quiz <i class="fa fa-caret-down"></i></div>
