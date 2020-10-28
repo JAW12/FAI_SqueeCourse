@@ -3,12 +3,12 @@
         aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#"><img src="{{asset('images/logo.png')}}" height="70" alt=""></a>
+    <a class="navbar-brand" href="{{route('home')}}"><img src="{{asset('images/logo.png')}}" height="70" alt=""></a>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -35,9 +35,9 @@
 
                 </div>
             </li>
-            <li class="nav-item"><a href="{{route('series.home')}}" class="nav-link">Explore</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-        <li class="nav-item"><a href="{{ route('membership.home') }}" class="nav-link">Membership</a></li>
+            <li class="nav-item"><a href="{{route('series.home')}}" class="nav-link {{ (request()->is('series*')) ? 'active' : '' }}">Explore</a></li>
+            <li class="nav-item"><a href="{{route('blog.home')}}" class="nav-link">Blog</a></li>
+        <li class="nav-item"><a href="{{ route('membership.home') }}" class="nav-link {{ (request()->is('membership*')) ? 'active' : '' }}">Membership</a></li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <div class="input-group">
@@ -53,10 +53,9 @@
         @endguest
         @auth
         <ul class="navbar-nav mt-lg-0">
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" id="navbarAccount">
                 <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="{{Auth::user()->gravatar()}}" alt="" height="50" width="50" class="rounded-circle" style="object-fit: cover; object-position: center;">
-                    {{-- <h1 class="d-inline-block p-0" style="font-size: 30pt; margin: 0;" id="iconProfile"><i class="fa fa-user-circle"></i></h1> --}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right p-0" aria-labelledby="navbarDropdown">
                 <div class="dropdown-item p-3" id="itemProfile">
@@ -64,7 +63,6 @@
                         <div class="d-flex justify-content-between" id="profile">
                             <div>
                                 <img src="{{Auth::user()->gravatar()}}" alt="" height="50" width="50" class="rounded-circle" style="object-fit: cover; object-position: center;">
-                                {{-- <h1 class="p-0 m-0"><i class="fa fa-user-circle"></i></h1> --}}
                             </div>
                             <div class="ml-2">
                                 <p class="font-weight-bold mb-1">{{Auth::user()->nama}}</p>
@@ -73,24 +71,28 @@
                         </div>
                     </a>
                 </div>
-                <h6 class="dropdown-header">Profile</h6>
-                <a class="dropdown-item p-3" href="#"><i class="fa fa-clock"></i> Your Watchlist</a>
-                <a class="dropdown-item p-3" href="{{route('settings.edit')}}"><i class="fa fa-user"></i> Change Your Profile</a>
-                <a class="dropdown-item p-3" href="#"><i class="fa fa-lock"></i> Change Your Password</a>
+                <div class="dropdown-header" id="clickProfile">Profile <i class="fa fa-caret-down"></i></div>
+                <div id="collapseProfile" style="display:none">
+                    <a class="dropdown-item p-3" href="#"><i class="fa fa-clock"></i> Your Watchlist</a>
+                    <a class="dropdown-item p-3" href="{{route('settings.edit')}}"><i class="fa fa-user"></i> Change Your Profile</a>
+                    <a class="dropdown-item p-3" href="#"><i class="fa fa-lock"></i> Change Your Password</a>
+                </div>
                 <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header">Membership</h6>
-                <a class="dropdown-item p-3" href="#"><i class="fa fa-users"></i> Your Membership</a>
-                <a class="dropdown-item p-3" href="#"><i class="fa fa-money-bill-alt"></i> History Transaction</a>
+                <div class="dropdown-header" id="clickMember">Membership <i class="fa fa-caret-down"></i></div>
+                <div id="collapseMember" style="display:none">
+                    <a class="dropdown-item p-3" href="#"><i class="fa fa-users"></i> Your Membership</a>
+                    <a class="dropdown-item p-3" href="#"><i class="fa fa-money-bill-alt"></i> History Transaction</a>
+                </div>
                 <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header">Quiz</h6>
-                <a class="dropdown-item p-3" href="#"><i class="fa fa-pencil-alt"></i> History Quiz</a>
+                <div class="dropdown-header" id="clickQuiz">Quiz <i class="fa fa-caret-down"></i></div>
+                <div id="collapseQuiz" style="display:none">
+                    <a class="dropdown-item p-3" href="#"><i class="fa fa-pencil-alt"></i> History Quiz</a>
+                </div>
                 <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header">Auth</h6>
-                <a class="dropdown-item p-3" href="{{route('logout')}}"><i class="fa fa-sign-out-alt"></i> Sign Out</a>
+                <a class="dropdown-header pb-3 text-decoration-none text-danger" href="{{route('logout')}}"><i class="fa fa-sign-out-alt"></i> Sign Out</a>
                 </div>
             </li>
         </ul>
         @endauth
-
     </div>
 </nav>

@@ -4,7 +4,7 @@
         @include('layouts.alert')
         @if(Auth::user()->id == $user->id)
         <div class="text-right pt-3">
-            <a class="text-light text-decoration-none" href="{{route('settings.edit')}}"><i class="fa fa-edit"></i> Edit Profile</a>
+            <a class="btn btn-light text-decoration-none" href="{{route('settings.edit')}}"><i class="fa fa-edit"></i> Edit Profile</a>
         </div>
         @endif
         <div class="text-center @if(Auth::user()->id == $user->id) pt-2 @else pt-5 @endif">
@@ -42,7 +42,72 @@
             @endif
         </div>
     </div>
+
+    {{-- comment section --}}
     <div class="container-fluid py-4 bg-white">
+        <div class="container mb-5">
+            @include('layouts.alert')
+            <h1 class="h3 text-center">
+                @if (count($user->comments) > 0)
+                    {{count($user->comments)}} Comments
+                @else
+                    You haven't comment yet.
+                @endif
+            </h1>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    @foreach ($user->comments as $comment)
+                        <div class="container my-5">
+                            <div class="row my-5">
+                                <a class="text-decoration-none" href="{{route('series.episode', [
+                                    'slug' => $comment->episode->series->slug,
+                                    'id' => $comment->episode->id
+                                    ])}}" class="col-12">
+                                    <h5>{{$comment->episode->series->judul}}</h5>
+                                    <p class="text-muted">{{$comment->episode->judul}}</p>
+                                </a>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-xs-12 col-md-2">
+                                    <img src="{{$comment->user->gravatar()}}" alt="" height="150" width="150" class="rounded-circle" style="object-fit: cover; object-position: center;">
+                                </div>
+                                <div class="col-xs-12 col-md mr-5">
+                                    <p class="font-weight-bold">
+                                        @if ($comment->row_id_user <= 0)
+                                            Squee Course
+                                        @else
+                                            {{ $comment->user->nama }}
+                                        @endif
+                                    </p>
+                                    <p class="text-muted">
+                                        <small>
+                                            {{ $comment->created_at->diffForHumans() }}
+                                        </small>
+                                    </p>
+                                    <p class="text-justify">
+                                        {{ $comment->isi_komentar }}
+                                    </p>
+
+                                    @if (count($comment->replies) > 0)
+                                        <button class="btn btn-outline-primary btnViewReply mb-4">
+                                            View Replies ({{ count($comment->replies) }})
+                                        </button>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="reply">
+                                @foreach ($comment->replies as $reply)
+                                    @include('layouts.episode.layout-data-reply')
+                                @endforeach
+                            </div>
+                        </div>
+                        <hr>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    {{-- <div class="container-fluid py-4 bg-white">
         <div class="container mb-5">
             <h1 class="h4 text-center">
                 @if (count($user->comments) > 0)
@@ -117,26 +182,63 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 @section('script')
 <script>
+    // $(document).ready(function(){
+    //     $(".reply").hide();
+
+    //     $(".btnViewReply").click(function(){
+    //         let replies = $(".btnViewReply").parent().parent().siblings(".reply");
+
+    //         if ($(replies).is(":visible")) {
+    //             $(this).html("View Replies");
+    //             $(replies).slideUp();
+    //         }
+    //         else{
+    //             $(this).html("Hide Replies");
+    //             $(replies).slideDown();
+    //         }
+    //     });
+    // })
+
     $(document).ready(function(){
-        $(".reply").hide();
+            $(".reply").hide();
+            $(".formAddReply").hide();
 
-        $(".btnViewReply").click(function(){
-            let replies = $(".btnViewReply").parent().parent().siblings(".reply");
+            $(".btnViewReply").click(function(){
+                let replies = $(this).parent().parent().siblings(".reply");
 
-            if ($(replies).is(":visible")) {
-                $(this).html("View Replies");
-                $(replies).slideUp();
-            }
-            else{
-                $(this).html("Hide Replies");
-                $(replies).slideDown();
-            }
-        });
-    })
+                if ($(replies).is(":visible")) {
+                    // $(this).html("View Replies");
+                    $(replies).slideUp();
+                }
+                else{
+                    // $(this).html("Hide Replies");
+                    $(replies).slideDown();
+                }
+            });
+
+            $(".btnAddReply").click(function(){
+                let form = $(this).siblings(".formAddReply");
+
+                if ($(form).is(":visible")) {
+                    $(form).slideUp();
+                }
+                else{
+                    $(form).slideDown();
+                }
+            });
+
+            $(".btnCancel").click(function(){
+                let btnAddReply = $(this).parent().parent().siblings(".btnAddReply")[0];
+                let form = $(this).parent().parent();
+
+                $(form).slideUp();
+            })
+        })
+    </script>
 </script>
 @endsection

@@ -71,6 +71,7 @@ class UserController extends Controller
     }
 
     public function editSubmit(Request $request){
+        $attr = $request->all();
         if($request->email == Auth::user()->email){
             $input = $request->validate([
                 "url_website" => "nullable|url",
@@ -89,9 +90,10 @@ class UserController extends Controller
                 "url_facebook" => "nullable|url",
                 "url_instagram" => "nullable|url"
             ]);
+            $attr['email_verified_at'] = null;
         }
 
-        $result = User::find(Auth::id())->update($request->all());
+        $result = User::find(Auth::id())->update($attr);
         if ($result) {
             return redirect()->route('user.profile', Auth::user()->username)->with('success', 'Change profile successful');
         } else {

@@ -40,7 +40,7 @@
             color: white !important;
         }
 
-        @media (max-width: 767px)
+        @media (max-width: 768px)
         {
 
             .navbar{
@@ -63,6 +63,14 @@
     @yield('style')
 </head>
 <body>
+    @if(Auth::user()->email_verified_at == null)
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Email has not been yet verified, please click <a href="">here</a> to verify your email
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
     @include('layouts.user.header')
     <div class="min-vh-100 grey">
         @yield('content')
@@ -70,6 +78,18 @@
     @include('layouts.user.footer')
     <script>
         $("#navbarDropdown").has("h1").after().toggleClass('pakeP');
+        $(document).on('click', '#navbarAccount .dropdown-menu', function (e) {
+            e.stopPropagation();
+        });
+        $("#clickProfile").click(function(){
+            $("#collapseProfile").slideToggle("slow");
+        });
+        $("#clickMember").click(function(){
+            $("#collapseMember").slideToggle("slow");
+        });
+        $("#clickQuiz").click(function(){
+            $("#collapseQuiz").slideToggle("slow");
+        });
     </script>
     @yield('script')
 </body>

@@ -29,7 +29,6 @@ use App\Http\Controllers\TransactionController;
 Auth::viaRemember();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
 Route::middleware('guest')->group(function(){
     Route::get('/login', [HomeController::class, 'loginPage'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
@@ -131,9 +130,6 @@ Route::get('user/{username}', [UserController::class, 'profile'])->name('user.pr
 Route::prefix('blog')->group(function(){
     // halaman daftar post
     Route::get('/', [PostController::class, 'home'])->name('blog.home');
-
-    // halaman hasil search post
-    Route::get('/search/{query}', [PostController::class, 'search'])->name('blog.search');
 
     //  halaman hasil filter category post
     Route::get('/category/{slug}', [PostController::class, 'category'])->name('blog.category');

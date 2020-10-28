@@ -43,7 +43,7 @@ class Post extends Model
 
     public function labels(){
         return $this->belongsToMany(
-            Post::class,
+            Label::class,
             'label_post',
             'row_id_post',
             'row_id_label'

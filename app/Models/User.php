@@ -45,7 +45,8 @@ class User extends Authenticatable
         'url_github',
         'url_twitter',
         'url_facebook',
-        'url_instagram'
+        'url_instagram',
+        'email_verified_at'
     ];
 
     /**
