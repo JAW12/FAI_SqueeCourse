@@ -17,7 +17,7 @@
                     </div>
                     <input type="text" value="{{$rowpost->username}}" class="form-control" placeholder="No Username"disabled value="">
                 </div>
-                <label for="nama">Username</label>
+                <label for="nama">Email</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
@@ -39,15 +39,6 @@
                         <input type="text" class="form-control" value="{{$rowpost->tempat_kerja}}" name="tempat_kerja" placeholder=""disabled value="">
                     </div>
                     <label for="url_website">Personal Website</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-link"></i></span>
-                    </div>
-                    <input type="text" name="url_website" value="{{$rowpost->url_website}}" class="form-control" placeholder=""disabled value="">
-                </div>
-
-
-                <label for="url_website">Personal Website</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-link"></i></span>
