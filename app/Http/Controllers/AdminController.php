@@ -13,7 +13,17 @@ use PhpParser\Node\Expr\FuncCall;
 class AdminController extends Controller
 {
     public function index(){
-        return view('admin.home');
+        $datauser = User::all();
+        return view('admin.home', [
+            "datauser"          => $datauser
+        ]);
+    }
+
+    public function memberDetail($username){
+        $datauser = User::where('username', '=', $username)->get(); 
+        return view('admin.member.detail', [
+            "datauser"          => $datauser
+        ]);
     }
 
     public function login(Request $request){
