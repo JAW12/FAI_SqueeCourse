@@ -45,6 +45,8 @@
                     </div>
                     <input type="text" name="url_website" value="{{$rowpost->url_website}}" class="form-control" placeholder="">
                 </div>
+
+                
                 <label for="url_website">Personal Website</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
