@@ -36,51 +36,51 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-map-marker-alt"></i></span>
                         </div>
-                        <input type="text" class="form-control" value="{{$rowpost->tempat_kerja}}" name="tempat_kerja" placeholder="">
+                        <input type="text" class="form-control" value="{{$rowpost->tempat_kerja}}" name="tempat_kerja" placeholder=""disabled value="">
                     </div>
                     <label for="url_website">Personal Website</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-link"></i></span>
                     </div>
-                    <input type="text" name="url_website" value="{{$rowpost->url_website}}" class="form-control" placeholder="">
+                    <input type="text" name="url_website" value="{{$rowpost->url_website}}" class="form-control" placeholder=""disabled value="">
                 </div>
 
-                
+
                 <label for="url_website">Personal Website</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-link"></i></span>
                     </div>
-                    <input type="text" name="url_website" value="{{$rowpost->url_website}}" class="form-control" placeholder="">
+                    <input type="text" name="url_website" value="{{$rowpost->url_website}}" class="form-control" placeholder=""disabled value="">
                 </div>
                 <label for="url_github">Github</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fab fa-github"></i></span>
                     </div>
-                    <input type="text" name="url_github" value="{{$rowpost->url_github}}" class="form-control" placeholder="">
+                    <input type="text" name="url_github" value="{{$rowpost->url_github}}" class="form-control" placeholder=""disabled value="">
                 </div>
                 <label for="url_twitter">Twitter</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fab fa-twitter"></i></span>
                     </div>
-                    <input type="text" name="url_twitter" value="{{$rowpost->url_twitter}}" class="form-control" placeholder="">
+                    <input type="text" name="url_twitter" value="{{$rowpost->url_twitter}}" class="form-control" placeholder=""disabled value="">
                 </div>
                 <label for="url_facebook">Facebook</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fab fa-facebook"></i></span>
                     </div>
-                    <input type="text" name="url_facebook" value="{{$rowpost->url_facebook}}"class="form-control" placeholder="">
+                    <input type="text" name="url_facebook" value="{{$rowpost->url_facebook}}"class="form-control" placeholder=""disabled value="">
                 </div>
                 <label for="url_instagram">Instagram</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fab fa-instagram"></i></span>
                     </div>
-                    <input type="text" name="url_instagram" value="{{$rowpost->url_instagram}}"class="form-control" placeholder="">
+                    <input type="text" name="url_instagram" value="{{$rowpost->url_instagram}}"class="form-control" placeholder=""disabled value="">
                 </div>
             </div>
                 
