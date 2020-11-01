@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Mail\VerifyMail;
+use App\Models\VerifyUser;
 use App\Models\Transaction;
+use App\Notifications\MailVerificationNotification;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Notification;
 
 class UserController extends Controller
 {
@@ -85,6 +90,40 @@ class UserController extends Controller
         } else {
             return redirect()->back()->with('error', 'Register failed');
         }
+    }
+
+    public function sendVerify(){
+        $verifyUser = VerifyUser::create([
+            'user_id' => Auth::user()->id,
+            'token' => sha1(time())
+        ]);
+
+        Auth::user()->notify(new MailVerificationNotification($verifyUser->token));
+        return redirect()->route('home')->with('success', 'We sent you an activation code. Check your email and click on the link to verify.');
+    }
+
+    public function verifyUser(Request $request)
+    {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+    ]);
+
+    $verifyUser = VerifyUser::where('token', $request->token)->first();
+    if(isset($verifyUser) ){
+        $user = $verifyUser->user;
+        if(!$user->verified) {
+        $verifyUser->user->email_verified_at = now();
+        $verifyUser->user->save();
+        $status = "Your e-mail is verified.";
+        } else {
+        $status = "Your e-mail is already verified.";
+        }
+        VerifyUser::where('user_id', $user->id)->delete();
+    } else {
+        return redirect('home')->with('error', "Sorry your email cannot be identified.");
+    }
+    return redirect()->route('home')->with('success', $status);
     }
 
     public function profile($username){

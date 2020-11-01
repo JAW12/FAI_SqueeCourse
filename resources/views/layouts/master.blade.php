@@ -7,6 +7,12 @@
     <title>@yield('title')</title>
 
     @include('layouts.head')
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
     @yield('style')
 </head>
 <body>

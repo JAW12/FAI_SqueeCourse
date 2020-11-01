@@ -27,7 +27,18 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
                         </div>
-                        <input type="email" name="email" value="{{Auth::user()->email}}" class="form-control" placeholder="johnsteve@gmail.com">
+                        <input type="email" name="email" value="{{Auth::user()->email}}" class="form-control
+                        @if(Auth::user()->email_verified_at != null)
+                            is-valid
+                        @else
+                            is-invalid
+                        @endif" placeholder="johnsteve@gmail.com">
+                        <div class="valid-feedback">
+                            Verified!
+                        </div>
+                        <div class="invalid-feedback">
+                            Not verified yet! Click <a href="/verify">here</a> to verify!
+                        </div>
                     </div>
                     @error('email')
                         <div class="invalid-feedback">

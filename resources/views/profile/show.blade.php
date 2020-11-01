@@ -1,7 +1,6 @@
 @extends('layouts.user')
 @section('content')
     <div class="container-fluid linear">
-        @include('layouts.alert')
         @if(Auth::user()->id == $user->id)
         <div class="text-right pt-3">
             <a class="btn btn-light text-decoration-none" href="{{route('settings.edit')}}"><i class="fa fa-edit"></i> Edit Profile</a>

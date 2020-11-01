@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Notifications\MailResetPasswordNotification;
+use App\Notifications\MailVerificationNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -47,6 +48,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'url_twitter',
         'url_facebook',
         'url_instagram',
+        'email_verified_at'
     ];
 
     /**
@@ -132,8 +134,24 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(UserWatchlist::class, 'row_id_user', 'id');
     }
 
+    // untuk send custom notification email reset password
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new MailResetPasswordNotification($token));
+    }
+
+    // untuk verify user
+    public function verifyUser()
+    {
+        return $this->hasOne(VerifyUser::class);
+    }
+
+    public function getVerify(){
+        if($this->email_verified_at != null){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

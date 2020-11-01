@@ -88,11 +88,14 @@ Route::middleware('guest')->group(function(){
 
     Route::get('/forgot', [LoginController::class, 'forgotPage'])->name('forgot');
     Route::post('/forgot', [LoginController::class, 'forgot']);
-    Route::get('/reset', [LoginController::class, 'resetPage'])->name('password.reset');
-    Route::post('/reset', [LoginController::class, 'reset']);
 });
 
+// check verification
+Route::get('/verification', [UserController::class, 'verifyUser'])->name('verification');
 
+// reset password page
+Route::get('/reset', [LoginController::class, 'resetPage'])->name('password.reset');
+Route::post('/reset', [LoginController::class, 'reset']);
 
 // KHUSUS SERI
 Route::prefix('series')->group(function(){
@@ -138,6 +141,10 @@ Route::prefix('series')->group(function(){
 Route::get('membership', [TransactionController::class, 'home'])->name('membership.home');
 
 Route::middleware("auth")->group(function(){
+
+    // send verification
+    Route::get('/verify', [UserController::class, 'sendVerify'])->name('send.verification');
+
     // halaman form pembayaran & post
     Route::get('payment/{paket}', [TransactionController::class, 'form'])->name('membership.form');
     Route::post('payment/{paket}', [TransactionController::class, 'submit']);
