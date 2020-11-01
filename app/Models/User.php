@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Notifications\MailResetPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, SoftDeletes;
 
@@ -46,7 +47,6 @@ class User extends Authenticatable
         'url_twitter',
         'url_facebook',
         'url_instagram',
-        'email_verified_at'
     ];
 
     /**
@@ -130,5 +130,10 @@ class User extends Authenticatable
 
     public function userwatchlist(){
         return $this->hasMany(UserWatchlist::class, 'row_id_user', 'id');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new MailResetPasswordNotification($token));
     }
 }

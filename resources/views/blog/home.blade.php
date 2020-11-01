@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
     @include('blog.layouts.navigation')
-    <div class="container">
+    <div class="container mt-3">
         <div class="row">
             <div class="col-12 mt-2 pb-3 border-bottom border-dark d-flex justify-content-between">
                 <div>

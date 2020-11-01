@@ -14,11 +14,13 @@
             </ul>
         </div>
         <div class="col-6 col-md">
-            <h5>Membership</h5>
+            <h5>References</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Silver</a></li>
-                <li><a class="text-muted" href="#">Gold</a></li>
-                <li><a class="text-muted" href="#">Platinum</a></li>
+                <li><a class="text-muted" href="https://docs.microsoft.com/en-us/dotnet/csharp/" target="_blank">C#</a></li>
+                <li><a class="text-muted" href="https://devdocs.io/css/" target="_blank">CSS</a></li>
+                <li><a class="text-muted" href="https://devdocs.io/javascript/" target="_blank">JS</a></li>
+                <li><a class="text-muted" href="https://laravel.com/docs/8.x" target="_blank">Laravel</a></li>
+                <li><a class="text-muted" href="https://www.php.net/docs.php" target="_blank">PHP</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">

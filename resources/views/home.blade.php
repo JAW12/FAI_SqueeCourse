@@ -1,6 +1,7 @@
 @extends('layouts.user')
 
 @section('content')
+    @include('layouts.alert')
     <div class="w-100" id="header">
         <div class="container pb-5">
             <div class="row">

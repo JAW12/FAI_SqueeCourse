@@ -30,6 +30,14 @@
         </div>
         <h1 class="h3 mb-0 font-weight-normal text-center">Please Sign In</h1>
         <p class="mb-4 mt-0 font-weight-normal text-center">Didn't have an account? <a href="{{route('register')}}">Register here.</a></p>
+        @if(session()->has('status'))
+        <div class="col-12 alert alert-success alert-dismissible fade show" role="alert">
+            {{ session()->get('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
         @include('layouts.alert')
         <div class="form-group">
             <label for="username">Username</label>

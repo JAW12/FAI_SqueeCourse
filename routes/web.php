@@ -1,17 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SeriesController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EpisodeController;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Controllers\TransactionController;
+use App\Notifications\MailResetPasswordNotification;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +30,53 @@ use App\Http\Controllers\TransactionController;
 // HOMEPAGE    Auth::viaRemember();
 
 Auth::viaRemember();
+
+Route::get('/test-mail', function (){
+    Notification::route('mail', 'squeecourse@gmail.com')->notify(new MailResetPasswordNotification('tes'));
+    return 'Sent';
+});
+
+Route::get('/test', function(){
+    $body = "
+            Kunjungan pada tenonet <br>
+            <table border='1' cellspacing='0' cellpadding='3'>
+            <tr>
+            <th>Nama</th>
+            <td>Jem</td>
+            </tr>
+
+            <tr>
+            <th>Email</th>
+            <td>jem.angkasa91@gmail.com</td>
+            </tr>
+
+            <tr>
+            <th>No.Telp</th>
+            <td>08122222222</td>
+            </tr>
+
+            <tr>
+            <th>Pesan</th>
+            <td>ini pesan</td>
+            </tr>
+            </table>";
+
+        $to_name = "Squee Course";
+        $to_email = "squeecourse@gmail.com";
+        $data = array("name" => "Squee Course", "body" => $body);
+
+        try {
+            Mail::send("emails.mail", $data, function ($message) use ($to_name, $to_email) {
+                $message->to($to_email, $to_name)
+                    ->subject("[KUNJUNGAN]");
+                $message->from("squeecourse@gmail.com", "Squee Course");
+                return redirect()->route('home')->with('success', 'Berhasil');
+            });
+        } catch (\Throwable $th) {
+            return redirect()->route('home')->with('error', $th);
+        }
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('guest')->group(function(){
@@ -37,7 +87,9 @@ Route::middleware('guest')->group(function(){
     Route::post('/register', [UserController::class, 'register']);
 
     Route::get('/forgot', [LoginController::class, 'forgotPage'])->name('forgot');
-    Route::get('/reset', [LoginController::class, 'resetPage'])->name('reset');
+    Route::post('/forgot', [LoginController::class, 'forgot']);
+    Route::get('/reset', [LoginController::class, 'resetPage'])->name('password.reset');
+    Route::post('/reset', [LoginController::class, 'reset']);
 });
 
 
