@@ -27,12 +27,13 @@
     </button>
 @endif
 
+
 <div class="formAddReply">
     <h1 class="h4 mb-4">What's on your mind?</h1>
     <form method="POST"
     action="{{
     url("/admin/series/". $dataEpisode->series->slug .
-        "/episode/" . $dataEpisode->id .
+        "/episode/" . $dataEpisode->slug .
         "/komentar/" . $comment->id .
         "/reply") }}">
         @csrf

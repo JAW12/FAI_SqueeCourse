@@ -4,19 +4,19 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Episode;
+use App\Models\Label;
 use App\Models\Series;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use PhpParser\Node\Expr\FuncCall;
 
 class AdminController extends Controller
 {
     public function index(){
         return view('admin.home');
     }
-    
+
     function blog(){
         $blogactive=Post::where('status_aktif','=','1')->get();
         $blogimati=Post::where('status_aktif','=','0')->get();
@@ -38,7 +38,7 @@ class AdminController extends Controller
     }
 
     public function memberDetail($username){
-        $datauser = User::where('username', '=', $username)->get(); 
+        $datauser = User::where('username', '=', $username)->get();
         return view('admin.member.detail', [
             "datauser"          => $datauser
         ]);
@@ -69,17 +69,16 @@ class AdminController extends Controller
     }
 
     public function series(){
-        $dataSeries = Series::orderBy("updated_at", "DESC")
-            ->paginate(10);
+        $dataSeries = Series::withTrashed()->orderByDesc("updated_at")->get();
 
         // mendapatkan data series yang sudah didelete
-        $dataSeriesDeleted = Series::onlyTrashed()
-            ->orderByDesc("deleted_at")
-            ->paginate(10);
+        // $dataSeriesDeleted = Series::onlyTrashed()
+        //     ->orderByDesc("deleted_at")
+        //     ->paginate(10);
 
         return view("admin.series.list", [
             "dataSeries"        => $dataSeries,
-            "dataSeriesDeleted" => $dataSeriesDeleted
+            // "dataSeriesDeleted" => $dataSeriesDeleted
         ]);
     }
 
@@ -120,8 +119,8 @@ class AdminController extends Controller
         }
     }
 
-    public function episode($slugseries, $idepisode){
-        $dataEpisode = Episode::withTrashed()->where('id', "=", $idepisode)->first();
+    public function episode($slugseries, $slugepisode){
+        $dataEpisode = Episode::withTrashed()->where('slug', "=", $slugepisode)->first();
 
         return view('admin.episodes.detail', [
             "dataEpisode"   => $dataEpisode,
@@ -133,7 +132,13 @@ class AdminController extends Controller
     }
 
     public function addSeries(){
-        return view("admin.series.add");
+        $dataLabels = Label::orderBy('nama')->get();
+
+        // dd($dataLabels);
+
+        return view("admin.series.add", [
+            "dataLabels"    => $dataLabels
+        ]);
     }
 
     public function transaction(){

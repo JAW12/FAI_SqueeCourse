@@ -32,8 +32,8 @@ class CreateSeriesTable extends Migration
                 ->comment("0 = BELUM, 1 = SUDAH");
             $table->tinyInteger('status_berbayar')
                 ->comment("0 = GRATIS, 1 = BERBAYAR");
-            $table->tinyInteger('status_masuk_header')
-                ->comment("0 = TIDAK, 1 = MASUK HEADER");
+            // $table->tinyInteger('status_masuk_header')
+            //     ->comment("0 = TIDAK, 1 = MASUK HEADER");
             $table->string('url_foto_banner')->nullable();
 
             // timestamp

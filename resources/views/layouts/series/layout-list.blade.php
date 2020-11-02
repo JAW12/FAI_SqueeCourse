@@ -4,7 +4,7 @@
             <div class="col-12 col-md-6 shadow"
                 style="background-image: url('{{
                 strpos($dataSeriesHeader->url_foto_banner, "https://") === false ?
-                asset("storage/images/$d->gambar") :
+                asset("storage/images/$dataSeriesHeader->url_foto_banner") :
                 $dataSeriesHeader->url_foto_banner }}'); background-size: cover;  background-position: center;">
             </div>
             <div class="col-12 col-md-6 bg-light">
@@ -74,7 +74,10 @@
                 @foreach ($dataSeriesPopular as $series)
                     <div class="card" style="height: 30rem;">
                         <img class="card-img-top"
-                            src="{{ $series->url_foto_banner }}" alt="Card image cap">
+                            src="
+                            {{
+                                (strpos($series->url_foto_banner, "https://") === false) ? asset("/storage/images/".$series->url_foto_banner) : $series->url_foto_banner
+                            }}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title mb-1" style="height: 3rem;">
                                 <a class="text-dark text-decoration-none"
@@ -122,7 +125,7 @@
                 @foreach ($dataSeriesNewest as $series)
                     <div class="card" style="height: 30rem;">
                         <img class="card-img-top"
-                            src="{{ $series->url_foto_banner }}" alt="Card image cap">
+                            src="{{ (strpos($series->url_foto_banner, "https://") === false) ? asset("/storage/images/".$series->url_foto_banner) : $series->url_foto_banner  }}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title mb-1" style="height: 3rem;">
                                 <a class="text-dark text-decoration-none"
@@ -171,7 +174,7 @@
                 @foreach ($dataSeriesJustUpdated as $series)
                     <div class="card" style="height: 30rem;">
                         <img class="card-img-top"
-                            src="{{ $series->url_foto_banner }}" alt="Card image cap">
+                            src="{{ (strpos($series->url_foto_banner, "https://") === false) ? asset("/storage/images/".$series->url_foto_banner) : $series->url_foto_banner  }}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title mb-1" style="height: 3rem;">
                                 <a class="text-dark text-decoration-none"
@@ -219,7 +222,7 @@
                 @foreach ($dataSeriesCompleted as $series)
                     <div class="card" style="height: 30rem;">
                         <img class="card-img-top"
-                            src="{{ $series->url_foto_banner }}" alt="Card image cap">
+                            src="{{ (strpos($series->url_foto_banner, "https://") === false) ? asset("/storage/images/".$series->url_foto_banner) : $series->url_foto_banner  }}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title mb-1" style="height: 3rem;">
                                 <a class="text-dark text-decoration-none"
@@ -267,7 +270,7 @@
                 @foreach ($dataSeriesOnProgress as $series)
                     <div class="card" style="height: 30rem;">
                         <img class="card-img-top"
-                            src="{{ $series->url_foto_banner }}" alt="Card image cap">
+                            src="{{ (strpos($series->url_foto_banner, "https://") === false) ? asset("/storage/images/".$series->url_foto_banner) : $series->url_foto_banner }}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title mb-1" style="height: 3rem;">
                                 <a class="text-dark text-decoration-none"
@@ -315,7 +318,7 @@
                 @foreach ($dataSeriesLearnFromZero as $series)
                     <div class="card" style="height: 30rem;">
                         <img class="card-img-top"
-                            src="{{ $series->url_foto_banner }}" alt="Card image cap">
+                            src="{{ (strpos($series->url_foto_banner, "https://") === false) ? asset("/storage/images/".$series->url_foto_banner) : $series->url_foto_banner  }}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title mb-1" style="height: 3rem;">
                                 <a class="text-dark text-decoration-none"

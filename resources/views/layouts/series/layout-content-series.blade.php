@@ -12,7 +12,7 @@
                         </h5>
                         <h5>
                             @foreach ($dataSeries->labels as $label)
-                                <a href="{{ url('/category/label/' . $label->slug) }}" class="badge badge-pill badge-light">
+                                <a href="{{ url('/series/label/' . $label->slug) }}" class="badge badge-pill badge-light">
                                     {{ $label->nama }}
                                 </a>
                             @endforeach
@@ -24,11 +24,24 @@
                     <p class="text-light lead mt-0 font-weight-normal">
                         {{ Str::limit($dataSeries->deskripsi, 255, '...') }}
                     </p>
-                    <a class="btn btn-dark btn-lg bt-5"
-                        href="{{ url('series/' . $dataSeries->slug . '/episode/' .
-                            $dataSeries->episodes->first()->id) }}">
-                        <i class="fa fa-play-circle mr-2"></i>Watch
-                    </a>
+                    @if (count($dataSeries->episodes) > 0)
+                        <a class="btn btn-dark btn-lg bt-5"
+                            href="{{ url('series/' . $dataSeries->slug . '/episode/' .
+                                $dataSeries->episodes->first()->id) }}">
+                            <i class="fa fa-play-circle mr-2"></i>Start
+                        </a>
+                    @endif
+                    @if (Auth::check())
+                        <a class="btn bg-light text-dark btn-lg bt-5"
+                            href="{{ url('series/' . $dataSeries->slug . '/watchlist') }}">
+
+                            @if (! isset($isSaved) || $isSaved == false)
+                                <i class="far fa-bookmark mr-2"></i></i>Watch Later
+                            @else
+                                <i class="fas fa-bookmark mr-2"></i>Remove From Watch Later
+                            @endif
+                        </a>
+                    @endif
                     <div class="mt-5 text-light">
                         <div class="row">
                             <p class="col-xs-12 col-lg-3">
@@ -66,41 +79,53 @@
         </div>
     </div>
 </div>
+
+{{-- list episode --}}
 <div class="container-fluid grey py-4">
     <div class="container mb-5">
         <div class="row">
-            <div class="col-xs-12 col-md-6">
-                <div class="list-group shadow-sm">
-                    <p class="list-group-item list-group-item-action mb-0 disabled"><i class="fa fa-exclamation-circle text-danger mr-2"></i><b>
-                        @if ($dataSeries->status_complete === 0)
-                            Series on progress
-                        @elseif ($dataSeries->status_complete === 1)
-                            Completed Series
-                        @endif
-                    </b></p>
-                    @foreach ($dataSeries->episodes as $episode)
-                        <a href="{{
-                        url('series/' . $dataSeries->slug . '/episode/' . $episode->id) }}" class="list-group-item list-group-item-action">
-                            <div class="d-flex">
-                                <h1><i class="fa fa-play-circle"></i></h1>
-                                <div class="ml-3">
-                                    <h5>
-                                        {{ $episode->judul }}
-                                    </h5>
-                                    <p class="text-muted mb-0">
-                                        Episode {{ $loop->iteration }}
-                                    </p>
-                                </div>
-                                <div class="ml-auto my-auto">
-                                    <p>
-                                        {{ gmdate('i:s', $episode->durasi) }}
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    @endforeach
+            @if (count($dataSeries->episodes) <= 0)
+                <div class="col-12">
+                    <p>
+                        <h1 class="h3 text-center">
+                            This series doesn't have any episodes yet.
+                        </h1>
+                    </p>
                 </div>
-            </div>
+            @else
+                <div class="col-xs-12 col-md-6">
+                    <div class="list-group shadow-sm">
+                        <p class="list-group-item list-group-item-action mb-0 disabled"><i class="fa fa-exclamation-circle text-danger mr-2"></i><b>
+                            @if ($dataSeries->status_complete === 0)
+                                Series on progress
+                            @elseif ($dataSeries->status_complete === 1)
+                                Completed Series
+                            @endif
+                        </b></p>
+                        @foreach ($dataSeries->episodes as $episode)
+                            <a href="{{
+                            url('series/' . $dataSeries->slug . '/episode/' . $episode->slug) }}" class="list-group-item list-group-item-action">
+                                <div class="d-flex">
+                                    <h1><i class="fa fa-play-circle"></i></h1>
+                                    <div class="ml-3">
+                                        <h5>
+                                            {{ $episode->judul }}
+                                        </h5>
+                                        <p class="text-muted mb-0">
+                                            Episode {{ $loop->iteration }}
+                                        </p>
+                                    </div>
+                                    <div class="ml-auto my-auto">
+                                        <p>
+                                            {{ gmdate('i:s', $episode->durasi) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </div>

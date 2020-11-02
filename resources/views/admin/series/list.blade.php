@@ -1,26 +1,38 @@
 @extends('layouts.admin')
 
+@section('title')
+    List Series
+@endsection
+
 @section('content')
     <div class="container py-5">
-        @include('layouts.alert')
-        <div class="container-fluid">
-            <a class="btn btn-dark float-right" href="{{ route("admin.series.add") }}">
+        <div class="my-2">
+            @include('layouts.alert')
+        </div>
+        <div class="container-fluid text-right">
+            <a class="btn btn-dark" href="{{ route("admin.series.add") }}">
                 Add Series
             </a>
         </div>
-        <h1 class="display-4 text-center my-4">
-            Displayed Series
-        </h1>
+        <div class="container-fluid">
+            <h1 class="h1 text-center my-4">
+                Squee Course Series
+            </h1>
+            <p class="text-primary font-italic font-weight-bold">
+                *) Click row to view series detail
+            </p>
+        </div>
         <div class="container">
             <table class="table table-bordered table-light table-hover dt">
-                <thead class="thead-dark">
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>Series Type</th>
-                    <th>Completion Status</th>
-                    <th>Difficulty</th>
-                    <th>Last Updated At</th>
-                    <th>Action</th>
+                <thead class="thead-dark align-middle">
+                    <th class="align-middle text-center">#</th>
+                    <th class="align-middle text-center">Title</th>
+                    <th class="align-middle text-center">Series Type</th>
+                    <th class="align-middle text-center">Completion Status</th>
+                    <th class="align-middle text-center">Difficulty</th>
+                    <th class="align-middle text-center">Last Updated At</th>
+                    <th class="align-middle text-center">Displayed Status</th>
+                    <th class="align-middle text-center">Action</th>
                 </thead>
                 <tbody>
                     @if (count($dataSeries) <= 0)
@@ -39,46 +51,21 @@
         </div>
     </div>
 
-    <div class="container py-3 mb-5">
-        <h1 class="display-4 text-center my-4">
-            Deleted Series
-        </h1>
-        <div class="container">
-            <table class="table table-bordered table-light table-hover dt">
-                <thead class="thead-dark">
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>Series Type</th>
-                    <th>Completion Status</th>
-                    <th>Difficulty</th>
-                    <th>Deleted At</th>
-                    <th>Action</th>
-                </thead>
-                <tbody>
-                    @if (count($dataSeriesDeleted) <= 0)
-                        <tr>
-                            <td class="text-center" colspan="7">
-                                You haven't deleted any series yet.
-                            </td>
-                        </tr>
-                    @else
-                        @foreach ($dataSeriesDeleted as $series)
-                            @include('layouts.series.layout-row-series')
-                        @endforeach
-                    @endif
-                </tbody>
-            </table>
-        </div>
-    </div>
+
 @endsection
 
 @section('script')
     <script>
         $(document).ready(function(){
-            $('.dt').DataTable({
-                    "order": [[ 2, "asc" ]]
-                }
-            );
+            $('.dt').DataTable();
+            // $('.dt').DataTable({
+            //         "order": [[ 2, "asc" ]]
+            //     }
+            // );
+        });
+
+        $(document).on("click", ".click-col", function(){
+            window.open($(this).parent().attr("data-href"))
         });
     </script>
 @endsection

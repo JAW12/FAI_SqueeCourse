@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Episode;
 use App\Models\Reply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,7 @@ class CommentController extends Controller
         }
     }
 
-    public function comment(Request $request, $slugSeries, $idEpisode){
+    public function comment(Request $request, $slugSeries, $slugEpisode){
         $customMessages = [
             "comment.required"  => "Sorry but you can't add an empty reply"
         ];
@@ -43,8 +44,10 @@ class CommentController extends Controller
             "comment"   => "required"
         ], $customMessages);
 
+        $dataEpisode = Episode::where('slug', $slugEpisode)->first();
+
         $newcomment = new Comment();
-        $newcomment->row_id_episode = $idEpisode;
+        $newcomment->row_id_episode = $dataEpisode->id;
         $newcomment->isi_komentar = $input['comment'];
         if (Auth::check()) {
             $newcomment->row_id_user = Auth::user()->id;

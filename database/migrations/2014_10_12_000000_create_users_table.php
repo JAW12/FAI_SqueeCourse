@@ -38,6 +38,9 @@ class CreateUsersTable extends Migration
             $table->string('url_facebook')->nullable();
             $table->string('url_instagram')->nullable();
 
+            $table->integer('status_verified')
+                ->comment('0 = belum, 1 = sudah')->default(0);
+
             // timestamps
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

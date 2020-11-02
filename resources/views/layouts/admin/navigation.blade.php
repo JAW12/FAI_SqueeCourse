@@ -2,14 +2,14 @@
     <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <span class="nav-link" href="#">
+                <span class="nav-link" href="{{ route('admin.series') }}">
                     <i class="fas fa-video"></i>
                     Series & Episode
                 </span>
             </li>
             <ul class="ml-4 nav flex-column">
                 <li class="nav-item small">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('admin.series') }}">
                         List of Series
                     </a>
                 </li>

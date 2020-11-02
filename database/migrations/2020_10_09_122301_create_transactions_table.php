@@ -30,6 +30,7 @@ class CreateTransactionsTable extends Migration
             $table->tinyInteger('status_transaksi')
                     ->comment('1 = PENDING, 2 = ACCEPTED, 3 = REJECTED');
             $table->integer('total_pembayaran');
+            $table->string('nomor_rekening');
 
             // timestamps
             $table->timestamps();

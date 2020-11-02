@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+@include('layouts.alert')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb grey small">
         <li class="breadcrumb-item"><a href="{{ url("/") }}">Home</a></li>

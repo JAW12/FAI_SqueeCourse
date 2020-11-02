@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Mail\VerifyMail;
+use App\Models\Series;
 use App\Models\VerifyUser;
 use App\Models\Transaction;
 use App\Notifications\MailVerificationNotification;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Notification;
+use App\Models\UserWatchlist;
 
 class UserController extends Controller
 {
@@ -64,10 +66,6 @@ class UserController extends Controller
             }
         }
         return view('user.history.transaction',["trans"=>$transaction,"date"=>$date_now,"date_10"=>$cek]);
-    }
-
-    public function watchlist(){
-
     }
 
     public function register(Request $request) {
@@ -166,5 +164,36 @@ class UserController extends Controller
         } else {
             return redirect()->back()->with('error', 'Change profile failed');
         }
+    }
+
+    public function watchlist(){
+        $dataUser = User::find(Auth::id());
+        $dataSeriesWatchList = $dataUser->watchlist()->paginate(6);
+
+        // tambahkan waktu penambahan series ke watchlist
+        foreach ($dataSeriesWatchList as $key => $series) {
+            $watchlist = UserWatchlist::query()
+                ->where("row_id_seri", $series->id)
+                ->where("row_id_user", Auth::id())->first();
+
+            if ($watchlist != null) {
+                $series->added_at = $watchlist->created_at;
+            }
+        }
+
+        // dd($dataSeriesWatchList);
+
+        // $dataWatchList = $dataUser->userwatchlist;
+        // foreach ($dataWatchList as $key => $watchlist) {
+        //     $series = Series::find($watchlist->row_id_seri);
+        //     $dataWatchList->series = $series;
+        // }
+
+        // dd($dataSeriesWatchList);
+
+        return view("user.watchlist", [
+            "dataUser"      => $dataUser,
+            "dataWatchlist" => $dataSeriesWatchList
+        ]);
     }
 }

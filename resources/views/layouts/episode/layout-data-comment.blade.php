@@ -32,7 +32,7 @@
     <form method="POST"
     action="{{
     url("/series/". $dataEpisode->series->slug .
-        "/episode/" . $dataEpisode->id .
+        "/episode/" . $dataEpisode->slug .
         "/komentar/" . $comment->id .
         "/reply") }}">
         @csrf

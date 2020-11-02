@@ -113,7 +113,7 @@ Route::prefix('series')->group(function(){
         // tambahkan ke watchlist
         Route::get('/watchlist', [SeriesController::class, 'watchlist'])->name('series.watchlist');
 
-        Route::prefix('episode/{id}')->group(function(){
+        Route::prefix('episode/{slugepisode}')->group(function(){
             // halaman buka episode (nonton)
             Route::get('/', [SeriesController::class, 'episode'])->name('series.episode');
 
@@ -154,17 +154,17 @@ Route::middleware("auth")->group(function(){
     // halaman watchlist user
     Route::get('watchlist', [UserController::class, 'watchlist'])->name('watchlist');
 
-        // KHUSUS HISTORY USER
-        Route::prefix('history')->group(function(){
-            // halaman lihat history quiz user
-            Route::get('quiz', [UserController::class, 'quiz'])->name('history.quiz');
+    // KHUSUS HISTORY USER
+    Route::prefix('history')->group(function(){
+        // halaman lihat history quiz user
+        Route::get('quiz', [UserController::class, 'quiz'])->name('history.quiz');
 
-            // halaman lihat membership user
-            Route::get('membership', [UserController::class, 'membership'])->name('history.membership');
+        // halaman lihat membership user
+        Route::get('membership', [UserController::class, 'membership'])->name('history.membership');
 
-            // halaman lihat history transaksi user
-            Route::get('transaction', [UserController::class, 'transaction'])->name('history.transaction');
-        });
+        // halaman lihat history transaksi user
+        Route::get('transaction', [UserController::class, 'transaction'])->name('history.transaction');
+    });
 
     // KHUSUS PERUBAHAN USER
     Route::prefix('settings')->group(function(){
@@ -245,7 +245,7 @@ Route::prefix('admin')->group(function(){
                     Route::get('add', [AdminController::class, 'addEpisode'])->name('admin.episode.add');
                     Route::post('add', [EpisodeController::class, 'add']);
 
-                    Route::prefix('/{id}')->group(function(){
+                    Route::prefix('/{slugepisode}')->group(function(){
                         // halaman show episode
                         Route::get('/', [AdminController::class, 'episode'])->name('admin.episode');
 

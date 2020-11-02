@@ -62,6 +62,36 @@
                                 @foreach ($comment->replies as $reply)
                                     @include('layouts.episode.layout-data-reply')
                                 @endforeach
+
+                                @if (count($comment->replies) >= 2)
+                                <div class="row">
+                                    <div class="col-xs-12 col-md ml-2">
+                                    <div>
+                                        <h1 class="h4 mb-4">What's on your mind?</h1>
+                                        <form method="POST"
+                                        action="{{
+                                        url("/admin/series/". $dataEpisode->series->slug .
+                                            "/episode/" . $dataEpisode->slug .
+                                            "/komentar/" . $comment->id .
+                                            "/reply") }}">
+                                            @csrf
+                                            <textarea rows="3" name="comment" class="form-control my-2" value="{{ old('comment') }}" style="resize: none"></textarea>
+                                            @error('comment')
+                                                <p class="text-danger font-weight-bold">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                            <button type="button" class="btn btn-dark float-left btnCancel">
+                                                Cancel
+                                            </button>
+                                            <button type="submit" class="btn btn-dark float-right">
+                                                Reply
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <hr>
@@ -78,7 +108,7 @@
                     <form method="POST"
                     action="{{
                     url("/admin/series/". $dataEpisode->series->slug .
-                        "/episode/" . $dataEpisode->id .
+                        "/episode/" . $dataEpisode->slug .
                         "/komentar") }}">
                         @csrf
                         <textarea rows="5" name="comment" class="form-control my-2" value="{{ old('comment') }}" style="resize: none"></textarea>
