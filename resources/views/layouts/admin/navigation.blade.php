@@ -51,7 +51,7 @@
             </li>
             <ul class="ml-4 nav flex-column">
                 <li class="nav-item small">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/admin/member">
                     List of Member
                 </a>
             </li>
@@ -65,7 +65,7 @@
         </li>
         <ul class="ml-4 nav flex-column">
             <li class="nav-item small">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/admin/blog">
                     List of Posts
                 </a>
             </li>

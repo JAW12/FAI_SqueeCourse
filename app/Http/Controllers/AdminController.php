@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Post;
+use App\Models\Category;
 use App\Models\Episode;
 use App\Models\Series;
 use App\Models\Transaction;
@@ -13,8 +14,25 @@ use PhpParser\Node\Expr\FuncCall;
 class AdminController extends Controller
 {
     public function index(){
+        return view('admin.home');
+    }
+    
+    function blog(){
+        $blogactive=Post::where('status_aktif','=','1')->get();
+        $blogimati=Post::where('status_aktif','=','0')->get();
+        $category=category::all();
+        return view('admin.blog.list', [
+            'blogactive' => $blogactive,
+            'blogimati' => $blogimati,
+            'category'=>$category
+        ]);
+    }
+    public function addpost(){
+        return view('admin.blog.add');
+    }
+     public function member(){
         $datauser = User::all();
-        return view('admin.home', [
+        return view('admin.member.list', [
             "datauser"          => $datauser
         ]);
     }
@@ -25,7 +43,6 @@ class AdminController extends Controller
             "datauser"          => $datauser
         ]);
     }
-
     public function login(Request $request){
         $input = $request->validate([
             "username" => "required",
