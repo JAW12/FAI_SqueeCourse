@@ -60,7 +60,7 @@
                             <div class="row my-5">
                                 <a class="text-decoration-none" href="{{route('series.episode', [
                                     'slug' => $comment->episode->series->slug,
-                                    'id' => $comment->episode->id
+                                    'slugepisode' => $comment->episode->slug
                                     ])}}" class="col-12">
                                     <h5>{{$comment->episode->series->judul}}</h5>
                                     <p class="text-muted">{{$comment->episode->judul}}</p>
