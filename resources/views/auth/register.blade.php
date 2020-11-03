@@ -39,13 +39,12 @@
                     <span class="input-group-text" id="basic-addon1">@</span>
                 </div>
                 <input type="text" id="username" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Username" value="{{old('username')}}">
+                @error('username')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
             </div>
-
-            @error('username')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-            @enderror
         </div>
         <div class="form-group">
             <label for="nama">Name</label>
@@ -54,12 +53,12 @@
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
                 </div>
                 <input type="text" id="nama" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Name" value="{{old('nama')}}">
+                @error('nama')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
             </div>
-            @error('nama')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-            @enderror
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
@@ -68,12 +67,12 @@
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
                 </div>
                 <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email address" value="{{old('email')}}">
+                @error('email')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
             </div>
-            @error('email')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-            @enderror
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -82,12 +81,12 @@
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
                 </div>
                 <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" style="margin-bottom: 0px;" placeholder="Password">
+                @error('password')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
             </div>
-            @error('password')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-            @enderror
         </div>
         <div class="form-group">
             <label for="confirm">Confirm Password</label>
@@ -96,12 +95,13 @@
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
                 </div>
                 <input type="password" id="confirm" name="confirm" class="form-control @error('confirm') is-invalid @enderror" style="margin-bottom: 0px;" placeholder="Confirm Password">
+                @error('confirm')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
             </div>
-            @error('confirm')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-            @enderror
+
         </div>
         <div class="form-group">
             <input type="checkbox" id="policy" name="policy"> I agree to the <a href="/policy" target="_blank" rel="noopener noreferrer">privacy policy</a>

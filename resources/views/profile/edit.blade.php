@@ -14,12 +14,12 @@
                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
                         </div>
                         <input type="text" id="nama" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="John Steve" value="{{Auth::user()->nama}}">
+                        @error('nama')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @enderror
                     </div>
-                    @error('nama')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                    @enderror
                 </div>
                 <div class="form-group col">
                     <label for="email">Email Address</label>
@@ -39,12 +39,12 @@
                         <div class="invalid-feedback">
                             Not verified yet! Click <a href="/verify">here</a> to verify!
                         </div>
+                        @error('email')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @enderror
                     </div>
-                    @error('email')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                    @enderror
                 </div>
             </div>
             <h5 class="mt-3">Job Description</h5>
@@ -76,12 +76,12 @@
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-link"></i></span>
                     </div>
                     <input type="text" name="url_website" value="{{Auth::user()->url_website}}" class="form-control" placeholder="http://yourdomain.com">
+                    @error('url_website')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
                 </div>
-                @error('url_website')
-                    <div class="invalid-feedback">
-                        {{$message}}
-                    </div>
-                @enderror
             </div>
             <div class="form-group">
                 <label for="url_github">Github</label>
@@ -90,12 +90,12 @@
                         <span class="input-group-text" id="basic-addon1"><i class="fab fa-github"></i></span>
                     </div>
                     <input type="text" name="url_github" value="{{Auth::user()->url_github}}" class="form-control" placeholder="https://github.com/yourusername">
+                    @error('url_github')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
                 </div>
-                @error('url_github')
-                    <div class="invalid-feedback">
-                        {{$message}}
-                    </div>
-                @enderror
             </div>
             <div class="form-group">
                 <label for="url_twitter">Twitter</label>
@@ -104,12 +104,12 @@
                         <span class="input-group-text" id="basic-addon1"><i class="fab fa-twitter"></i></span>
                     </div>
                     <input type="text" name="url_twitter" value="{{Auth::user()->url_twitter}}" class="form-control" placeholder="https://twitter.com/yourusername">
+                    @error('url_twitter')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
                 </div>
-                @error('url_twitter')
-                    <div class="invalid-feedback">
-                        {{$message}}
-                    </div>
-                @enderror
             </div>
             <div class="form-group">
                 <label for="url_facebook">Facebook</label>
@@ -118,12 +118,12 @@
                         <span class="input-group-text" id="basic-addon1"><i class="fab fa-facebook"></i></span>
                     </div>
                     <input type="text" name="url_facebook" value="{{Auth::user()->url_facebook}}"class="form-control" placeholder="https://www.facebook.com/yourusername">
+                    @error('url_facebook')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
                 </div>
-                @error('url_facebook')
-                    <div class="invalid-feedback">
-                        {{$message}}
-                    </div>
-                @enderror
             </div>
             <div class="form-group">
                 <label for="url_instagram">Instagram</label>
@@ -132,12 +132,12 @@
                         <span class="input-group-text" id="basic-addon1"><i class="fab fa-instagram"></i></span>
                     </div>
                     <input type="text" name="url_instagram" value="{{Auth::user()->url_instagram}}"class="form-control" placeholder="https://www.instagram.com/yourusername">
+                    @error('url_instagram')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
                 </div>
-                @error('url_instagram')
-                    <div class="invalid-feedback">
-                        {{$message}}
-                    </div>
-                @enderror
             </div>
             <h5 class="mt-4">Short Description</h5>
             <div class="form-group">
