@@ -141,6 +141,18 @@ class AdminController extends Controller
         ]);
     }
 
+    public function editSeries($slugseries){
+        $dataLabels = Label::orderBy('nama')->get();
+        $dataSeries = Series::query()
+            ->where("slug", "=", $slugseries)
+            ->first();
+
+        return view("admin.series.edit", [
+            "dataLabels"    => $dataLabels,
+            "dataSeries"    => $dataSeries
+        ]);
+    }
+
     public function transaction(){
         $data =Transaction::all();
         return view('admin.transaction.list',['data'=>$data]);

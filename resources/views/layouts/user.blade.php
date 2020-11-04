@@ -92,6 +92,51 @@
         $("#clickQuiz").click(function(){
             $("#collapseQuiz").slideToggle("slow");
         });
+
+        // auto complete
+        // $('.search-bar').keyup(function(){
+        //     var query = $(this).val();
+        //     if(query != '')
+        //     {
+        //         var _token = $('input[name="_token"]').val();
+        //         $.ajax({
+        //             url:"{{ route('autocomplete.fetch') }}",
+        //             method:"GET",
+        //             data:{query:query, _token:_token},
+        //             success:function(data){
+        //                 $(this).fadeIn();
+        //                 $(this).html(data);
+        //             }
+        //         });
+        //     }
+        // });
+
+        // $(document).on('click', 'li .search-result', function(){
+        //     $('.search-bar').val($(this).text());
+        //     $('.search-bar').fadeOut();
+        // });
+
+        $('.cari').select2({
+            placeholder: 'Search',
+            ajax: {
+            url: '/search',
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results:  $.map(data, function (item) {
+                        return {
+                            text: item.judul,
+                            id: item.id
+                        }
+                    })
+                };
+                echo $data;
+            },
+            cache: true
+            }
+        });
+
     </script>
     @yield('script')
 </body>

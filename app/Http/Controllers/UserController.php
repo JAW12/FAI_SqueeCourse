@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Notification;
 use App\Models\UserWatchlist;
+use Illuminate\Support\Carbon;
 
 class UserController extends Controller
 {
@@ -26,7 +27,8 @@ class UserController extends Controller
         //row id user
         $row_id_user = Auth::id();
         //get datas
-        $date = date("yy-m-d");
+        // $date = date("yy-m-d");
+        $date = Carbon::now();
         $jenis = "";
         $detail = "";
         $transaction = Transaction::where('row_id_user', '=', $row_id_user)->where('waktu_expired_membership', '>', $date)->first();

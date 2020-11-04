@@ -3,11 +3,32 @@
     <div class="container-fluid bg-dark">
         <div class="container">
             <div class="row">
-                <div class="embed-responsive embed-responsive-16by9 col-xs-12 text-center">
-                    <iframe class="embed-responsive-item"
-                        src="{{ $dataEpisode->url_youtube }}" allowfullscreen>
-                    </iframe>
-                </div>
+                {{-- cek apakah dia bisa nton apa nda --}}
+                @if (! isset($bisaNonton) || ! $bisaNonton)
+                    <div class="col-12 text-center align-content-center text-light p-5 my-5">
+                        <p class="h1 my-3">🙏🏻</p>
+                        <div class="my-3">
+                            <h1 class="h3">
+                                Sorry, but you need to be a member first
+                            </h1>
+                        </div>
+                        <div class="my-3">
+                            Squee Course has more than
+                            <strong>{{ $jumlahepisode }} videos</strong> that you can learn from. Subscribe now to gain full access
+                        </div>
+                        <div class="mt-5">
+                            <a href="{{ route('membership.home') }}" class="btn btn-primary">
+                                Go Premium
+                            </a>
+                        </div>
+                    </div>
+                @elseif($bisaNonton)
+                    <div class="embed-responsive embed-responsive-16by9 col-xs-12 text-center">
+                        <iframe class="embed-responsive-item"
+                            src="{{ $dataEpisode->url_youtube }}" allowfullscreen>
+                        </iframe>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

@@ -23,7 +23,7 @@ class CreateTransactionsTable extends Migration
             // NOT NULL
             $table->tinyInteger('jenis_membership')
                     ->comment('1 = SILVER, 2 = GOLD, 3 = PLATINUM');
-            $table->dateTime('waktu_expired_membership')
+            $table->timestamp('waktu_expired_membership')
                     ->comment('SILVER = 1 BULAN, GOLD = 3 BULAN, PLATINUM = 6 BULAN');
             $table->string('bank_asal', 20);
             $table->string('bank_tujuan', 20);

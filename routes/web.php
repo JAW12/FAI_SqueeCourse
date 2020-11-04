@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AutoCompleteController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\CommentController;
@@ -78,6 +79,11 @@ Route::get('/test', function(){
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/autocomplete', [AutoCompleteController::class, 'index']);
+Route::post('/autocomplete/fetch', [AutoCompleteController::class, 'fetch'])->name('autocomplete.fetch');
+
+Route::get("/search", [AutoCompleteController::class, 'loadData']);
 
 Route::middleware('guest')->group(function(){
     Route::get('/login', [HomeController::class, 'loginPage'])->name('login');

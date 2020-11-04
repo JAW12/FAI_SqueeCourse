@@ -49,11 +49,12 @@
         </td>
     @endif
     <td class="text-center align-middle" style="width: 10%">
+        <a class="btn btn-warning mx-2 my-2"
+            href="{{ url("/admin/series/" . $series->slug . "/edit") }}">
+            <i class="fas fa-edit"></i>
+        </a>
         <form method="POST">
             @csrf
-            <button type="submit" class="btn btn-warning mx-2 my-2">
-                <i class="fas fa-edit"></i>
-            </button>
             @if ($series->deleted_at == null)
                 <button type="submit" class="btn btn-danger mx-2 my-2"
                     formaction="{{ url("/admin/series/" . $series->slug . "/delete") }}">

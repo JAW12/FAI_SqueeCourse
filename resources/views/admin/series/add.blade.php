@@ -6,6 +6,7 @@
 
 @section('content')
     <div class="container my-5">
+        @include('layouts.alert')
         <h1 class="h1 text-center">Add Series</h1>
         <form method="POST" enctype="multipart/form-data">
             @csrf
@@ -95,7 +96,7 @@
             <div class="form-group my-4">
                 <label>Description</label>
                 <textarea name="deskripsi" class="form-control my-2" rows="5"
-                    value="{{ old("deskripsi") }}" style="resize: none"></textarea>
+                    style="resize: none">{{ old('deskripsi') }}</textarea>
             </div>
             <button type="submit" class="btn btn-dark w-100 mb-4 float-right">
                 Save
