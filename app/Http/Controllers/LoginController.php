@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -87,10 +88,21 @@ class LoginController extends Controller
 
         $remember = $request->remember;
 
-        if (Auth::attempt($request->only(["username", "password"]), $remember)) {
-            return redirect()->route('home');
-        } else {
-            return redirect()->back()->with("error", "Login failed");
+        $user = User::where('username', $request->username)->first();
+        if($user != null){
+            if($user->banned == 0){
+                if (Auth::attempt($request->only(["username", "password"]), $remember)) {
+                    return redirect()->route('home');
+                } else {
+                    return redirect()->back()->with("error", "Login failed");
+                }
+            }
+            else{
+                return redirect()->back()->with("error", "Banned user can't login");
+            }
+        }
+        else{
+            return redirect()->back()->with("error", "User not found");
         }
     }
 

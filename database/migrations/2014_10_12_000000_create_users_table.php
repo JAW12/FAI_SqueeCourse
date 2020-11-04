@@ -38,8 +38,8 @@ class CreateUsersTable extends Migration
             $table->string('url_facebook')->nullable();
             $table->string('url_instagram')->nullable();
 
-            $table->integer('status_verified')
-                ->comment('0 = belum, 1 = sudah')->default(0);
+            $table->integer('banned')
+                ->comment('0 = unbanned, 1 = banned')->default(0);
 
             // timestamps
             $table->timestamp('email_verified_at')->nullable();

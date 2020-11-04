@@ -331,6 +331,12 @@ Route::prefix('admin')->group(function(){
             // halaman detail member
             Route::get('/{username}', [AdminController::class, 'memberDetail'])->name('member.detail');
 
+            // ban user
+            Route::get('/{username}/ban', [AdminController::class, 'ban'])->name('member.ban');
+
+            // unban user
+            Route::get('/{username}/unban', [AdminController::class, 'unban'])->name('member.unban');
+
             // halaman history transaksi member yang dipilih
             Route::get('/{username}/history/transaksi', [AdminController::class, 'memberTransaksi'])->name('member.transaction');
         });

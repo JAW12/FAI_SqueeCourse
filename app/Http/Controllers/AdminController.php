@@ -155,4 +155,22 @@ class AdminController extends Controller
         $data = Transaction::where('status_transaksi',$req->input('statusSelect'))->get();
         return view('admin.transaction.list',['data'=>$data]);
     }
+
+    public function ban($username){
+        $user = User::where('username', $username)->first();
+        if($user != null){
+            $user->banned = 1;
+            $user->save();
+            return redirect()->back()->with("success", "Berhasil ban " . $user->nama);
+        }
+    }
+
+    public function unban($username){
+        $user = User::where('username', $username)->first();
+        if($user != null){
+            $user->banned = 0;
+            $user->save();
+            return redirect()->back()->with("success", "Berhasil unban " . $user->nama);
+        }
+    }
 }
