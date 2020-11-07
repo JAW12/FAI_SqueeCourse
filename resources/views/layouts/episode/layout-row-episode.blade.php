@@ -1,37 +1,24 @@
-<tr class="click-row" data-href = "{{ url('/admin/series/' . $series->slug) }}">
+<tr class="click-row" data-href = "{{ url('/admin/series/' . $series->slug . "/episode/" . $episode->slug) }}">
     <td class="align-middle click-col">{{ $loop->iteration }}</td>
     <td style="width: 25%;" class="align-middle click-col">
-        <a class="text-dark text-decoration-none" target="_blank"
-        href="{{ url('/admin/series/' . $series->slug) }}">
-            {{ $series->judul }}
-        </a>
+        {{ $series->judul }}
     </td>
     <td class="align-middle click-col">
-        @if ($series->status_berbayar === 0)
+        {{ $episode->judul }}
+    </td>
+    <td class="align-middle click-col">
+        @if ($episode->status_berbayar === 0)
             Free
-        @elseif ($series->status_berbayar === 1)
+        @elseif ($episode->status_berbayar === 1)
             Premium
         @endif
     </td>
     <td class="align-middle click-col">
-        @if ($series->status_complete === 0)
-            Ongoing
-        @elseif ($series->status_complete === 1)
-            Completed
-        @endif
+        {{ gmdate('i:s', $episode->durasi) }}
     </td>
-    <td class="align-middle click-col">
-        @if ($series->tingkat_kesulitan === 1)
-            Beginner
-        @elseif ($series->tingkat_kesulitan === 2)
-            Intermediate
-        @elseif ($series->tingkat_kesulitan === 3)
-            Advanced
-        @endif
-    </td class="align-middle click-col">
-    @if ($series->deleted_at != null)
+    @if ($episode->deleted_at != null)
         <td class="align-middle">
-            {{ $series->deleted_at->diffForHumans() }}
+            {{ $episode->deleted_at->diffForHumans() }}
         </td>
         <td class="align-middle">
             <span class="text-danger">
@@ -40,7 +27,7 @@
         </td>
     @else
         <td class="align-middle click-col">
-            {{ $series->updated_at->diffForHumans() }}
+            {{ $episode->updated_at->diffForHumans() }}
         </td>
         <td class="align-middle">
             <span class="text-success click-col">
@@ -50,19 +37,19 @@
     @endif
     <td class="text-center align-middle" style="width: 10%">
         <a class="btn btn-warning mx-2 my-2"
-            href="{{ url("/admin/series/" . $series->slug . "/edit") }}">
+            href="{{ url("/admin/series/" . $series->slug . "/episode/" . $episode->slug . "/edit") }}">
             <i class="fas fa-edit"></i>
         </a>
         <form method="POST">
             @csrf
-            @if ($series->deleted_at == null)
+            @if ($episode->deleted_at == null)
                 <button type="button" class="btn btn-danger mx-2 my-2 btnDelete"
-                    formaction="{{ url("/admin/series/" . $series->slug . "/delete") }}" mode="delete">
+                    formaction="{{ url("/admin/series/" . $series->slug . "/episode/" . $episode->slug . "/delete")}}" mode="delete">
                     <i class="fas fa-trash"></i>
                 </button>
             @else
                 <button type="button" class="btn btn-success mx-2 my-2 btnRestore"
-                formaction="{{ url("/admin/series/" . $series->slug . "/restore") }}" mode="restore">
+                formaction="{{ url("/admin/series/" . $series->slug . "/episode/" . $episode->slug . "/restore") }}" mode="restore">
                     <i class="fas fa-trash-restore"></i>
                 </button>
             @endif

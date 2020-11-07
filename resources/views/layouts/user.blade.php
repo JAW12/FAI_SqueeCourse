@@ -59,6 +59,31 @@
                 /* justify-content: start !important; */
             }
         }
+
+         /* supaya image height di card sama semua */
+         .card-img-top {
+            width: 100%;
+            height: 13vw;
+            object-fit: cover;
+        }
+
+        /* supaya heightnya select2 kalo lagi mode single selection ga penyet */
+        .select2-selection__rendered {
+            line-height: 31px !important;
+        }
+        .select2-container .select2-selection--single {
+            height: 35px !important;
+        }
+        .select2-selection__arrow {
+            height: 34px !important;
+        }
+
+        /* supaya z-index suggestion yg muncul dr auto complete ga ketutupan navbar */
+        .ui-autocomplete {
+            position: absolute;
+            cursor: default;
+            z-index:99999 !important;
+        }
     </style>
     @yield('style')
 </head>
@@ -93,49 +118,47 @@
             $("#collapseQuiz").slideToggle("slow");
         });
 
-        // auto complete
-        // $('.search-bar').keyup(function(){
-        //     var query = $(this).val();
-        //     if(query != '')
-        //     {
-        //         var _token = $('input[name="_token"]').val();
-        //         $.ajax({
-        //             url:"{{ route('autocomplete.fetch') }}",
-        //             method:"GET",
-        //             data:{query:query, _token:_token},
-        //             success:function(data){
-        //                 $(this).fadeIn();
-        //                 $(this).html(data);
-        //             }
-        //         });
-        //     }
-        // });
+        // search auto complete -> on key up
+        $(document).on('keyup', '.cari', function (e) {
+            e.preventDefault();
+            var inputsearch = $(this);
 
-        // $(document).on('click', 'li .search-result', function(){
-        //     $('.search-bar').val($(this).text());
-        //     $('.search-bar').fadeOut();
-        // });
-
-        $('.cari').select2({
-            placeholder: 'Search',
-            ajax: {
-            url: '/search',
-            dataType: 'json',
-            delay: 250,
-            processResults: function (data) {
-                return {
-                    results:  $.map(data, function (item) {
-                        return {
-                            text: item.judul,
-                            id: item.id
-                        }
-                    })
-                };
-                echo $data;
-            },
-            cache: true
+            var keywordjudul = $(inputsearch).val();;
+            if (keywordjudul == "") {
+                keywordjudul = "CONST_SHOW_ALL"
             }
+
+            $.ajax({
+               type:'GET',
+               url:"{{ url('/searchseries') }}",
+               data:{
+                   q : keywordjudul
+               },
+               success:function(response) {
+                    var availableTags = [];
+
+                    response.data.forEach(element => {
+                        availableTags.push(element.nama);
+                    });
+
+                    $(inputsearch).autocomplete({
+                        source: availableTags
+                    });
+               },
+               select: function( event, ui ) {}
+            });
         });
+
+        //event ini bakalan ketrigger waktu salah 1 item autocomplete dipilih
+        $(document).on("autocompleteselect", ".cari", function(event, ui ) {
+            //lakukan hal default yaitu ngubah value textnya
+            $(this).val(ui.item.label);
+
+            //trus submit form search
+            let formsearch = $(this).parent().parent();
+            $(formsearch).submit();
+        });
+
 
     </script>
     @yield('script')

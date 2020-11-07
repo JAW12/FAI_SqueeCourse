@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    {{ $dataEpisode->judul }}
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-12">

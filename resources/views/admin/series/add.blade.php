@@ -14,9 +14,19 @@
                 <label>Banner Picture </label>
                 <input type="file" name="picture" required class="form-control my-2">
             </div>
+            <div class="my-4 text-danger text-left">
+                @error('picture')
+                    {{ $message }}
+                @enderror
+            </div>
             <div class="form-group my-4">
                 <label>Title</label>
-                <input type="text" name="judul" required class="form-control my-2" value="{{ old('judul') }}">
+                <input type="text" name="judul" required class="form-control my-2" value="{{ old('judul') }}" placeholder="Learn Laravel 8">
+            </div>
+            <div class="my-4 text-danger text-left">
+                @error('judul')
+                    {{ $message }}
+                @enderror
             </div>
             <div class="form-group my-4">
                 <label>Category</label>
@@ -32,7 +42,7 @@
             </div>
             <div class="form-group my-4">
                 <label>Labels</label>
-                <select name="labels[]" class="form-control select2" multiple="yes">
+                <select name="labels[]" class="form-control select2" multiple="yes" style="width: 100%">
                     @if (isset($dataLabels) && count($dataLabels) > 0)
                         @foreach ($dataLabels as $label)
                             <option value="{{ $label->id }}">

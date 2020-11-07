@@ -39,11 +39,15 @@
             <li class="nav-item"><a href="{{route('blog.home')}}" class="nav-link">Blog</a></li>
         <li class="nav-item"><a href="{{ route('membership.home') }}" class="nav-link {{ (request()->is('membership*')) ? 'active' : '' }}">Membership</a></li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" method="GET">
+        <form class="form-inline my-2 my-lg-0 form-search" method="GET"
+        action="{{ url('/searchseries/show') }}">
             <div class="input-group">
                 <input type="search" class="form-control cari" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" name="q">
+
                 <div class="input-group-append">
-                    <button class="btn btn-outline-dark my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-outline-dark my-sm-0" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
                 </div>
             </div>
         </form>

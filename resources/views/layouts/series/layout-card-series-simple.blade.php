@@ -1,5 +1,5 @@
 <div class="col-12 col-md-6 col-lg-4 mt-3 my-3">
-    <div class="card h-100" style="height: 20rem;">
+    <div class="card h-100" style="height: 40rem;">
         <img class="card-img-top" src="{{ (strpos($series->url_foto_banner, "https://") === false) ? asset("/storage/images/".$series->url_foto_banner) : $series->url_foto_banner }}" alt="Card image cap">
         <div class="card-body">
             <a href="{{

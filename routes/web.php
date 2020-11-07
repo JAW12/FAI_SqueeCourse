@@ -80,10 +80,11 @@ Route::get('/test', function(){
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/autocomplete', [AutoCompleteController::class, 'index']);
-Route::post('/autocomplete/fetch', [AutoCompleteController::class, 'fetch'])->name('autocomplete.fetch');
-
-Route::get("/search", [AutoCompleteController::class, 'loadData']);
+//SEARCH AUTO COMPLETE
+Route::prefix('/searchseries')->group(function(){
+    Route::get('/', [AutoCompleteController::class, 'searchJSON']);
+    Route::get('/show', [AutoCompleteController::class, 'redirectResult']);
+});
 
 Route::middleware('guest')->group(function(){
     Route::get('/login', [HomeController::class, 'loginPage'])->name('login');
@@ -220,6 +221,14 @@ Route::prefix('admin')->group(function(){
         // HALAMAN HOME
         Route::get('/', [AdminController::class, 'index'])->name('admin.home');
 
+        // LIST EPISODE DAN ADD EPISODE
+        // halaman dashboard daftar episode
+        Route::get('/episode', [AdminController::class, 'episodes'])->name('admin.episodes');
+
+        // halaman form tambah episode
+        Route::get('/episode/add', [AdminController::class, 'addEpisode'])->name('admin.episode.add');
+        Route::post('episode/add', [EpisodeController::class, 'add']);
+
         // KHUSUS SERIES
         Route::prefix('series')->group(function(){
             // halaman dashboard daftar series
@@ -231,32 +240,30 @@ Route::prefix('admin')->group(function(){
 
             Route::prefix('{slug}')->group(function(){
                 //halaman lihat detail
-                Route::get('/', [AdminController::class, 'viewDetailSeries'])->name('admin.series.detail');
+                Route::get('/', [AdminController::class, 'viewDetailSeries'])
+                    ->name('admin.series.detail');
 
                 // halaman form edit series
-                Route::get('edit', [AdminController::class, 'editSeries'])->name('admin.series.edit');
+                Route::get('edit', [AdminController::class, 'editSeries'])
+                    ->name('admin.series.edit');
                 Route::post('edit', [SeriesController::class, 'edit']);
 
                 // hapus series
-                Route::post('delete', [AdminController::class, 'deleteSeries'])->name('admin.series.delete');
+                Route::post('delete', [AdminController::class, 'deleteSeries'])
+                    ->name('admin.series.delete');
 
                 Route::post('restore', [AdminController::class, 'restoreSeries']);
 
                 // KHUSUS EPISODE
                 Route::prefix('episode')->group(function(){
-                    // halaman dashboard daftar episode
-                    Route::get('/', [AdminController::class, 'episodes'])->name('admin.episodes');
-
-                    // halaman form tambah episode
-                    Route::get('add', [AdminController::class, 'addEpisode'])->name('admin.episode.add');
-                    Route::post('add', [EpisodeController::class, 'add']);
-
                     Route::prefix('/{slugepisode}')->group(function(){
                         // halaman show episode
-                        Route::get('/', [AdminController::class, 'episode'])->name('admin.episode');
+                        Route::get('/', [AdminController::class, 'episode'])
+                            ->name('admin.episode');
 
                         // halaman form edit episode
-                        Route::get('edit', [AdminController::class, 'editEpisode'])->name('admin.episode.edit');
+                        Route::get('edit', [AdminController::class, 'editEpisode'])
+                            ->name('admin.episode.edit');
                         Route::post('edit', [EpisodeController::class, 'edit']);
 
                         // masih ada komentar & reply cuman aku bingung, sementara ak buatnya gini
@@ -275,7 +282,10 @@ Route::prefix('admin')->group(function(){
                         Route::post('reply/delete', [CommentController::class, 'deletereply']);
 
                         // hapus episode
-                        Route::get('delete', [AdminController::class, 'deleteEpisode'])->name('admin.episode.delete');
+                        Route::post('delete', [EpisodeController::class, 'delete'])->name('admin.episode.delete');
+
+                        // restore episode
+                        Route::post('restore', [EpisodeController::class, 'restore'])->name('admin.episode.restore');
                     });
                 });
             });

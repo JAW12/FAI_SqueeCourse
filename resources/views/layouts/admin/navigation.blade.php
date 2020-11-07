@@ -14,7 +14,7 @@
                     </a>
                 </li>
                 <li class="nav-item small">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('admin.episodes') }}">
                         List of Episodes
                     </a>
                 </li>

@@ -45,8 +45,9 @@ class Episode extends Model
 
     public function series(){
         // related model, related FK di model saat ini, local PK
+        // pake withTrashed biar misalnya pas series ini udah didelete terus diakses dia ga error
         return $this->belongsTo(
-            Series::class, 'row_id_seri');
+            Series::class, 'row_id_seri')->withTrashed();
     }
 
 }

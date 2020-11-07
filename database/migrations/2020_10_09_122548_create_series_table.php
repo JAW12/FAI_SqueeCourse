@@ -23,7 +23,7 @@ class CreateSeriesTable extends Migration
             $table->unsignedBigInteger('row_id_kuis')->nullable();
 
             $table->string('judul');
-            $table->text("deskripsi");
+            $table->text("deskripsi")->nullable();
             $table->string('slug', 70);
             $table->tinyInteger('tingkat_kesulitan')
                 ->comment("1 = BEGINNER, 2 = INTERMEDIATE, 3 = ADVANCED");

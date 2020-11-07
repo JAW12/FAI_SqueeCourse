@@ -26,9 +26,13 @@
                     </p>
                     @if (count($dataSeries->episodes) > 0)
                         <a class="btn btn-dark btn-lg bt-5"
-                            href="{{ url('series/' . $dataSeries->slug . '/episode/' .
-                                $dataSeries->episodes->first()->id) }}">
+                            href="{{ url('/admin/series/' . $dataSeries->slug . '/episode/' .
+                                $dataSeries->episodes->first()->slug) }}">
                             <i class="fa fa-play-circle mr-2"></i>Watch
+                        </a>
+                        <a class="btn btn-warning btn-lg bt-5 ml-2"
+                            href="{{ url('/admin/series/' . $dataSeries->slug . '/edit') }}">
+                            <i class="fas fa-edit"></i>Edit
                         </a>
                     @endif
                     <div class="mt-5 text-light">

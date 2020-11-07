@@ -26,10 +26,18 @@
         <div class="col-6 col-md">
             <h5>Series</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Series 1</a></li>
-                <li><a class="text-muted" href="#">Series 2</a></li>
-                <li><a class="text-muted" href="#">Series 3</a></li>
-                <li><a class="text-muted" href="#">Series 4</a></li>
+                <li>
+                    <a class="text-muted" href="{{ url('/series') }}">
+                        Explore All
+                    </a>
+                </li>
+                @foreach ($dataNavigasiSeries as $series)
+                    <li>
+                        <a class="text-muted" href="{{ url('/series/' . $series->slug) }}">
+                            {{ $series->judul }}
+                        </a>
+                    </li>
+                @endforeach
             </ul>
         </div>
         <div class="col-6 col-md">

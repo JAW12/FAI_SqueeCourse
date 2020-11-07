@@ -27,7 +27,7 @@
                     @if (count($dataSeries->episodes) > 0)
                         <a class="btn btn-dark btn-lg bt-5"
                             href="{{ url('series/' . $dataSeries->slug . '/episode/' .
-                                $dataSeries->episodes->first()->id) }}">
+                                $dataSeries->episodes->first()->slug) }}">
                             <i class="fa fa-play-circle mr-2"></i>Start
                         </a>
                     @endif

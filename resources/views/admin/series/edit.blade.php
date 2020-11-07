@@ -8,7 +8,12 @@
     <div class="container my-5">
         @include('layouts.alert')
         <h1 class="h1 text-center">Edit Series</h1>
-        <div class="row">
+        <div class="container-fluid text-left ml-0 p-0">
+            <a class="btn btn-danger ml-0" href="{{ route('admin.series') }}">
+                <i class="fas fa-chevron-left mr-2"></i>Back
+            </a>
+        </div>
+        <div class="row mt-4">
             <div class="col-12 text-center">
                 <img class="img-responsive w-75" src="{{
                     strpos($dataSeries->url_foto_banner, 'https://') === false ?
@@ -40,7 +45,7 @@
             </div>
             <div class="form-group my-4">
                 <label>Labels</label>
-                <select name="labels[]" class="form-control select2" multiple="yes">
+                <select name="labels[]" class="form-control select2" multiple="yes" style="width: 100%">
                     @if (isset($dataLabels) && count($dataLabels) > 0)
                         @foreach ($dataSeries->labels as $label)
                             <option value="{{ $label->id }}" selected>

@@ -118,19 +118,6 @@ class AdminController extends Controller
                 ->with("error", "You have failed in restoring series " . $series->judul);
         }
     }
-
-    public function episode($slugseries, $slugepisode){
-        $dataEpisode = Episode::withTrashed()->where('slug', "=", $slugepisode)->first();
-
-        return view('admin.episodes.detail', [
-            "dataEpisode"   => $dataEpisode,
-        ]);
-    }
-
-    public function addEpisode(){
-
-    }
-
     public function addSeries(){
         $dataLabels = Label::orderBy('nama')->get();
 
@@ -184,5 +171,38 @@ class AdminController extends Controller
             $user->save();
             return redirect()->back()->with("success", "Berhasil unban " . $user->nama);
         }
+    }
+
+    public function episodes(){
+        $dataEpisodes = Episode::withTrashed()->orderByDesc('updated_at')->get();
+
+        return view('admin.episodes.list', [
+            "dataEpisodes"  => $dataEpisodes
+        ]);
+    }
+
+    public function episode($slugseries, $slugepisode){
+        $dataEpisode = Episode::withTrashed()->where('slug', "=", $slugepisode)->first();
+
+        return view('admin.episodes.detail', [
+            "dataEpisode"   => $dataEpisode,
+        ]);
+    }
+
+    public function addEpisode(){
+        $dataSeries = Series::all()->sortBy('judul');
+        return view('admin.episodes.add', [
+            'dataSeries'    => $dataSeries
+        ]);
+    }
+
+    public function editEpisode($slugSeries, $slugepisode){
+        $dataEpisode = Episode::withTrashed()->where('slug', "=", $slugepisode)->first();
+        $dataSeries = Series::all()->sortBy('judul');
+
+        return view('admin.episodes.edit', [
+            'episode'   => $dataEpisode,
+            'dataSeries'    => $dataSeries
+        ]);
     }
 }

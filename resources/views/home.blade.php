@@ -17,14 +17,19 @@
                         <h2 class="font-weight-light">Lets Learn</h2>
                         <h1 class="font-weight-bolder">Together</h1>
                         <p class="lead mt-4 font-weight-normal">Upgrade your skills with SqueeCourse by pushing your knowledge beyond to the next level, through the series provided here such as Laravel, Vue, React, CSS or JS Framework, and much more.</p>
-                        <form class="mt-4" action="/search" method="post">
+                        <form class="mt-4 form-search" method="GET" action="{{ url('/searchseries/show') }}">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="search"><i class="fa fa-search"></i></span>
+                                    <span class="input-group-text" id="search">
+                                        <i class="fa fa-search"></i>
+                                    </span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Okay, so what's we'll learn today?" aria-label="search" aria-describedby="search">
+
+                                {{-- <input type="search" class="form-control cari" placeholder="Okay, so what will we learn today?" aria-label="search" aria-describedby="search" name="q"> --}}
+                                <input type="search" class="form-control cari" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" name="q">
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>

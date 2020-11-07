@@ -189,66 +189,86 @@ class SeriesController extends Controller
 
     public function add(Request $request){
         $customMessages = [
-            "judul.min" => "Series title must at least have 4 characters"
+            "judul.min" => "Series title must at least have 4 characters",
+            'mimes'     => 'Only jpeg, png, bmp, tiff are allowed.'
         ];
 
         $input = $request->validate([
-            "picture"   => "required",
+            "picture"   => "required|mimes:jpeg,png,bmp,tiff'",
             "judul"     => "required|string|min:4",
         ], $customMessages);
 
-        // try catch transaction
-        try {
-            DB::beginTransaction();
+        //pastikan tidak ada judul yang sama
+        $cekseries = Series::query()
+            ->where('judul', '=', $input['judul'])
+            ->get();
 
-            $series = new Series();
-            $series->row_id_kategori = $request->input('kategori');
-            $series->judul = $input["judul"];
-            $series->deskripsi = $request->input("deskripsi");
-            $series->slug = Str::slug($input["judul"]);
-            $series->total_durasi = 0;
-            $series->tingkat_kesulitan = $request->input("tingkat_kesulitan");
-            $series->status_berbayar = $request->input("status_berbayar");
-            $series->status_complete = $request->input("status_complete");
-            $result = $series->save();
-
-            // file upload gambar
-            if ($request->file("picture") != null) {
-                // file upload
-                $nama = $series->id . "." .
-                    $request->file("picture")->getClientOriginalExtension();
-
-                // simpan di folder
-                $result = $result && $request->file("picture")
-                    ->storeAs("images", $nama, "public");
-
-                // setelah disave dia bakalan punya primary key jadi query kek gini ini bisa. modelnya jadi kek nge-update
-                $series->url_foto_banner = $nama;
-                $result = $result && $series->save();
-            }
-
-            //masukin labels
-            $status = true;
-            foreach ($request->input("labels") as $key => $value) {
-                $labelseries = new LabelSeri();
-                $labelseries->row_id_seri = $series->id;
-                $labelseries->row_id_label = $value;
-                $status = $status && $labelseries->save();
-            }
-
-            DB::commit();
-
-        }catch(\Exception $e){
-            DB::rollback();
-        }
-
-        if($result && $status){
+        //baru bisa add series baru kalo gaada judul yg sama
+        if (count($cekseries) > 0) {
             return redirect()->back()
-                ->with("success", "New series has been succesfully added");
+                ->with("error", "Sorry, series with this title already exists.");
         }
         else{
-            return redirect()->back()
-                ->with("error", "Uh oh! Adding series has encountered some troubles. Please try again later");
+            // try catch transaction
+            $result = false;
+            try {
+                DB::beginTransaction();
+
+                $series = new Series();
+                $series->row_id_kategori = $request->input('kategori');
+                $series->judul = $input["judul"];
+                $series->slug = Str::slug($input["judul"]);
+                $series->total_durasi = 0;
+                $series->tingkat_kesulitan = $request->input("tingkat_kesulitan");
+                $series->status_berbayar = $request->input("status_berbayar");
+                $series->status_complete = $request->input("status_complete");
+                $result = $series->save();
+
+                // masukin deskripsi kl ada diisi
+                if ($request->input("deskripsi") != null) {
+                    $series->deskripsi = $request->input("deskripsi");
+                }
+
+                // file upload gambar
+                if ($request->file("picture") != null) {
+                    // file upload
+                    $nama = $series->id . "." .
+                        $request->file("picture")->getClientOriginalExtension();
+
+                    // simpan di folder
+                    $result = $result && $request->file("picture")
+                        ->storeAs("images", $nama, "public");
+
+                    // setelah disave dia bakalan punya primary key jadi query kek gini ini bisa. modelnya jadi kek nge-update
+                    $series->url_foto_banner = $nama;
+                    $result = $result && $series->save();
+                }
+
+                //masukin labels
+                $status = true;
+                foreach ($request->input("labels") as $key => $value) {
+                    $labelseries = new LabelSeri();
+                    $labelseries->row_id_seri = $series->id;
+                    $labelseries->row_id_label = $value;
+                    $status = $status && $labelseries->save();
+                }
+
+                DB::commit();
+
+            }catch(\Exception $e){
+                DB::rollback();
+                return redirect()->back()
+                    ->with("error", $e->getMessage());
+            }
+
+            if($result && $status){
+                return redirect()->back()
+                    ->with("success", "New series has been succesfully added");
+            }
+            else{
+                return redirect()->back()
+                    ->with("error", "Uh oh! Adding series has encountered some troubles. Please try again later");
+            }
         }
     }
 

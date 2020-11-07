@@ -23,10 +23,12 @@
                         </div>
                     </div>
                 @elseif($bisaNonton)
-                    <div class="embed-responsive embed-responsive-16by9 col-xs-12 text-center">
-                        <iframe class="embed-responsive-item"
-                            src="{{ $dataEpisode->url_youtube }}" allowfullscreen>
-                        </iframe>
+                    <div class="container col-xs-12">
+                        <div class="embed-responsive embed-responsive-16by9 col-xs-12 text-center">
+                            <iframe class="embed-responsive-item"
+                                src="{{ $dataEpisode->url_youtube }}" allowfullscreen>
+                            </iframe>
+                        </div>
                     </div>
                 @endif
             </div>

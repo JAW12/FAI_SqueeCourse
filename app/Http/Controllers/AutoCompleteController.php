@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SearchSeriesResources;
 use App\Models\Series;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AutoCompleteController extends Controller
 {
@@ -38,5 +40,37 @@ class AutoCompleteController extends Controller
         }
     }
 
+    public function searchJSON(Request $request){
+        $input = $request->validate([
+            'q' => 'required'
+        ]);
+
+        if ($input['q'] == "CONST_SHOW_ALL") {
+            $arrSeries = Series::all()->sortBy('judul');
+        }
+        else{
+            $arrSeries = Series::orderBy('judul', 'ASC')
+                ->where(DB::raw("LOWER(judul)"), "like",
+                "%".\strtolower($input['q'])."%")
+                ->get();
+        }
+
+        return SearchSeriesResources::collection($arrSeries);
+    }
+
+    public function redirectResult(Request $request){
+        $judulSeri = $request->input('q');
+
+        $series = Series::query()
+            ->where('judul', '=', $judulSeri)
+            ->get();
+
+        if (count($series) > 0) {
+            return redirect('/series/' . $series->first()->slug);
+        }
+        else{
+            return view('layouts.notfound');
+        }
+    }
 
 }
