@@ -16,7 +16,10 @@ class LabelPost extends Model
     protected $incremental = true;
 
     public $timestamps = false;
-
+    protected $fillable =[
+        'row_id_label',
+        'row_id_post'
+    ];
     // ================ RELATION MODEL ============================
     public function label(){
         return $this->belongsTo(Label::class, 'row_id_label', 'id');

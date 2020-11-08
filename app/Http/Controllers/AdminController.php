@@ -172,7 +172,10 @@ class AdminController extends Controller
         ]);
     }
     public function addpost(){
-        return view('admin.blog.add');
+        return view('admin.blog.add',[
+            "category"=>Category::get(),
+            "label"=>Label::get()
+        ]);
     }
      public function member(){
         $datauser = User::all();

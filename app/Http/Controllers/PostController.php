@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Label;
+use App\Models\LabelPost;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,15 @@ class PostController extends Controller
                 'posts' => $post
             ]);
         }
+    }
+    function add(Request $request){
+        $attr = $request->all();
+        $attr['judul']=request('txtjudul');
+        $attr['isi']=request('body');
+        $attr['status_aktif']="1";
+        $attr['slug']=\Str::slug(request('txtjudul'));
+        $attr['row_id_kategori']=request('categoriselect');
+        $post=Post::create($attr);
     }
 
     function category($slug){
