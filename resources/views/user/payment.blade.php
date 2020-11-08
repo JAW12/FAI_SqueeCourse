@@ -42,6 +42,18 @@
                             <div class="d-flex">
                                 <div>
                                     <p class="mb-0">BCA</p>
+                                    <p class="h5 font-weight-bold mb-0">0882018669</p>
+                                    <p class="mb-0">Winda Angelina Utama</p>
+                                </div>
+                                <div class="ml-auto my-auto">
+                                    <img src="{{asset('images/contoh/bank.png')}}" width="70" alt="">
+                                </div>
+                            </div>
+                        </li>
+                        <li href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex">
+                                <div>
+                                    <p class="mb-0">BCA</p>
                                     <p class="h5 font-weight-bold mb-0">8000739236</p>
                                     <p class="mb-0">Irsyad Adly Panjaitan</p>
                                 </div>
@@ -91,6 +103,10 @@
                                 <input type="text" name="sender" id="sender" placeholder="BCA" class="form-control">
                             </div>
                             <div class="form-group">
+                                <label for="sender">Your Account</label>
+                                <input type="text" name="accountSender" id="accSender" placeholder="731 025 2527" class="form-control">
+                            </div>
+                            <div class="form-group">
                                 <label for="destination">Destination Bank</label>
                                 <select name="destination" id="destination" class="form-control">
                                     <option value="bca">BCA</option>
@@ -102,7 +118,7 @@
                                 <label for="date">Payment Date (dd/mm/yyyy)</label>
                                 <input type="date" name="date" id="date" class="form-control">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group pb-1">
                                 <label for="cost">Cost</label>
                                 <h5>{{ $paket }} - {{ $harga }}</h5>
                             </div>

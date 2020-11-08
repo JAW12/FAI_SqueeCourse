@@ -34,6 +34,7 @@ class TransactionController extends Controller
         $validate = $req->validate([
             "name"=>"required",
             "sender"=>"required",
+            "accountSender"=>"required",
             "destination"=>"not_in:0",
             "date"=>"required|date"
         ]);
@@ -71,6 +72,7 @@ class TransactionController extends Controller
             $time->addMonths(6);
         }
         $transaction->bank_asal=$validate['sender'];
+        $transaction->nomor_rekening=$validate['accountSender'];
         $transaction->bank_tujuan=$validate['destination'];
         $transaction->status_transaksi=1;
 
