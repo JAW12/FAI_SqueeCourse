@@ -288,18 +288,13 @@ class AdminController extends Controller
     }
 
     public function transaction(){
-        $data =Transaction::all();
+        $data =Transaction::orderBy('updated_at', 'desc')->get();
         return view('admin.transaction.list',['data'=>$data]);
     }
 
     public function pendingTransaction(){
-        $data = Transaction::where('status_transaksi','1')->get();
+        $data = Transaction::where('status_transaksi','1')->orderBy('updated_at', 'desc')->get();
         return view('admin.transaction.list',['data'=>$data,'cek'=>"a"]);
-    }
-
-    public function transaction_search(Request $req){
-        $data = Transaction::where('status_transaksi',$req->input('statusSelect'))->get();
-        return view('admin.transaction.list',['data'=>$data]);
     }
 
     public function ban($username){

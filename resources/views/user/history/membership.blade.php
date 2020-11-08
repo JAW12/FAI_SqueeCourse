@@ -21,14 +21,14 @@
                     @endphp
                 </div>
             @else
-                <div class="mt-4 h2">You currently do not have any membership program<br> Go buy one that suits your need</div>
+                <div class="mt-4 h2">You currently do not have any active membership program<br> Go buy one that suits your need</div>
                 <div class="row mt-4">
                     <div class="col-xs mr-3">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                             <h5 class="card-title">Silver</h5>
                             <p class="card-text"><sup>Rp. </sup>120.000</p>
-                            <a href="#" class="btn btn-primary">Go</a>
+                            <a href="/payment/Silver" class="btn btn-primary">Go</a>
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                             <div class="card-body">
                             <h5 class="card-title">Gold</h5>
                             <p class="card-text"><sup>Rp. </sup>288.000</p>
-                            <a href="#" class="btn btn-primary">Go</a>
+                            <a href="/payment/Gold" class="btn btn-primary">Go</a>
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                             <div class="card-body">
                             <h5 class="card-title">Platinum</h5>
                             <p class="card-text"><sup>Rp. </sup>504.000</p>
-                            <a href="#" class="btn btn-primary">Go</a>
+                            <a href="/payment/Platinum" class="btn btn-primary">Go</a>
                             </div>
                         </div>
                     </div>

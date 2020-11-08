@@ -39,6 +39,7 @@ class TransactionController extends Controller
             "date"=>"required|date"
         ]);
         //prepare insert to db
+        $amount = 0;
         $transaction = new Transaction();
         $transaction->row_id_user=Auth::id();
         // $time = strtotime($validate['date']);
@@ -49,7 +50,7 @@ class TransactionController extends Controller
         if($paket == "Silver"){
             $transaction->jenis_membership=1;
             // $transaction->waktu_expired_membership=date("Y-m-d", strtotime('+1 month',$time));
-            $transaction->total_pembayaran=120000;
+            $amount=$transaction->total_pembayaran=120000;
 
             //carbon date add months
             $time->addMonths(1);
@@ -58,7 +59,7 @@ class TransactionController extends Controller
         else if($paket == "Gold"){
             $transaction->jenis_membership=2;
             // $transaction->waktu_expired_membership=date("Y-m-d", strtotime('+3 month',$time));
-            $transaction->total_pembayaran=288000;
+            $amount=$transaction->total_pembayaran=288000;
 
             //carbon date add months
             $time->addMonths(3);
@@ -66,7 +67,7 @@ class TransactionController extends Controller
         else if($paket == "Platinum"){
             $transaction->jenis_membership=3;
             // $transaction->waktu_expired_membership=date("Y-m-d", strtotime('+6 month',$time));
-            $transaction->total_pembayaran=504000;
+            $amount=$transaction->total_pembayaran=504000;
 
             //carbon date add months
             $time->addMonths(6);
@@ -82,11 +83,54 @@ class TransactionController extends Controller
         //lakukan insert
         $result = $transaction->save();
 
+        //generate token
+        //$token = $this->generatePaymentToken();
+        //midtrans
+        // $params = array(
+        //     'transaction_details' => array(
+        //         'order_id' => rand(),
+        //         'gross_amount' => $amount,
+        //     )
+        // );
+
+        // // Get Snap Payment Page URL
+        // $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
+
+        // // Redirect to Snap Payment Page
+        // header('Location: ' . $paymentUrl);
+
         //kembali ke halaman
         if($result){
             return redirect()->route('home');
         }
     }
+
+
+    // public function generatePaymentToken(){
+    //     $this->initPaymentGateway();
+    //     $nama = Auth::user()->nama;
+    //     $namaLengkap[] = explode(" ",$nama);
+    //     $namaDepan = "";
+    //     $namaBelakang = "";
+    //     for ($i=0; $i < count($namaLengkap); $i++) {
+    //         if($i == count($namaLengkap)-1){
+    //             $namaBelakang = $namaLengkap[$i];
+    //         }
+    //         else{
+    //             $namaDepan = $namaDepan.$namaLengkap[$i]." ";
+    //         }
+    //     }
+    //     $customerDetails = [
+    //         'first_name' => $namaDepan,
+    //         'last_name' => $namaBelakang,
+    //         'email' => Auth::user()->email,
+    //         'phone' => Auth::user()->no_hp
+    //     ];
+
+    //     $params = [
+    //         'enable_payments' => \App\Models
+    //     ];
+    // }
 
     public function accept($id){
         if($id == "all"){
@@ -96,8 +140,13 @@ class TransactionController extends Controller
         }
         else{
             $accept = Transaction::where('id',$id)->first();
+            $expire=$accept->waktu_expired_membership;
             $accept->status_transaksi = 2;
             $accept->save();
+            $accept = Transaction::where('id',$id)->first();
+            $accept->waktu_expired_membership=$expire;
+            $accept->save();
+            dd($expire);
         }
         return redirect()->route('transaction.pending');
     }
@@ -110,9 +159,25 @@ class TransactionController extends Controller
         }
         else{
             $reject = Transaction::where('id',$id)->first();
+            $expire=$reject->waktu_expired_membership;
             $reject->status_transaksi = 3;
+            $reject->save();
+            $reject = Transaction::where('id',$id)->first();
+            $reject->waktu_expired_membership = $expire;
             $reject->save();
         }
         return redirect()->route('transaction.pending');
+    }
+
+    public function initPaymentGateway()
+    {
+        // Set your Merchant Server Key
+        //\Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        //\Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        //\Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        //\Midtrans\Config::$is3ds = true;
     }
 }

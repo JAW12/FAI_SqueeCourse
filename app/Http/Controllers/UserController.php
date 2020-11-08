@@ -31,7 +31,7 @@ class UserController extends Controller
         $date = Carbon::now();
         $jenis = "";
         $detail = "";
-        $transaction = Transaction::where('row_id_user', '=', $row_id_user)->where('waktu_expired_membership', '>', $date)->first();
+        $transaction = Transaction::where('row_id_user', '=', $row_id_user)->where('waktu_expired_membership', '>', $date)->where('status_transaksi','=','2')->orderBy('created_at','DESC')->first();
         if($transaction != ""){
             if($transaction->jenis_membership == 1){
                 $jenis = "Silver";
@@ -50,7 +50,7 @@ class UserController extends Controller
         return view('user.history.membership',["trans" => $transaction,"jenis" => $jenis, "detail" => $detail]);
     }
 
-    //return halmana history transaksi member
+    //return halaman history transaksi member
     public function transaction(){
         $transaction = [];
         //row id user
@@ -60,14 +60,7 @@ class UserController extends Controller
         $date_now = date("yy-m-d");
         $date_10=date("yy-m-d", strtotime("$date_now +10 days"));
         $transaction = Transaction::where('row_id_user', '=', $row_id_user)->get();
-
-        foreach ($transaction as $item){
-            $split = explode(" ",$item->waktu_expired_membership);
-            if($split[0] <= $date_10){
-               $cek = "a";
-            }
-        }
-        return view('user.history.transaction',["trans"=>$transaction,"date"=>$date_now,"date_10"=>$cek]);
+        return view('user.history.transaction',["trans"=>$transaction,"date"=>$date_now,"date_10"=>$date_10]);
     }
 
     public function register(Request $request) {
