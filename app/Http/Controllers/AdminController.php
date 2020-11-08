@@ -2,19 +2,163 @@
 
 namespace App\Http\Controllers;
 use App\Models\Post;
-use App\Models\Category;
-use App\Models\Episode;
+use App\Models\Quiz;
+use App\Models\User;
 use App\Models\Label;
 use App\Models\Series;
+use App\Models\Episode;
+use App\Models\Category;
 use App\Models\Transaction;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
     public function index(){
-        return view('admin.home');
+        $series = Series::all();
+        $episodes = Episode::all();
+        $quizzes = Quiz::all();
+        $transactions = Transaction::all();
+        $member = User::all();
+        $posts = Post::all();
+        $monthly = DB::select('select month(updated_at) as month, sum(total_pembayaran) as sales from transactions where status_transaksi = 2 and year(updated_at) = year(now()) group by month(updated_at) order by month;');
+        $jan = array_filter($monthly, function($sales){
+            return $sales->month == 1;
+        });
+        $temp = 0;
+        foreach($jan as $values){
+            $temp = $values->sales;
+        }
+        $jan = $temp;
+
+        $feb = array_filter($monthly, function($sales){
+            return $sales->month == 2;
+        });
+        $temp = 0;
+        foreach($feb as $values){
+            $temp = $values->sales;
+        }
+        $feb = $temp;
+
+        $mar = array_filter($monthly, function($sales){
+            return $sales->month == 3;
+        });
+        $temp = 0;
+        foreach($mar as $values){
+            $temp = $values->sales;
+        }
+        $mar = $temp;
+
+        $apr = array_filter($monthly, function($sales){
+            return $sales->month == 4;
+        });
+        $temp = 0;
+        foreach($apr as $values){
+            $temp = $values->sales;
+        }
+        $apr = $temp;
+
+        $may = array_filter($monthly, function($sales){
+            return $sales->month == 5;
+        });
+        $temp = 0;
+        foreach($may as $values){
+            $temp = $values->sales;
+        }
+        $may = $temp;
+
+        $june = array_filter($monthly, function($sales){
+            return $sales->month == 6;
+        });
+        $temp = 0;
+        foreach($june as $values){
+            $temp = $values->sales;
+        }
+        $june = $temp;
+
+        $july = array_filter($monthly, function($sales){
+            return $sales->month == 7;
+        });
+        $temp = 0;
+        foreach($july as $values){
+            $temp = $values->sales;
+        }
+        $july = $temp;
+
+        $aug = array_filter($monthly, function($sales){
+            return $sales->month == 8;
+        });
+        $temp = 0;
+        foreach($aug as $values){
+            $temp = $values->sales;
+        }
+        $aug = $temp;
+
+        $sep = array_filter($monthly, function($sales){
+            return $sales->month == 9;
+        });
+        $temp = 0;
+        foreach($sep as $values){
+            $temp = $values->sales;
+        }
+        $sep = $temp;
+
+        $oct = array_filter($monthly, function($sales){
+            return $sales->month == 10;
+        });
+        $temp = 0;
+        foreach($oct as $values){
+            $temp = $values->sales;
+        }
+        $oct = $temp;
+
+        $nov = array_filter($monthly, function($sales){
+            return $sales->month == 11;
+        });
+        $temp = 0;
+        foreach($nov as $values){
+            $temp = $values->sales;
+        }
+        $nov = $temp;
+
+        $des = array_filter($monthly, function($sales){
+            return $sales->month == 12;
+        });
+        $temp = 0;
+        foreach($des as $values){
+            $temp = $values->sales;
+        }
+        $des = $temp;
+
+        $total = 0;
+        foreach($monthly as $values){
+            $total += $values->sales;
+        }
+
+
+        return view('admin.home',
+        [
+            'series' => $series,
+            'episodes' => $episodes,
+            'quizzes' => $quizzes,
+            'transactions' => $transactions,
+            'member' => $member,
+            'posts' => $posts,
+            'jan' => $jan,
+            'feb' => $feb,
+            'mar' => $mar,
+            'apr' => $apr,
+            'may' => $may,
+            'june' => $june,
+            'july' => $july,
+            'aug' => $aug,
+            'sep' => $sep,
+            'oct' => $oct,
+            'nov' => $nov,
+            'des' => $des,
+            'total' => $total,
+        ]);
     }
 
     function blog(){

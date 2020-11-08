@@ -104,7 +104,7 @@
 
         </div>
         <div class="form-group">
-            <input type="checkbox" id="policy" name="policy"> I agree to the <a href="/policy" target="_blank" rel="noopener noreferrer">privacy policy</a>
+            <input type="checkbox" id="policy" name="policy"> I agree to the <a href="{{route('privacy')}}" target="_blank" rel="noopener noreferrer">privacy policy</a>
             @error('policy')
                 <p class="small text-danger">
                     {{$message}}

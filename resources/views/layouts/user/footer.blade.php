@@ -5,11 +5,11 @@
             <h5>Account</h5>
             <ul class="list-unstyled text-small">
                 @guest
-                    <li><a class="text-muted" href="#">Login</a></li>
-                    <li><a class="text-muted" href="#">Register</a></li>
+                    <li><a class="text-muted" href="{{route('login')}}">Login</a></li>
+                    <li><a class="text-muted" href="{{route('register')}}">Register</a></li>
                 @endguest
                 @auth
-                    <li><a class="text-muted" href="#">Your Profile</a></li>
+                    <li><a class="text-muted" href="{{route('user.profile', Auth::user()->username)}}}}">Your Profile</a></li>
                 @endauth
             </ul>
         </div>
@@ -44,14 +44,14 @@
             <h5>About</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="text-muted" href="http://telegram.me/SqueeSupportBot">FAQ</a></li>
-                <li><a class="text-muted" href="#">Testimonials</a></li>
-                <li><a class="text-muted" href="#">Privacy Terms</a></li>
+                <li><a class="text-muted" href="{{route('testimonials')}}">Testimonials</a></li>
+                <li><a class="text-muted" href="{{route('privacy')}}">Privacy Terms</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">
             <h5>Contact</h5>
             <ul class="list-unstyled text-small">
-                <li><span class="text-muted" href="#">squee.course@gmail.com</span></li>
+                <li><span class="text-muted">squeecourse@gmail.com</span></li>
             </ul>
         </div>
     </div>

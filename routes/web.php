@@ -79,7 +79,8 @@ Route::get('/test', function(){
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
+Route::get('/testimonials', [HomeController::class, 'testimonials'])->name('testimonials');
+Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy');
 //SEARCH AUTO COMPLETE
 Route::prefix('/searchseries')->group(function(){
     Route::get('/', [AutoCompleteController::class, 'searchJSON']);

@@ -46,6 +46,14 @@ class HomeController extends Controller
         ]);
     }
 
+    public function testimonials(){
+        return view('testimonials');
+    }
+
+    public function privacy(){
+        return view('privacy');
+    }
+
     public function loginPage(){
         return view('auth.login');
     }
