@@ -160,14 +160,14 @@ class AdminController extends Controller
             'total' => $total,
         ]);
     }
-
+    function editPost($slug){
+       return view("");
+    }
     function blog(){
         $blogactive=Post::where('status_aktif','=','1')->get();
-        $blogimati=Post::where('status_aktif','=','0')->get();
         $category=category::all();
         return view('admin.blog.list', [
             'blogactive' => $blogactive,
-            'blogimati' => $blogimati,
             'category'=>$category
         ]);
     }

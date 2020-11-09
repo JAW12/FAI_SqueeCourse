@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="container">
-        <div class="h3 mt-3">Add Blog</div>
+    <div class="h3 mt-3">Add Blog</div>
         <form class="mt-4" method="post">
             @csrf
             <div class="input-group mb-3">
@@ -42,6 +42,7 @@
                <textarea name="body" id="body" class="form-control" style='height:200px;'></textarea>
                 </div>
             <input type='submit' class="btn btn-success" style="width:100px; border-radius: 50px;" name="btnadd"value="Add" >
+            </div>
         </form>
-    </div>
+    
 @endsection

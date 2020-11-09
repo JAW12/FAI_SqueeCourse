@@ -34,6 +34,20 @@ class PostController extends Controller
         $attr['slug']=\Str::slug(request('txtjudul'));
         $attr['row_id_kategori']=request('categoriselect');
         $post=Post::create($attr);
+        $baru= $post->id;
+        foreach($request->tags as $item)
+        { 
+            $labelpost = new LabelPost();
+            $labelpost->row_id_label=$item;
+            $labelpost->row_id_post=$baru;
+            $result=$labelpost->save();
+        }
+        $blogactive=Post::where('status_aktif','=','1')->get();
+        $category=category::all();
+        return view('admin.blog.add',[
+            "category"=>Category::get(),
+            "label"=>Label::get()
+        ]);
     }
 
     function category($slug){
