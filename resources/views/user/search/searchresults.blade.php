@@ -16,7 +16,7 @@
                     @endif
                 </h1>
                 <div class="text-muted mt-3">
-                    {{ count($dataSeries) }} series found in your search results.
+                    {{ $dataSeries->total() }} series found in your search results.
                 </div>
             </div>
         </div>

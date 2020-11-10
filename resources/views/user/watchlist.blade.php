@@ -10,12 +10,12 @@
             <div>
                 <h1>Watch List</h1>
                 <div class="text-muted mt-3">
-                    {{ count($dataWatchlist) }} series found in your watch list
+                    {{ $dataWatchlist->total() }} series found in your watch list
                 </div>
             </div>
         </div>
         <div class="row">
-            @if (count($dataWatchlist) <= 0)
+            @if ($dataWatchlist->total() <= 0)
                 <div class="col-12">
                     <h5 class="text-center my-4">
                         You don't have watch list.
