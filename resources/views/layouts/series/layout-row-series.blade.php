@@ -1,10 +1,7 @@
 <tr class="click-row" data-href = "{{ url('/admin/series/' . $series->slug) }}">
     <td class="align-middle click-col">{{ $loop->iteration }}</td>
-    <td style="width: 25%;" class="align-middle click-col">
-        <a class="text-dark text-decoration-none" target="_blank"
-        href="{{ url('/admin/series/' . $series->slug) }}">
-            {{ $series->judul }}
-        </a>
+    <td style="width: 25%;" class="align-middle click-col text-primary">
+        {{ $series->judul }}
     </td>
     <td class="align-middle click-col">
         @if ($series->status_berbayar === 0)

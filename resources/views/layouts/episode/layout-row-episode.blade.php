@@ -3,7 +3,7 @@
     <td style="width: 25%;" class="align-middle click-col">
         {{ $series->judul }}
     </td>
-    <td class="align-middle click-col">
+    <td class="align-middle click-col text-primary">
         {{ $episode->judul }}
     </td>
     <td class="align-middle click-col">

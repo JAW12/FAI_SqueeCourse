@@ -34,6 +34,11 @@
         .select2-selection__arrow {
             height: 34px !important;
         }
+
+        /* cursor */
+        .click-col:hover{
+            cursor: pointer;
+        }
     </style>
 
     @include('layouts.head')

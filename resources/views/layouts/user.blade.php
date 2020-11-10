@@ -84,6 +84,7 @@
             cursor: default;
             z-index:99999 !important;
         }
+
     </style>
     @yield('style')
 </head>
