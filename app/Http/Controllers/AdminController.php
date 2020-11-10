@@ -161,7 +161,12 @@ class AdminController extends Controller
         ]);
     }
     function editPost($slug){
-       return view("");
+        $blogpilih=Post::where('slug','=',$slug)->get();
+        return view('admin.blog.edit',[
+            'blogpilih' => $blogpilih,
+            "category"=>Category::get(),
+            "label"=>Label::get()
+        ]);
     }
     function blog(){
         $blogactive=Post::where('status_aktif','=','1')->get();

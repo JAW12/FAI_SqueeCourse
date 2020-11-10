@@ -1,5 +1,7 @@
 @extends('layouts.admin')
+
 @section('content')
+
     <a href="/admin/blog/add" class="btn btn-success">Add Blog</a>
     <br>
     @if (count($blogactive) > 0)
