@@ -163,7 +163,7 @@ class UserController extends Controller
 
     public function watchlist(){
         $dataUser = User::find(Auth::id());
-        $dataSeriesWatchList = $dataUser->watchlist()->paginate(6);
+        $dataSeriesWatchList = $dataUser->watchlist()->paginate(9);
 
         // tambahkan waktu penambahan series ke watchlist
         foreach ($dataSeriesWatchList as $key => $series) {

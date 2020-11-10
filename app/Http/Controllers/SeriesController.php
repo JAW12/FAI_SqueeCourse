@@ -92,16 +92,19 @@ class SeriesController extends Controller
         $dataEpisode = Episode::where('slug', $slugepisode)->first();
         $dataUser = User::find(Auth::id());
 
-        //cek membership user dengan status accepted
-        $statusbisanonton = false;
-        // $pesan = "";
-
-        if ($dataEpisode->status_berbayar == 0) {
-            // kalo gratis maka dia bisa nton
-            $statusbisanonton = true;
+        //kl blm login lgsg dijegal, disuruh login
+        if (! Auth::check()) {
+            return redirect()->route('login');
         }
-        else if ($dataEpisode->status_berbayar == 1) {
-            if (Auth::check()) {
+        else{
+            //cek membership user dengan status accepted
+            $statusbisanonton = false;
+
+            if ($dataEpisode->status_berbayar == 0) {
+                // kalo gratis maka dia bisa nton
+                $statusbisanonton = true;
+            }
+            else if ($dataEpisode->status_berbayar == 1) {
                 // kalo berbayar maka cek status membership sdh pny / belum sm sudah expired atau belum
                 $timestampsnow = Carbon::now();
                 $dataMemberships = Transaction::orderBy('created_at', 'desc')
@@ -121,17 +124,18 @@ class SeriesController extends Controller
                 }
 
                 // yang terakhir cek kl dia sdh login, apakah email sdh diverifikasi. kl belum verifikasi maka dia ga bisa nton
-                // $statusbisanonton = $statusbisanonton && $dataUser->getVerify();
+                $statusbisanonton = $statusbisanonton &&
+                    $dataUser->getVerify();
             }
-        }
 
-        $countallepisodes = count(Episode::all());
-        return view('series.episode', [
-            "dataEpisode"   => $dataEpisode,
-            "bisaNonton"    => $statusbisanonton,
-            // "pesan"         => $pesan,
-            "jumlahepisode" => $countallepisodes
-        ]);
+            $countallepisodes = count(Episode::all());
+            return view('series.episode', [
+                "dataEpisode"   => $dataEpisode,
+                "bisaNonton"    => $statusbisanonton,
+                "jumlahepisode" => $countallepisodes,
+                "sudahVerified" => $dataUser->getVerify()
+            ]);
+        }
     }
 
     public function label($slug){

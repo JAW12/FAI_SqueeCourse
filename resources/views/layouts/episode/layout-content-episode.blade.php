@@ -4,22 +4,36 @@
         <div class="container">
             <div class="row">
                 {{-- cek apakah dia bisa nton apa nda --}}
-                @if (! isset($bisaNonton) || ! $bisaNonton)
+                @if (! isset($bisaNonton) || ! $bisaNonton || $sudahVerified == false)
                     <div class="col-12 text-center align-content-center text-light p-5 my-5">
                         <p class="h1 my-3">🙏🏻</p>
                         <div class="my-3">
                             <h1 class="h3">
-                                Sorry, but you need to be a member first
+                                @if ($sudahVerified == false)
+                                    Sorry, but you need to verify your email first
+                                @else
+                                    Sorry, but you need to be a member first
+                                @endif
                             </h1>
                         </div>
                         <div class="my-3">
                             Squee Course has more than
-                            <strong>{{ $jumlahepisode }} videos</strong> that you can learn from. Subscribe now to gain full access
+                            <strong>{{ $jumlahepisode }} videos</strong> that you can learn from.
+                            @if ($sudahVerified == false)
+                                Verify your email now
+                            @else
+                                Subscribe now
+                            @endif
+                            to gain full access.
                         </div>
                         <div class="mt-5">
-                            <a href="{{ route('membership.home') }}" class="btn btn-primary">
-                                Go Premium
-                            </a>
+                            @if ($sudahVerified == true)
+                                <a href="{{ route('membership.home') }}" class="btn btn-primary">
+                                    Go Premium
+                                </a>
+                            @else
+                                <div class="py-2"><br></div>
+                            @endif
                         </div>
                     </div>
                 @elseif($bisaNonton)

@@ -61,16 +61,30 @@ class AutoCompleteController extends Controller
     public function redirectResult(Request $request){
         $judulSeri = $request->input('q');
 
-        $series = Series::query()
-            ->where('judul', '=', $judulSeri)
-            ->get();
+        // ->appends($request->query())
+        // untuk nambah query param di pagination link supaya waktu pindah halaman param get di url ga hilang
+        $series = Series::orderBy('judul', 'ASC')
+                ->where(DB::raw("LOWER(judul)"), "like",
+                "%".\strtolower($judulSeri)."%")
+                ->paginate(9)
+                ->appends($request->query());
 
-        if (count($series) > 0) {
-            return redirect('/series/' . $series->first()->slug);
+        // pake total soalnya kalo count nanti dia cm ngecount apa yg ditampilkan di pagination aja
+        if ($series->total() > 0) {
+            if ($series->total() == 1) {
+                return redirect('/series/' . $series->first()->slug);
+            }
+            else{
+                return view('user.search.searchresults', [
+                    'dataSeries'    => $series,
+                    'keyword'       => $judulSeri
+                ]);
+            }
         }
         else{
-            return view('layouts.notfound');
+            return view('user.search.notfound');
         }
     }
+
 
 }
