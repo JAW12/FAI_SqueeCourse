@@ -343,7 +343,7 @@ Route::prefix('admin')->group(function(){
         Route::prefix('member')->group(function(){
             // halaman daftar semua member
             Route::get('/', [AdminController::class, 'member'])->name('member.list');
-            
+
             // halaman detail member
             Route::get('/{username}', [AdminController::class, 'memberDetail'])->name('member.detail');
 
