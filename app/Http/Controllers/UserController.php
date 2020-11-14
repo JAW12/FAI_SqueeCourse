@@ -104,7 +104,7 @@ class UserController extends Controller
             }
             VerifyUser::where('user_id', $user->id)->delete();
         } else {
-            return redirect('home')->with('error', "Sorry your email cannot be identified.");
+            return redirect()->route('home')->with('error', "Sorry your email cannot be identified.");
         }
         return redirect()->route('home')->with('success', $status);
     }
