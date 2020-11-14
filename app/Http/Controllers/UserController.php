@@ -85,38 +85,28 @@ class UserController extends Controller
         }
     }
 
-    public function sendVerify(){
-        $verifyUser = VerifyUser::create([
-            'user_id' => Auth::user()->id,
-            'token' => sha1(time())
-        ]);
-
-        Auth::user()->notify(new MailVerificationNotification($verifyUser->token));
-        return redirect()->route('home')->with('success', 'We sent you an activation code. Check your email and click on the link to verify.');
-    }
-
     public function verifyUser(Request $request)
     {
-    $request->validate([
-        'token' => 'required',
-        'email' => 'required|email',
-    ]);
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+        ]);
 
-    $verifyUser = VerifyUser::where('token', $request->token)->first();
-    if(isset($verifyUser) ){
-        $user = $verifyUser->user;
-        if(!$user->verified) {
-        $verifyUser->user->email_verified_at = now();
-        $verifyUser->user->save();
-        $status = "Your e-mail is verified.";
+        $verifyUser = VerifyUser::where('token', $request->token)->first();
+        if(isset($verifyUser) ){
+            $user = $verifyUser->user;
+            if(!$user->verified) {
+            $verifyUser->user->email_verified_at = now();
+            $verifyUser->user->save();
+            $status = "Your e-mail is verified.";
+            } else {
+            $status = "Your e-mail is already verified.";
+            }
+            VerifyUser::where('user_id', $user->id)->delete();
         } else {
-        $status = "Your e-mail is already verified.";
+            return redirect('home')->with('error', "Sorry your email cannot be identified.");
         }
-        VerifyUser::where('user_id', $user->id)->delete();
-    } else {
-        return redirect('home')->with('error', "Sorry your email cannot be identified.");
-    }
-    return redirect()->route('home')->with('success', $status);
+        return redirect()->route('home')->with('success', $status);
     }
 
     public function profile($username){
@@ -158,6 +148,32 @@ class UserController extends Controller
             return redirect()->route('user.profile', Auth::user()->username)->with('success', 'Change profile successful');
         } else {
             return redirect()->back()->with('error', 'Change profile failed');
+        }
+    }
+
+    public function password(){
+        return view('profile.change');
+    }
+
+    public function passwordSubmit(Request $request){
+        $request->validate([
+            "new" => "required|string|min:4",
+            "confirm" => "required|same:new",
+        ]);
+
+        $attr = $request->all();
+        $attr['password'] = password_hash($request->new, PASSWORD_DEFAULT);
+
+        if(password_verify($request->old, Auth::user()->password)){
+            $result = User::find(Auth::id())->update($attr);
+            if ($result) {
+                return redirect()->back()->with('success', 'Change password successful');
+            } else {
+                return redirect()->back()->with('error', 'Change password failed');
+            }
+        }
+        else{
+            return redirect()->back()->with('error', 'Old password differ from the account.');
         }
     }
 

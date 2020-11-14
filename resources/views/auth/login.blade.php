@@ -12,13 +12,17 @@
         user-select: none;
         }
 
-            @media (min-width: 768px) {
+        @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
             }
         }
         .linear{
             background-image: linear-gradient(to right , #4286f4, #32adff);
+        }
+
+        .alert{
+            margin-bottom: 15px !important;
         }
     </style>
 @endsection
@@ -57,6 +61,7 @@
                 <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
             </div>
         </div>
+
         <div class="form-group d-flex justify-content-between">
             <div>
                 <input type="checkbox" value="remember"> Remember me

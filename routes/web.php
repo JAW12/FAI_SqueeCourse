@@ -151,7 +151,7 @@ Route::get('membership', [TransactionController::class, 'home'])->name('membersh
 Route::middleware("auth")->group(function(){
 
     // send verification
-    Route::get('/verify', [UserController::class, 'sendVerify'])->name('send.verification');
+    Route::get('/verify', [LoginController::class, 'sendVerify'])->name('send.verification');
 
     // halaman form pembayaran & post
     Route::get('payment/{paket}', [TransactionController::class, 'form'])->name('membership.form');
@@ -179,10 +179,6 @@ Route::middleware("auth")->group(function(){
         // halaman edit profile user & post
         Route::get('profile', [UserController::class, 'edit'])->name('settings.edit');
         Route::post('profile', [UserController::class, 'editSubmit']);
-
-        // halaman verifikasi email & post
-        Route::get('verification', [UserController::class, 'verification'])->name('settings.verification');
-        Route::post('verification', [UserController::class, 'verificationSubmit']);
 
         // halaman ganti password user & post
         Route::get('password', [UserController::class, 'password'])->name('settings.password');
@@ -349,10 +345,10 @@ Route::prefix('admin')->group(function(){
             Route::get('/{username}', [AdminController::class, 'memberDetail'])->name('member.detail');
 
             // ban user
-            Route::get('/{username}/ban', [AdminController::class, 'ban'])->name('member.ban');
+            Route::post('/{username}/ban', [AdminController::class, 'ban'])->name('member.ban');
 
             // unban user
-            Route::get('/{username}/unban', [AdminController::class, 'unban'])->name('member.unban');
+            Route::post('/{username}/unban', [AdminController::class, 'unban'])->name('member.unban');
 
             // halaman history transaksi member yang dipilih
             Route::get('/{username}/history/transaksi', [AdminController::class, 'memberTransaksi'])->name('member.transaction');
