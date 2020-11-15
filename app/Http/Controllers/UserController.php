@@ -79,7 +79,13 @@ class UserController extends Controller
         $result = User::create($attr);
 
         if ($result) {
-            return redirect()->route('login')->with('success', 'Register successful');
+            $verifyUser = VerifyUser::create([
+                'user_id' => $result->id,
+                'token' => sha1(time())
+            ]);
+
+            $result->notify(new MailVerificationNotification($verifyUser->token));
+            return redirect()->route('login')->with('success', 'We sent you an activation code. Check your email and click on the link to verify.');
         } else {
             return redirect()->back()->with('error', 'Register failed');
         }
@@ -104,9 +110,20 @@ class UserController extends Controller
             }
             VerifyUser::where('user_id', $user->id)->delete();
         } else {
-            return redirect()->route('home')->with('error', "Sorry your email cannot be identified.");
+            return redirect()->route('login')->with('error', "Sorry your email cannot be identified.");
         }
-        return redirect()->route('home')->with('success', $status);
+        return redirect()->route('login')->with('success', $status);
+    }
+
+
+    public function sendVerify(){
+        $verifyUser = VerifyUser::create([
+            'user_id' => Auth::user()->id,
+            'token' => sha1(time())
+        ]);
+
+        Auth::user()->notify(new MailVerificationNotification($verifyUser->token));
+        return redirect()->route('home')->with('success', 'We sent you an activation code. Check your email and click on the link to verify.');
     }
 
     public function profile($username){

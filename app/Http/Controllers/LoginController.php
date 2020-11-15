@@ -94,18 +94,7 @@ class LoginController extends Controller
         if($user != null){
             if($user->banned == 0){
                 if (Auth::attempt($request->only(["username", "password"]), $remember)) {
-                    if(Auth::user()->email_verified_at == null){
-                        $verifyUser = VerifyUser::create([
-                            'user_id' => Auth::user()->id,
-                            'token' => sha1(time())
-                        ]);
-
-                        Auth::user()->notify(new MailVerificationNotification($verifyUser->token));
-                        return redirect()->route('home')->with('success', 'We sent you an activation code. Check your email and click on the link to verify.');
-                    }
-                    else{
-                        return redirect()->route('home');
-                    }
+                    return redirect()->route('home');
                 } else {
                     return redirect()->back()->with("error", "Login failed");
                 }
@@ -117,16 +106,6 @@ class LoginController extends Controller
         else{
             return redirect()->back()->with("error", "User not found");
         }
-    }
-
-    public function sendVerify(){
-        $verifyUser = VerifyUser::create([
-            'user_id' => Auth::user()->id,
-            'token' => sha1(time())
-        ]);
-
-        Auth::user()->notify(new MailVerificationNotification($verifyUser->token));
-        return redirect()->route('home')->with('success', 'We sent you an activation code. Check your email and click on the link to verify.');
     }
 
     public function logout(Request $request) {
