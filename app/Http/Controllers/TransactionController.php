@@ -6,7 +6,8 @@ use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Midtrans;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -40,6 +41,7 @@ class TransactionController extends Controller
             "date"=>"required|date"
         ]);
         //prepare insert to db
+        $jum = DB::table('transactions')->max('id');
         $amount = 0;
         $transaction = new Transaction();
         $transaction->row_id_user=Auth::id();
@@ -84,21 +86,40 @@ class TransactionController extends Controller
         //lakukan insert
         $result = $transaction->save();
 
-        //generate token
-        //$token = $this->generatePaymentToken();
+
         //midtrans
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => $amount,
-            )
-        );
+
+        //call function initpayment
+        //$this-> initPaymentGateway();
+
+        // $namaDepan = Auth::user()->nama;
+        // $namaBelakang = "";
+        // $params = array(
+        //     'transaction_details' => [
+        //         'order_id' => ($jum+1),
+        //         'gross_amount' => $amount,
+        //     ]
+        // );
+        // $snap = \Midtrans\Snap::createTransaction($params);
+        // $params = array(
+        //     "enabled_payments" => ["credit_card"],
+        //     'transaction_details' => [
+        //         'order_id' => $snap->token,
+        //         'gross_amount' => $amount,
+        //     ],
+        //     'customer_details' => [
+        //         'first_name' => $namaDepan,
+        //         'last_name' => $namaBelakang,
+        //         'email' => Auth::user()->email,
+        //         'phone' => Auth::user()->no_hp
+        //     ]
+        // );
 
         // Get Snap Payment Page URL
-        $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
+        //$paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
 
         // Redirect to Snap Payment Page
-        header('Location: ' . $paymentUrl);
+        //return Redirect::to($paymentUrl);
 
         //kembali ke halaman
         if($result){
@@ -106,32 +127,6 @@ class TransactionController extends Controller
         }
     }
 
-
-    // public function generatePaymentToken(){
-    //     $this->initPaymentGateway();
-    //     $nama = Auth::user()->nama;
-    //     $namaLengkap[] = explode(" ",$nama);
-    //     $namaDepan = "";
-    //     $namaBelakang = "";
-    //     for ($i=0; $i < count($namaLengkap); $i++) {
-    //         if($i == count($namaLengkap)-1){
-    //             $namaBelakang = $namaLengkap[$i];
-    //         }
-    //         else{
-    //             $namaDepan = $namaDepan.$namaLengkap[$i]." ";
-    //         }
-    //     }
-    //     $customerDetails = [
-    //         'first_name' => $namaDepan,
-    //         'last_name' => $namaBelakang,
-    //         'email' => Auth::user()->email,
-    //         'phone' => Auth::user()->no_hp
-    //     ];
-
-    //     $params = [
-    //         'enable_payments' => \App\Models
-    //     ];
-    // }
 
     public function accept($id){
         if($id == "all"){
@@ -147,7 +142,6 @@ class TransactionController extends Controller
             $accept = Transaction::where('id',$id)->first();
             $accept->waktu_expired_membership=$expire;
             $accept->save();
-            dd($expire);
         }
         return redirect()->route('transaction.pending');
     }
@@ -178,7 +172,7 @@ class TransactionController extends Controller
         \Midtrans\Config::$isProduction = false;
         //Set sanitization on (default)
         \Midtrans\Config::$isSanitized = true;
-        //Set 3DS transaction for credit card to true
+        ////Set 3DS transaction for credit card to true
         \Midtrans\Config::$is3ds = true;
     }
 }

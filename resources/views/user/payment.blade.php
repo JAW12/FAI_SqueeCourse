@@ -133,3 +133,25 @@
     </div>
 </div>
 @endsection
+@section('script')
+<script>
+    snap.pay('SNAP_TRANSACTION_TOKEN', {
+    onSuccess: function(result){
+      /* You may add your own implementation here */
+      alert("payment success!");
+    },
+    onPending: function(result){
+      /* You may add your own implementation here */
+      alert("wating your payment!");
+    },
+    onError: function(result){
+      /* You may add your own implementation here */
+      alert("payment failed!");
+    },
+    onClose: function(){
+      /* You may add your own implementation here */
+      alert('you closed the popup without finishing the payment');
+    }
+  })
+</script>
+@endsection
