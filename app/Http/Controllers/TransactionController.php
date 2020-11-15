@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Midtrans;
 
 class TransactionController extends Controller
 {
@@ -86,18 +87,18 @@ class TransactionController extends Controller
         //generate token
         //$token = $this->generatePaymentToken();
         //midtrans
-        // $params = array(
-        //     'transaction_details' => array(
-        //         'order_id' => rand(),
-        //         'gross_amount' => $amount,
-        //     )
-        // );
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => rand(),
+                'gross_amount' => $amount,
+            )
+        );
 
-        // // Get Snap Payment Page URL
-        // $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
+        // Get Snap Payment Page URL
+        $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
 
-        // // Redirect to Snap Payment Page
-        // header('Location: ' . $paymentUrl);
+        // Redirect to Snap Payment Page
+        header('Location: ' . $paymentUrl);
 
         //kembali ke halaman
         if($result){
@@ -171,13 +172,13 @@ class TransactionController extends Controller
 
     public function initPaymentGateway()
     {
-        // Set your Merchant Server Key
-        //\Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        //\Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
-        //\Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        //\Midtrans\Config::$is3ds = true;
+        //Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+        //Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        //Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        //Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
     }
 }
