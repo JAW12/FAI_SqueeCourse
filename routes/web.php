@@ -151,7 +151,7 @@ Route::get('membership', [TransactionController::class, 'home'])->name('membersh
 Route::middleware("auth")->group(function(){
 
     // send verification
-    Route::get('/verify', [LoginController::class, 'sendVerify'])->name('send.verification');
+    Route::get('/verify', [UserController::class, 'sendVerify'])->name('send.verification');
 
     // halaman form pembayaran & post
     Route::get('payment/{paket}', [TransactionController::class, 'form'])->name('membership.form');
