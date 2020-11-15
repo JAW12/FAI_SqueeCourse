@@ -13,6 +13,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EpisodeController;
+use App\Http\Controllers\MidtransController;
 use Illuminate\Support\Facades\Notification;
 use App\Http\Controllers\TransactionController;
 use App\Notifications\MailResetPasswordNotification;
@@ -156,6 +157,10 @@ Route::middleware("auth")->group(function(){
     // halaman form pembayaran & post
     Route::get('payment/{paket}', [TransactionController::class, 'form'])->name('membership.form');
     Route::post('payment/{paket}', [TransactionController::class, 'submit']);
+
+    // midtrans
+    Route::get('payments/notification', [MidtransController::class, 'notification']);
+    Route::get('payments/completed', [MidtransController::class, 'completed']);
 
 
     // KHUSUS USER

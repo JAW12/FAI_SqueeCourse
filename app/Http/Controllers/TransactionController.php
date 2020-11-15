@@ -90,41 +90,30 @@ class TransactionController extends Controller
         //midtrans
 
         //call function initpayment
-        //$this-> initPaymentGateway();
+        $this-> initPaymentGateway();
 
-        // $namaDepan = Auth::user()->nama;
-        // $namaBelakang = "";
-        // $params = array(
-        //     'transaction_details' => [
-        //         'order_id' => ($jum+1),
-        //         'gross_amount' => $amount,
-        //     ]
-        // );
-        // $snap = \Midtrans\Snap::createTransaction($params);
-        // $params = array(
-        //     "enabled_payments" => ["credit_card"],
-        //     'transaction_details' => [
-        //         'order_id' => $snap->token,
-        //         'gross_amount' => $amount,
-        //     ],
-        //     'customer_details' => [
-        //         'first_name' => $namaDepan,
-        //         'last_name' => $namaBelakang,
-        //         'email' => Auth::user()->email,
-        //         'phone' => Auth::user()->no_hp
-        //     ]
-        // );
+        $namaDepan = Auth::user()->nama;
+        $namaBelakang = "";
+        $params = array(
+            "enabled_payments" => ["credit_card"],
+            'transaction_details' => [
+                'order_id' => ($jum+1),
+                'gross_amount' => $amount,
+            ],
+            'customer_details' => [
+                'first_name' => $namaDepan,
+                'last_name' => $namaBelakang,
+                'email' => Auth::user()->email,
+                'phone' => Auth::user()->no_hp
+            ]
+        );
 
         // Get Snap Payment Page URL
-        //$paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
+        $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
 
         // Redirect to Snap Payment Page
-        //return Redirect::to($paymentUrl);
+        return Redirect::to($paymentUrl);
 
-        //kembali ke halaman
-        if($result){
-            return redirect()->route('home');
-        }
     }
 
 
