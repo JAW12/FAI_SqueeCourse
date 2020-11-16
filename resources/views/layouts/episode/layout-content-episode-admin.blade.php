@@ -45,22 +45,21 @@
                                     @if(Auth::user()->id == $user->id) pt-2 @else pt-5 @endif">
                                     <img src="{{$comment->user->gravatar()}}" alt="" height="150" width="150" class="rounded-circle" style="object-fit: cover; object-position: center;">
                                 </div> --}}
-                                <div class="col-xs-12 col-md-2">
+                                <div class="flex-shrink-0 mr-3">
                                     {{-- cek apakah komentar dilakukan admin / user --}}
                                     @if ($comment->row_id_user == null)
                                         <img src="{{ asset("/images/icon.png") }}"
-                                        alt="" height="150" width="150" class="rounded-circle" style="object-fit: cover; object-position: center;">
+                                        alt="" height="50" width="50" class="rounded-circle" style="object-fit: cover; object-position: center;">
                                     @else
-                                        <img src="{{$comment->user->gravatar()}}" alt="" height="150" width="150" class="rounded-circle" style="object-fit: cover; object-position: center;">
+                                        <img src="{{$comment->user->gravatar()}}" alt="" height="50" width="50" class="rounded-circle" style="object-fit: cover; object-position: center;">
                                     @endif
-
                                 </div>
                                 <div class="col-xs-12 col-md mr-5">
                                     @include('layouts.episode.layout-data-comment-admin')
                                 </div>
                             </div>
 
-                            <div class="reply">
+                            <div class="reply" style="margin-left: 7%;">
                                 @foreach ($comment->replies as $reply)
                                     @include('layouts.episode.layout-data-reply')
                                 @endforeach
