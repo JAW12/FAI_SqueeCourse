@@ -1,24 +1,19 @@
 @extends('layouts.user')
 @section('content')
-<div class="container-fluid grey py-4">
-    <div class="container mb-5" style="max-width:90%;">
+<div class="container-fluid h-100 bg-light">
+    <div class="container" style="max-width:90%;">
         <div class="flex-1 md:px-4">
             @if ($jenis != "")
                 <div class="h1">
                     Your Active Membership
                 </div>
-                <div class="h2">
-                    <div class="mt-4">Membership Type : {{$jenis}}</div>
+                <div class="border border-secondary mt-4 p-3 rounded" style="background-color: white;">
                     @php
                         $split=explode(" ",$trans->waktu_expired_membership);
                     @endphp
-                    <div class="mt-4">Valid Until :  {{$split[0]}}</div>
-                    <div class="mt-4">Membership details: </div>
-                </div>
-                <div class="mt-4 h4">
-                    @php
-                        echo nl2br($detail);
-                    @endphp
+                    <p class="card-text">
+                        <h3>Type</h3><h5>{{$jenis}}</h5><h3>Valid Until</h3> <h5>{{$split[0]}}</h5><h3>Access For</h3> <h5>{{$waktu}}</h5> <h5>{{$discord}}</h5><h5>{{$watchlist}}</h5><h3>Discount</h3><h5>{{$diskon}}</h5>
+                    </p>
                 </div>
             @else
                 <div class="mt-4 h2">You currently do not have any active membership program<br> Go buy one that suits your need</div>

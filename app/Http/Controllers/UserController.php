@@ -30,24 +30,29 @@ class UserController extends Controller
         // $date = date("yy-m-d");
         $date = Carbon::now();
         $jenis = "";
-        $detail = "";
+        $waktu = "";
+        $discord = "Our Discord group";
+        $watchlist = "Making and keeping your watchlist";
+        $diskon = "";
         $transaction = Transaction::where('row_id_user', '=', $row_id_user)->where('waktu_expired_membership', '>', $date)->where('status_transaksi','=','2')->orderBy('created_at','DESC')->first();
         if($transaction != ""){
             if($transaction->jenis_membership == 1){
                 $jenis = "Silver";
-                $detail = "-> 1 month of full access to all of our series \r\n -> Access to our Discord group \r\n -> Make and keep your watchlist";
+                $waktu = "1 month of full access to all of our series";
+                $diskon = "No discount for this membership";
             }
             elseif ($transaction->jenis_membership == 2) {
                 $jenis = "Gold";
-                $detail = "-> 3 months of full access to all of our series \r\n -> Access to our Discord group \r\n -> Make and keep your watchlist \r\n -> 20% discount from the monthly payments";
+                $waktu = "3 months of full access to all of our series";
+                $diskon = "20% discount from the monthly payments";
             }
             elseif ($transaction->jenis_membership == 3){
                 $jenis = "Platinum";
-                $detail = "6 months of full access to all of our series \r\n -> Access to our Discord group \r\n -> Make and keep your watchlist \r\n -> 30% discount from the monthly payments";
-
+                $waktu = "6 months of full access to all of our series";
+                $diskon = "30% discount from the monthly payments";
             }
         }
-        return view('user.history.membership',["trans" => $transaction,"jenis" => $jenis, "detail" => $detail]);
+        return view('user.history.membership',["trans" => $transaction,"jenis" => $jenis,"discord"=>$discord,"watchlist"=>$watchlist,"waktu"=>$waktu, "diskon" => $diskon]);
     }
 
     //return halaman history transaksi member

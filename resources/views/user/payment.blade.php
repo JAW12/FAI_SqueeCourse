@@ -43,7 +43,7 @@
                             <div class="d-flex">
                                 <div>
                                     <p class="mb-0">BCA</p>
-                                    <p class="h5 font-weight-bold mb-0">0882018669</p>
+                                    <p class="h5 font-weight-bold mb-0">0882037563</p>
                                     <p class="mb-0">Winda Angelina Utama</p>
                                 </div>
                                 <div class="ml-auto my-auto">
@@ -54,36 +54,36 @@
                         <li href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex">
                                 <div>
-                                    <p class="mb-0">BCA</p>
-                                    <p class="h5 font-weight-bold mb-0">8000739236</p>
-                                    <p class="mb-0">Irsyad Adly Panjaitan</p>
+                                    <p class="mb-0">BNI</p>
+                                    <p class="h5 font-weight-bold mb-0">1060011124842</p>
+                                    <p class="mb-0">Hendra Lingga Wijaya</p>
                                 </div>
                                 <div class="ml-auto my-auto">
-                                    <img src="{{asset('images/contoh/bank.png')}}" width="70" alt="">
+                                    <img src="{{asset('images/contoh/bni.png')}}" width="70" alt="">
                                 </div>
                             </div>
                         </li>
                         <li href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex">
                                 <div>
-                                    <p class="mb-0">BCA</p>
-                                    <p class="h5 font-weight-bold mb-0">8000739236</p>
-                                    <p class="mb-0">Irsyad Adly Panjaitan</p>
+                                    <p class="mb-0">BRI</p>
+                                    <p class="h5 font-weight-bold mb-0">020601087166506</p>
+                                    <p class="mb-0">Kevin Hongary</p>
                                 </div>
                                 <div class="ml-auto my-auto">
-                                    <img src="{{asset('images/contoh/bank.png')}}" width="70" alt="">
+                                    <img src="{{asset('images/contoh/bri.png')}}" width="70" alt="">
                                 </div>
                             </div>
                         </li>
                         <li href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex">
                                 <div>
-                                    <p class="mb-0">BCA</p>
-                                    <p class="h5 font-weight-bold mb-0">8000739236</p>
-                                    <p class="mb-0">Irsyad Adly Panjaitan</p>
+                                    <p class="mb-0">Mandiri</p>
+                                    <p class="h5 font-weight-bold mb-0">1050014597516</p>
+                                    <p class="mb-0">Jem Angkasa Wijaya</p>
                                 </div>
                                 <div class="ml-auto my-auto">
-                                    <img src="{{asset('images/contoh/bank.png')}}" width="70" alt="">
+                                    <img src="{{asset('images/contoh/mandiri.png')}}" width="70" alt="">
                                 </div>
                             </div>
                         </li>
@@ -110,9 +110,11 @@
                             <div class="form-group">
                                 <label for="destination">Destination Bank</label>
                                 <select name="destination" id="destination" class="form-control">
-                                    <option value="bca">BCA</option>
-                                    <option value="bca">BCA</option>
-                                    <option value="bca">BCA</option>
+                                    <option value="BCA">BCA</option>
+                                    <option value="Mandiri">Mandiri</option>
+                                    <option value="BNI">BNI</option>
+                                    <option value="BRI">BRI</option>
+                                    <option value="CC">Midtrans(Visa)</option>
                                 </select>
                             </div>
                             <div class="form-group">

@@ -86,9 +86,8 @@ class TransactionController extends Controller
         //lakukan insert
         $result = $transaction->save();
 
-
         //midtrans
-
+        if($validate['destination'] == "CC"){
         //call function initpayment
         $this-> initPaymentGateway();
 
@@ -113,6 +112,12 @@ class TransactionController extends Controller
 
         // Redirect to Snap Payment Page
         return Redirect::to($paymentUrl);
+        }
+        else{
+            if($result){
+                return redirect()->route('home');
+            }
+        }
 
     }
 

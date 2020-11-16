@@ -161,6 +161,7 @@ Route::middleware("auth")->group(function(){
     // midtrans
     Route::get('payments/notification', [MidtransController::class, 'notification']);
     Route::get('payments/completed', [MidtransController::class, 'completed']);
+    Route::get('payments/rejected', [MidtransController::class, 'failed']);
 
 
     // KHUSUS USER
