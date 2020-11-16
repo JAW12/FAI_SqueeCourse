@@ -25,12 +25,12 @@
         <div class="container table-responsive">
             <table class="table table-bordered table-light table-hover dt">
                 <thead class="thead-dark align-middle">
-                    <th class="align-middle text-center">#</th>
+                    {{-- <th class="align-middle text-center">#</th> --}}
                     <th class="align-middle text-center">Title</th>
                     <th class="align-middle text-center">Series Type</th>
                     <th class="align-middle text-center">Completion Status</th>
                     <th class="align-middle text-center">Difficulty</th>
-                    <th class="align-middle text-center">Last Updated At</th>
+                    {{-- <th class="align-middle text-center">Last Updated At</th> --}}
                     <th class="align-middle text-center">Displayed Status</th>
                     <th class="align-middle text-center">Action</th>
                 </thead>
@@ -47,6 +47,17 @@
                         @endforeach
                     @endif
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th class="align-middle text-center">Title</th>
+                        <th class="align-middle text-center">Series Type</th>
+                        <th class="align-middle text-center">Completion Status</th>
+                        <th class="align-middle text-center">Difficulty</th>
+                        {{-- <th class="align-middle text-center">Last Updated At</th> --}}
+                        <th class="align-middle text-center">Displayed Status</th>
+                        {{-- <th class="align-middle text-center">Action</th> --}}
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
@@ -106,7 +117,28 @@
         }
 
         $(document).ready(function(){
-            $('.dt').DataTable();
+            $('.dt').DataTable({
+                initComplete: function () {
+                    this.api().columns().every( function () {
+                        var column = this;
+                        var select = $('<select><option value=""></option></select>')
+                            .appendTo( $(column.footer()).empty() )
+                            .on( 'change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
+
+                                column
+                                    .search( val ? '^'+val+'$' : '', true, false )
+                                    .draw();
+                            } );
+
+                        column.data().unique().sort().each( function ( d, j ) {
+                            select.append( '<option value="'+d+'">'+d+'</option>' )
+                        } );
+                    } );
+                }
+            });
             // $('.dt').DataTable({
             //         "order": [[ 2, "asc" ]]
             //     }

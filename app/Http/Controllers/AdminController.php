@@ -229,7 +229,7 @@ class AdminController extends Controller
     }
 
     public function series(){
-        $dataSeries = Series::withTrashed()->orderByDesc("updated_at")->get();
+        $dataSeries = Series::withTrashed()->orderBy("updated_at", "DESC")->get();
 
         // mendapatkan data series yang sudah didelete
         // $dataSeriesDeleted = Series::onlyTrashed()
@@ -270,11 +270,11 @@ class AdminController extends Controller
         $result = $series->restore();
 
         if ($result) {
-            return redirect()->back()
+            return redirect()->route("admin.series")
                 ->with("success", "You have succesfully restored series " . $series->judul);
         }
         else{
-            return redirect()->back()
+            return redirect()->route("admin.series")
                 ->with("error", "You have failed in restoring series " . $series->judul);
         }
     }

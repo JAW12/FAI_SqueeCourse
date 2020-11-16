@@ -1,5 +1,5 @@
 <tr class="click-row" data-href = "{{ url('/admin/series/' . $series->slug) }}">
-    <td class="align-middle click-col">{{ $loop->iteration }}</td>
+    {{-- <td class="align-middle click-col">{{ $loop->iteration }}</td> --}}
     <td style="width: 25%;" class="align-middle click-col text-primary">
         {{ $series->judul }}
     </td>
@@ -27,22 +27,25 @@
         @endif
     </td class="align-middle click-col">
     @if ($series->deleted_at != null)
-        <td class="align-middle">
+        {{-- <td class="align-middle">
             {{ $series->deleted_at->diffForHumans() }}
-        </td>
-        <td class="align-middle">
-            <span class="text-danger">
+        </td> --}}
+        <td class="align-middle text-center text-danger">
+            {{-- kalo ada iconnya nanti jd aneh di filter datatable ny --}}
+            {{-- <span class="text-danger">
                 <i class="fas fa-times"></i> No
-            </span>
+            </span> --}}
+            No
         </td>
     @else
-        <td class="align-middle click-col">
+        {{-- <td class="align-middle click-col">
             {{ $series->updated_at->diffForHumans() }}
-        </td>
-        <td class="align-middle">
-            <span class="text-success click-col">
+        </td> --}}
+        <td class="align-middle text-center text-success">
+            {{-- <span class="text-success click-col">
                 <i class="fas fa-check"></i> Yes
-            </span>
+            </span> --}}
+            Yes
         </td>
     @endif
     <td class="text-center align-middle" style="width: 10%">
