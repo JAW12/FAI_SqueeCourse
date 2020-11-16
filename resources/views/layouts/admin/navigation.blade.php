@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li class="nav-item small">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link"  href="/admin/quiz">
                         List of Quizzes
                     </a>
                 </li>

@@ -35,11 +35,11 @@
                                 </a>
                                 <a href="{{route('blog.category', $post->category->slug)}}" class="badge badge-pill badge-primary mb-3">{{$post->category->nama}}</a>
                                 @foreach($post->labels as $label)
-                                <a href="{{route('blog.label', $label->slug)}}" class="badge badge-pill badge-dark mb-3">{{Str::limit($label->nama, 10)}}</a>
+                                    <a href="{{route('blog.label', $label->slug)}}" class="badge badge-pill badge-dark mb-3">{{Str::limit($label->nama, 10)}}</a>
                                 @endforeach
                                 <p class="card-text">{{Str::limit($post->isi, 100)}}</p>
                                 <div class="text-right">
-                                    <a href="" class="text-decoration-none">Read more</a>
+                                    <a href="{{URL::to('blog')}}/{{$post->slug}}" class="text-decoration-none">Read more</a>
                                 </div>
                             </div>
                         </div>

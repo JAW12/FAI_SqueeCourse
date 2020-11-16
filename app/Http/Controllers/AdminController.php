@@ -6,6 +6,7 @@ use App\Models\Quiz;
 use App\Models\User;
 use App\Models\Label;
 use App\Models\Series;
+use App\Models\LabelPost;
 use App\Models\Episode;
 use App\Models\Category;
 use App\Models\Transaction;
@@ -162,10 +163,17 @@ class AdminController extends Controller
     }
     function editPost($slug){
         $blogpilih=Post::where('slug','=',$slug)->get();
-        return view('admin.blog.edit',[
+        foreach($blogpilih as $rowpilih){
+           $tempid=$rowpilih->id;
+        }
+        $labelterpilih=LabelPost::where('row_id_post','=',$tempid)->get();
+        return view('admin.blog.edit',
+        [
             'blogpilih' => $blogpilih,
             "category"=>Category::get(),
-            "label"=>Label::get()
+            "label"=>Label::get(),
+            'tempid'=>$tempid,
+            'labelterpilih'=>$labelterpilih
         ]);
     }
     function blog(){
@@ -296,7 +304,16 @@ class AdminController extends Controller
         $data =Transaction::orderBy('updated_at', 'desc')->get();
         return view('admin.transaction.list',['data'=>$data]);
     }
-
+    public function quizzes(){
+        $data =Quiz::orderBy('created_at', 'desc')->get();
+        return view('admin.quiz.list',['data'=>$data]);
+    }
+    public function addQuiz(){
+        $data =Series::where('status_complete', "=", '1')->get();
+        return view('admin.quiz.add', [
+            "data"          => $data
+        ]);
+    }
     public function pendingTransaction(){
         $data = Transaction::where('status_transaksi','1')->orderBy('updated_at', 'desc')->get();
         return view('admin.transaction.list',['data'=>$data,'cek'=>"a"]);

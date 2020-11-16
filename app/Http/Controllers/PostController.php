@@ -10,6 +10,48 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    function edit(Request $request){
+        if($request->btndelete){
+            $tempid=$request->txttemp;
+            $delete = LabelPost::withTrashed()->where('row_id_post', '=', $tempid)->delete();
+            $deletepost=Post::withTrashed()->where('id','=',$tempid)->delete();
+            $blogactive=Post::where('status_aktif','=','1')->get();
+            $category=category::all();
+            return view('admin.blog.list', [
+                'blogactive' => $blogactive,
+                'category'=>$category
+            ]);
+        }
+        else if($request->btnupdate){
+            $tempid=$request->txttemp;
+            $delete = LabelPost::withTrashed()->where('row_id_post', '=', $tempid)->delete();
+            foreach($request->tags as $item)
+            { 
+                $labelpost = new LabelPost();
+                $labelpost->row_id_label=$item;
+                $labelpost->row_id_post=$tempid;
+                $result=$labelpost->save();
+            }
+            $tempjudul=$request->txtjudul;
+            $tempisi=$request->body;
+            $tempcategory=$request->categoriselect;
+            Post::where('id', '=', $tempid)
+            ->update(
+                [
+                    'judul' => $tempjudul,
+                    'isi'=>$tempisi,
+                    'row_id_kategori'=>$tempcategory
+                ]  
+            );
+            $blogactive=Post::where('status_aktif','=','1')->get();
+            $category=category::all();
+            return view('admin.blog.list', [
+                'blogactive' => $blogactive,
+                'category'=>$category
+            ]);
+        }
+    }
+
     function home(Request $request){
         if($request->has('search')){
             $search = $request->get('search');
@@ -66,5 +108,18 @@ class PostController extends Controller
             'posts' => $post,
             'label' => $label
         ]);
+    }
+    function detail($slug){
+        $postnya=Post::where('slug','=',$slug)->get();
+        foreach($postnya as $rowpost){
+            $tempid=$rowpost->id;
+        }
+        $labelterpilih=LabelPost::where('row_id_post','=',$tempid)->get();
+        return view('blog.detail',[
+            "label"=>Label::get(),
+            'postnya'=>$postnya,
+            'labelterpilih'=>$labelterpilih
+        ]);
+        
     }
 }
