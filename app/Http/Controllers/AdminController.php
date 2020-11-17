@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Label;
 use App\Models\Series;
 use App\Models\LabelPost;
+use App\Models\Question;
 use App\Models\Episode;
 use App\Models\Category;
 use App\Models\Transaction;
@@ -264,7 +265,28 @@ class AdminController extends Controller
                 ->with("error", "You have failed in deleting series " . $series->judul);
         }
     }
-
+    public function deleteQuiz($id){
+        Series::where('id', '=', $id)
+        ->update(
+            [
+                'row_id_kuis'=>NULL
+            ]  
+        );
+        $delete = Question::where('row_id_kuis', '=', $id)->delete();
+        $delete2 = Quiz::where('id', '=', $id)->delete();
+        $data =Quiz::orderBy('created_at', 'desc')->get();
+        return view('admin.quiz.list',['data'=>$data]);
+    }
+    public function quiz($id){
+        $data =Series::where('row_id_kuis', '=', $id)->get();
+        $namajudul=Quiz::where('id','=',$id)->get();
+        $pertnyaan=Question::where('row_id_kuis','=',$id)->get();
+        return view('admin.quiz.show', [
+            "data"          => $data,
+            "namajudul"     =>$namajudul,
+            "pertnyaan"    =>$pertnyaan
+        ]);
+    }
     public function restoreSeries($slugSeries){
         $series = Series::withTrashed()->where("slug", "=", $slugSeries)->first();
         $result = $series->restore();
@@ -309,9 +331,19 @@ class AdminController extends Controller
         return view('admin.quiz.list',['data'=>$data]);
     }
     public function addQuiz(){
-        $data =Series::where('status_complete', "=", '1')->get();
+        $data =Series::where('status_complete', '=', 1)->whereNull('row_id_kuis')->get();
         return view('admin.quiz.add', [
             "data"          => $data
+        ]);
+    }
+    public function editQuiz($id){
+        $data =Series::where('row_id_kuis', '=', $id)->get();
+        $namajudul=Quiz::where('id','=',$id)->get();
+        $pertnyaan=Question::where('row_id_kuis','=',$id)->get();
+        return view('admin.quiz.edit', [
+            "data"          => $data,
+            "namajudul"     =>$namajudul,
+            "pertnyaan"    =>$pertnyaan
         ]);
     }
     public function pendingTransaction(){

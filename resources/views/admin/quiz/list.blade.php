@@ -19,6 +19,7 @@
                         <th class="align-middle text-center">Id</th>
                         <th class="align-middle text-center">Nama</th>
                         <th class="align-middle text-center">Created_at</th>
+                        <th class="align-middle text-center">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -27,6 +28,10 @@
                                 <th class="align-middle text-center" scope="row">{{$rowquiz->id}}</th>
                                 <td class="align-middle">{{$rowquiz->nama}}</td>
                                 <td class="align-middle">{{$rowquiz->created_at}}</td>
+                                <td class="align-middle">
+                                <a href="{{URL::to('admin/quiz')}}/{{$rowquiz->id}}/{{'edit'}}"> <button type="button" class="btn btn-info" style="width: 75px;">Update</button></a>
+                                <a href="{{URL::to('admin/quiz')}}/{{$rowquiz->id}}"> <button type="button" class="btn btn-info" style="width: 75px;">Detail</button></a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

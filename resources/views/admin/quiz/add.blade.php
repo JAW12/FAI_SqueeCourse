@@ -11,7 +11,7 @@
         <label>Title</label>
         <input type="text" name="judul" required class="form-control my-2" placeholder="Learn Laravel 8">
     </div>
-    </form>
+  
     <div class="form-group my-4">
         <label>Series</label>
         <select name="series" required class="form-control">
@@ -124,6 +124,7 @@
     @else
         <div class="h3 text-center mr-5 mt-5">No Series Complete</div>
     @endif
+    </form>
 </div>
   
 @endsection
