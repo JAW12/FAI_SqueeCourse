@@ -27,7 +27,7 @@
                 <thead class="thead-dark align-middle">
                     {{-- <th class="align-middle text-center">#</th> --}}
                     <th class="align-middle text-center">Title</th>
-                    <th class="align-middle text-center">Series Type</th>
+                    <th class="align-middle text-center">Type</th>
                     <th class="align-middle text-center">Completion Status</th>
                     <th class="align-middle text-center">Difficulty</th>
                     {{-- <th class="align-middle text-center">Last Updated At</th> --}}
