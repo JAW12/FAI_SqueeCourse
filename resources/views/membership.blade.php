@@ -1,4 +1,7 @@
 @extends('layouts.user')
+@section('title')
+    Membership Plans
+@endsection
 @section('content')
 
     <div class="container-fluid linear">

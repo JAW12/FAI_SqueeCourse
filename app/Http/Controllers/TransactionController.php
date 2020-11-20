@@ -130,11 +130,7 @@ class TransactionController extends Controller
         }
         else{
             $accept = Transaction::where('id',$id)->first();
-            $expire=$accept->waktu_expired_membership;
             $accept->status_transaksi = 2;
-            $accept->save();
-            $accept = Transaction::where('id',$id)->first();
-            $accept->waktu_expired_membership=$expire;
             $accept->save();
         }
         return redirect()->route('transaction.pending');
@@ -148,11 +144,7 @@ class TransactionController extends Controller
         }
         else{
             $reject = Transaction::where('id',$id)->first();
-            $expire=$reject->waktu_expired_membership;
             $reject->status_transaksi = 3;
-            $reject->save();
-            $reject = Transaction::where('id',$id)->first();
-            $reject->waktu_expired_membership = $expire;
             $reject->save();
         }
         return redirect()->route('transaction.pending');

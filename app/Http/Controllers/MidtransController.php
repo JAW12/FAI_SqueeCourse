@@ -62,11 +62,7 @@ class MidtransController extends Controller
         $this->initPaymentGateway();
         $trans = Transaction::where('id', $id)->firstOrFail();
         $trans->status_transaksi = 2;
-        $expire= $trans->waktu_expired_membership;
         $result = $trans->save();
-        $reject = Transaction::where('id',$id)->first();
-        $reject->waktu_expired_membership = $expire;
-        $reject->save();
         if($result){
             return redirect()->route('home');
         }

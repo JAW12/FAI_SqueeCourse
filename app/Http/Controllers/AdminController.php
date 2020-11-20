@@ -200,8 +200,12 @@ class AdminController extends Controller
 
     public function memberDetail($username){
         $datauser = User::where('username', '=', $username)->get();
+
+        //history transaction for that member
+        $transaction = Transaction::where('row_id_user', '=', $datauser[0]->id)->get();
         return view('admin.member.detail', [
-            "datauser"          => $datauser
+            "datauser"          => $datauser,
+            "transaction"       => $transaction
         ]);
     }
     public function login(Request $request){
@@ -270,7 +274,7 @@ class AdminController extends Controller
         ->update(
             [
                 'row_id_kuis'=>NULL
-            ]  
+            ]
         );
         $delete = Question::where('row_id_kuis', '=', $id)->delete();
         $delete2 = Quiz::where('id', '=', $id)->delete();

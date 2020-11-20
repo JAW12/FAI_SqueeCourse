@@ -1,4 +1,7 @@
 @extends('layouts.user')
+@section('title')
+    Your Active Membership
+@endsection
 @section('content')
 <div class="container-fluid h-100 bg-light">
     <div class="container" style="max-width:90%;">

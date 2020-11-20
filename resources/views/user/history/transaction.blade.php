@@ -1,4 +1,7 @@
 @extends('layouts.user')
+@section('title')
+    Your Membership
+@endsection
 @section('content')
 <div class="container-fluid grey py-4">
     <div class="container mb-5" style="max-width:90%;">

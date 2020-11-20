@@ -1,4 +1,11 @@
 @extends('layouts.admin')
+@section('title')
+    @if (isset($cek))
+        Pending Transactions
+    @else
+        All Transactions
+    @endif
+@endsection
 @section('content')
     <div class="container">
         <br>
