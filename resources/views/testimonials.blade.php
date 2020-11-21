@@ -1,5 +1,5 @@
 @extends('layouts.user')
-
+@section('title', 'Testimonials');
 @section('content')
     @if(session()->has('success'))
     <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">

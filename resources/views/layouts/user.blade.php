@@ -40,7 +40,7 @@
             color: white !important;
         }
 
-        @media (max-width: 768px)
+        @media (max-width: 991px)
         {
 
             .navbar{

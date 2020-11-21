@@ -1,4 +1,5 @@
 @extends('layouts.user')
+@section('title', 'Change Your Profile');
 @section('content')
     <div class="container pt-3">
         @include('layouts.alert')

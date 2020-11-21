@@ -9,7 +9,7 @@
                     <li><a class="text-muted" href="{{route('register')}}">Register</a></li>
                 @endguest
                 @auth
-                    <li><a class="text-muted" href="{{route('user.profile', Auth::user()->username)}}}}">Your Profile</a></li>
+                    <li><a class="text-muted" href="{{route('user.profile', Auth::user()->username)}}">Your Profile</a></li>
                 @endauth
             </ul>
         </div>

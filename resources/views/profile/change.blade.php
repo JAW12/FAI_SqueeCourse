@@ -1,4 +1,5 @@
 @extends('layouts.user')
+@section('title', 'Change Your Password');
 @section('style')
     <style>
         .alert{

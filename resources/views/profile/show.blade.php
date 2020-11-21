@@ -1,4 +1,5 @@
 @extends('layouts.user')
+@section('title', Auth::user()->nama);
 @section('content')
     <div class="container-fluid linear">
         @if(Auth::user()->id == $user->id)
@@ -67,6 +68,33 @@
                                 </a>
                             </div>
                             <div class="row my-3">
+                                <div class="flex-shrink-0 mr-3">
+                                    <img src="{{$comment->user->gravatar()}}" alt="" height="50" width="50" class="rounded-circle" style="object-fit: cover; object-position: center;">
+                                </div>
+                                <div class="col mr-5">
+                                    <p class="font-weight-bold">
+                                        @if ($comment->row_id_user <= 0)
+                                            Squee Course
+                                        @else
+                                            {{ $comment->user->nama }}
+                                        @endif
+                                    </p>
+                                    <p class="text-muted">
+                                        <small>
+                                            {{ $comment->created_at->diffForHumans() }}
+                                        </small>
+                                    </p>
+                                    <p class="text-justify">
+                                        {{ $comment->isi_komentar }}
+                                    </p>
+                                    @if (count($comment->replies) > 0)
+                                        <button class="btn btn-outline-primary btnViewReply mb-4">
+                                            View Replies ({{ count($comment->replies) }})
+                                        </button>
+                                    @endif
+                                </div>
+                            </div>
+                            {{-- <div class="row my-3">
                                 <div class="col-xs-12 col-md-2">
                                     <img src="{{$comment->user->gravatar()}}" alt="" height="150" width="150" class="rounded-circle" style="object-fit: cover; object-position: center;">
                                 </div>
@@ -93,9 +121,9 @@
                                         </button>
                                     @endif
                                 </div>
-                            </div>
+                            </div> --}}
 
-                            <div class="reply">
+                            <div class="reply" style="padding-left: 2%">
                                 @foreach ($comment->replies as $reply)
                                     @include('layouts.episode.layout-data-reply')
                                 @endforeach
