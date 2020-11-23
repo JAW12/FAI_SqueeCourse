@@ -3,9 +3,9 @@
     Your Active Membership
 @endsection
 @section('content')
-<div class="container-fluid h-100 bg-light">
+<div class="container-fluid min-vh-100 bg-light">
     <div class="container" style="max-width:90%;">
-        <div class="flex-1 md:px-4">
+        <div class="flex-1 md:px-4" style="padding-top: 7%;">
             @if ($jenis != "")
                 <div class="h1">
                     Your Active Membership
