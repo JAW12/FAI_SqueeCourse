@@ -270,7 +270,7 @@ class AdminController extends Controller
         }
     }
     public function deleteQuiz($id){
-        Series::where('id', '=', $id)
+        Series::where('row_id_kuis', '=', $id)
         ->update(
             [
                 'row_id_kuis'=>NULL

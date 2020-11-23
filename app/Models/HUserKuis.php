@@ -22,6 +22,12 @@ class HUserKuis extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
+    protected $fillable =[
+        'row_id_user',
+        'row_id_kuis',
+        'nilai'
+    ];
+
     // ================ RELATION MODEL ============================
     public function user(){
         return $this->belongsTo(User::class, 'row_id_user', 'id');

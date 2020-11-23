@@ -19,6 +19,11 @@ class DUserKuis extends Model
     public $timestamps = true;
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
+    protected $fillable =[
+        'row_id_pengambilan_kuis',
+        'row_id_soal',
+        'jawaban_user'
+    ];
 
     // ================ RELATION MODEL ============================
     public function huserkuis(){

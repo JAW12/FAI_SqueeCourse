@@ -90,7 +90,7 @@
                 <div class="dropdown-divider"></div>
                 <div class="dropdown-header" id="clickQuiz">Quiz <i class="fa fa-caret-down"></i></div>
                 <div id="collapseQuiz" style="display:none">
-                    <a class="dropdown-item p-3" href="#"><i class="fa fa-pencil-alt"></i> History Quiz</a>
+                    <a class="dropdown-item p-3" href="/history/quiz"><i class="fa fa-pencil-alt"></i> History Quiz</a>
                 </div>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-header pb-3 text-decoration-none text-danger" href="{{route('logout')}}"><i class="fa fa-sign-out-alt"></i> Sign Out</a>

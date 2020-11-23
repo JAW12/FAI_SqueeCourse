@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('title')
+    Detail Member
+@endsection
 @section('content')
     @foreach($datauser as $rowpost)
     <div class="container-fluid">

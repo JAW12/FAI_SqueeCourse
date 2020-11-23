@@ -41,3 +41,10 @@
             @endif
     </div>
 @endsection
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('.dt').DataTable();
+        });
+    </script>
+@endsection

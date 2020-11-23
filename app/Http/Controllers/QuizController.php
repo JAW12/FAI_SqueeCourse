@@ -48,6 +48,16 @@ class QuizController extends Controller
       $addsoal3->pilihan_d=$request->pilihan3d;
       $addsoal3->kunci_jawaban=$request->jawaban3;
       $result3=$addsoal3->save();
+      ///////soal 4
+      $addsoal4 = new Question();
+      $addsoal4->row_id_kuis=$tempid;
+      $addsoal4->pertanyaan=$request->soal4;
+      $addsoal4->pilihan_a=$request->pilihan4a;
+      $addsoal4->pilihan_b=$request->pilihan4b;
+      $addsoal4->pilihan_c=$request->pilihan4c;
+      $addsoal4->pilihan_d=$request->pilihan4d;
+      $addsoal4->kunci_jawaban=$request->jawaban4;
+      $result4=$addsoal4->save();
       $data =Quiz::orderBy('created_at', 'desc')->get();
       return view('admin.quiz.list',['data'=>$data]);
         
@@ -95,7 +105,16 @@ class QuizController extends Controller
         $addsoal3->pilihan_d=$request->pilihan3d;
         $addsoal3->kunci_jawaban=$request->jawaban3;
         $result3=$addsoal3->save();
-        /////
+        ///////soal 4
+        $addsoal4 = new Question();
+        $addsoal4->row_id_kuis=$tempid;
+        $addsoal4->pertanyaan=$request->soal4;
+        $addsoal4->pilihan_a=$request->pilihan4a;
+        $addsoal4->pilihan_b=$request->pilihan4b;
+        $addsoal4->pilihan_c=$request->pilihan4c;
+        $addsoal4->pilihan_d=$request->pilihan4d;
+        $addsoal4->kunci_jawaban=$request->jawaban4;
+        $result4=$addsoal4->save();
         $data =Series::where('status_complete', '=', 1)->whereNull('row_id_kuis')->get();
         return view('admin.quiz.add', [
             "data"          => $data

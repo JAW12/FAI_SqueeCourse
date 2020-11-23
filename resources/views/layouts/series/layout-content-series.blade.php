@@ -123,8 +123,25 @@
                                 </div>
                             </a>
                         @endforeach
-                    </div>
+                    </div> @if (count($dataQuiz) > 0)
+                    @foreach ($dataQuiz as $rowquiz)
+                        <a href="{{
+                            url('series/' . $dataSeries->slug . '/quiz') }}" class="list-group-item list-group-item-action">
+                                <div class="d-flex">
+                                    <h1><i class="fa fa-play-circle"></i></h1>
+                                    <div class="ml-3">
+                                        <h5>
+                                            {{ $rowquiz->nama }}
+                                        </h5>
+                                       
+                                    </div>
+                                
+                                </div>
+                            </a>
+                    @endforeach
+                @endif
                 </div>
+               
             @endif
         </div>
     </div>

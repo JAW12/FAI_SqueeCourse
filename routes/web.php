@@ -122,7 +122,8 @@ Route::prefix('series')->group(function(){
         // tambahkan ke watchlist
         Route::get('/watchlist', [SeriesController::class, 'watchlist'])->name('series.watchlist');
 
-        Route::prefix('episode/{slugepisode}')->group(function(){
+        Route::prefix('episode/{slugepisode}')
+        ->group(function(){
             // halaman buka episode (nonton)
             Route::get('/', [SeriesController::class, 'episode'])->name('series.episode');
 

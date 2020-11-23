@@ -97,7 +97,7 @@
         <label>Jawaban Nomor 2</label>
         <input type="text" name="jawaban2" required class="form-control my-2" value='{{$rowsoal->kunci_jawaban}}'placeholder="A/B/C/D">
     </div>
-    @else
+    @elseif($tempcheck==3)
     <div class="form-group my-4">
         <label>Soal 3</label>
         <input type="text" name="soal3" value='{{$rowsoal->pertanyaan}}' required class="form-control my-2" placeholder="Soal">
@@ -129,6 +129,39 @@
         <div class="form-group my-4">
         <label>Jawaban Nomor 3</label>
         <input type="text" name="jawaban3" value='{{$rowsoal->kunci_jawaban}}'required class="form-control my-2" placeholder="A/B/C/D">
+    </div>
+    @else
+    <div class="form-group my-4">
+        <label>Soal 4</label>
+        <input type="text" name="soal3" value='{{$rowsoal->pertanyaan}}' required class="form-control my-2" placeholder="Soal">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">A</label>
+            </div>
+            <input type="text" class="form-control" placeholder="Pilihan A"value='{{$rowsoal->pilihan_a}}' name='pilihan4a' aria-label="Judul" aria-describedby="Judul">
+        </div>
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">B</label>
+            </div>
+            <input type="text" class="form-control" placeholder="Pilihan B" value='{{$rowsoal->pilihan_b}}'name='pilihan4b' aria-label="Judul" aria-describedby="Judul">
+        </div>
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">C</label>
+            </div>
+            <input type="text" class="form-control" placeholder="Pilihan C" value='{{$rowsoal->pilihan_c}}'name='pilihan4c' aria-label="Judul" aria-describedby="Judul">
+        </div>
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">D</label>
+            </div>
+            <input type="text" class="form-control" placeholder="Pilihan D" value='{{$rowsoal->pilihan_d}}'name='pilihan4d' aria-label="Judul" aria-describedby="Judul">
+        </div>
+        <div class="form-group my-4">
+        <label>Jawaban Nomor 4</label>
+        <input type="text" name="jawaban4" value='{{$rowsoal->kunci_jawaban}}'required class="form-control my-2" placeholder="A/B/C/D">
     </div>
     @endif
     @endforeach

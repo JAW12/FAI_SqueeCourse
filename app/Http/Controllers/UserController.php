@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Mail\VerifyMail;
 use App\Models\Series;
 use App\Models\VerifyUser;
+use App\Models\HUserKuis;
+use App\Models\Quiz;
 use App\Models\Transaction;
 use App\Notifications\MailVerificationNotification;
 use Illuminate\Support\Str;
@@ -21,6 +23,15 @@ use Illuminate\Support\Carbon;
 
 class UserController extends Controller
 {
+    //history quiz
+    public function quiz(){
+         $hasil=HUserkuis::where('row_id_user','=', Auth::id())->get();
+         $quiz=Quiz::get();
+         return view('user.history.quiz',[
+             'hasil'=>$hasil,
+            'quiz'=>$quiz
+         ]);
+    }
     //return halmana history membership member
     public function membership(){
         $transaction = [];

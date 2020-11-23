@@ -26,7 +26,7 @@
             </li>
         </ol>
     </nav>
-
+    
     @include('layouts.episode.layout-content-episode')
 @endsection
 
