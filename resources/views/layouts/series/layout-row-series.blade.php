@@ -19,11 +19,11 @@
     </td>
     <td class="align-middle click-col">
         @if ($series->tingkat_kesulitan === 1)
-            Beginner
+            Beginner &nbsp; &nbsp;
         @elseif ($series->tingkat_kesulitan === 2)
-            Intermediate
+            Intermediate &nbsp; &nbsp;
         @elseif ($series->tingkat_kesulitan === 3)
-            Advanced
+            Advanced &nbsp; &nbsp;
         @endif
     </td class="align-middle click-col">
     @if ($series->deleted_at != null)
