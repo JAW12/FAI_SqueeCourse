@@ -122,7 +122,7 @@
                         var column = this;
                         var headercol = this.header();
                         var name = $(headercol).attr("name");
-                        console.log(name);
+                        //console.log(name);
                         if(name == "action"){
                             $(headercol).html("Action");
                         }

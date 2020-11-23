@@ -15,6 +15,7 @@
                             <th class="align-middle text-center">Membership Option</th>
                             <th class="align-middle text-center">Expire Date</th>
                             <th class="align-middle text-center">Notes</th>
+                            <th class="align-middle text-center">Invoice</th>
                           </tr>
                         </thead>
                         <tbody class="bg-transparent">
@@ -37,14 +38,18 @@
                                     @endphp
                                     <td>{{$split[0]}}</td>
                                     @if($item->status_transaksi == 3)
-                                        <td class="align-middle">This membership has expired</td>
+                                        <td class="align-middle">This membership is rejected</td>
+                                        <td class="align-middle"><button onclick="myFunction('receipt/{{ $item->id }}')" class="btn btn-info btn-block" disabled>Print</button>
                                     @elseif ($cek == "a")
                                         <td class="align-middle">This membership is about to expire</td>
+                                        <td class="align-middle"><button onclick="myFunction('receipt/{{ $item->id }}')" class="btn btn-info btn-block">Print</button>
                                     @elseif($item->waktu_expired_membership > $date)
                                         @if ($item->status_transaksi == 1)
                                             <td class="align-middle">This membership is currently waiting for confirmation</td>
+                                            <td class="align-middle"><button onclick="myFunction('receipt/{{ $item->id }}')" class="btn btn-info btn-block" disabled>Print</button>
                                         @elseif ($item->status_transaksi == 2)
                                             <td class="align-middle">This membership is currently active</td>
+                                            <td class="align-middle"><button onclick="myFunction('receipt/{{ $item->id }}')" class="btn btn-info btn-block">Print</button>
                                         @endif
                                     @endif
                                     </tr>
@@ -64,6 +69,9 @@
         $(document).ready(function(){
             $('.dt').DataTable();
         });
+        function myFunction(url) {
+            window.open(url);
+        }
     </script>
 @endsection
 

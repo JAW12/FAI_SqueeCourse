@@ -178,6 +178,10 @@ Route::middleware("auth")->group(function(){
 
         // halaman lihat history transaksi user
         Route::get('transaction', [UserController::class, 'transaction'])->name('history.transaction');
+
+        //cetak nota
+        Route::get('receipt/{id}', [UserController::class, 'receipt'])->name('history.receipt');
+
     });
 
     // KHUSUS PERUBAHAN USER
@@ -231,6 +235,9 @@ Route::prefix('admin')->group(function(){
         // halaman form tambah episode
         Route::get('/episode/add', [AdminController::class, 'addEpisode'])->name('admin.episode.add');
         Route::post('episode/add', [EpisodeController::class, 'add']);
+
+        // detail transaction
+        Route::get('/{id}/detail', [TransactionController::class, 'detail'])->name('admin.transaction.detail');
 
         // KHUSUS SERIES
         Route::prefix('series')->group(function(){
@@ -339,6 +346,7 @@ Route::prefix('admin')->group(function(){
 
             // reject transaction
             Route::get('/{id}/reject', [TransactionController::class, 'reject'])->name('transaction.reject');
+
         });
 
 
@@ -358,6 +366,9 @@ Route::prefix('admin')->group(function(){
 
             // halaman history transaksi member yang dipilih
             Route::get('/{username}/history/transaksi', [AdminController::class, 'memberTransaksi'])->name('member.transaction');
+
+            // detail transaction
+            Route::get('/{id}/detail', [TransactionController::class, 'detail'])->name('admin.transaction.detail');
         });
 
 

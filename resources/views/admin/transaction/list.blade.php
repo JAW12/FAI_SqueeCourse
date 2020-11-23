@@ -17,19 +17,30 @@
             @if (count($data) > 0)
                 <table class="table table-bordered table-light table-hover mb-2 dt">
                     <thead class="thead-dark align-middle">
-                    <tr>
-                        <th class="align-middle text-center">#</th>
-                        <th class="align-middle text-center">Name</th>
-                        <th class="align-middle text-center">From</th>
-                        <th class="align-middle text-center">Amount</th>
-                        <th class="align-middle text-center">Status</th>
-                    </tr>
+                    @if (isset($cek))
+                        <tr>
+                            <th class="align-middle text-center py-2" name="num">#</th>
+                            <th class="align-middle text-center" name="name">Name</th>
+                            <th class="align-middle text-center" name="from">From</th>
+                            <th class="align-middle text-center" name="amount">Amount</th>
+                            <th class="align-middle text-center" name="status">Status</th>
+                        </tr>
+                    @else
+                        <tr>
+                            <th class="align-middle text-center py-2" name="num">#</th>
+                            <th class="align-middle text-center" name="name">Name</th>
+                            <th class="align-middle text-center" name="from">From</th>
+                            <th class="align-middle text-center" name="amount">Amount</th>
+                            <th class="align-middle text-center" name="status">Status</th>
+                            <th class="align-middle text-center" name="detail">See Detail</th>
+                        </tr>
+                    @endif
                     </thead>
                     <tbody>
                         @if (isset($cek))
                             @foreach ($data as $item)
                                 <tr>
-                                    <th class="align-middle text-center" scope="row">{{ $loop->iteration }}</th>
+                                    <th class="align-middle text-center" scope="row">{{ $loop->iteration }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                     <td class="align-middle">{{ $item->user->nama }}</td>
                                     <td class="align-middle">{{ $item->bank_asal."(".$item->nomor_rekening.")" }}</td>
                                     <td class="align-middle">{{ $item->total_pembayaran }}</td>
@@ -39,7 +50,7 @@
                         @else
                             @foreach ($data as $item)
                                 <tr>
-                                    <th class="align-middle text-center" scope="row">{{ $loop->iteration }}</th>
+                                    <th class="align-middle text-center" scope="row">{{ $loop->iteration }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                     <td class="align-middle">{{ $item->user->nama }}</td>
                                     <td class="align-middle">{{ $item->bank_asal."(".$item->nomor_rekening.")" }}</td>
                                     <td class="align-middle">{{ $item->total_pembayaran }}</td>
@@ -50,6 +61,7 @@
                                     @else
                                         <td class="align-middle">Rejected</td>
                                     @endif
+                                    <td class="align-middle"><a href="{{$item->id}}/detail" class="btn btn-info btn-block">Detail</a>
                                 </tr>
                             @endforeach
                         @endif
@@ -63,7 +75,40 @@
 @section('script')
     <script>
         $(document).ready(function(){
-            $('.dt').DataTable();
+            var table = $('.dt').DataTable({
+                initComplete: function () {
+                    this.api().columns().every( function () {
+                        var column = this;
+                        var headercol = this.header();
+                        var name = $(headercol).attr("name");
+                        if(name == "status"){
+                            $(headercol).html("Status");
+                        }
+                        else if(name == "detail"){
+                            $(headercol).html("See Detail");
+                        }
+                        else{
+                            var select = $('<select class="form-control"><option value="">All ' + name + '</option></select>')
+                            // kalo yang awal di append ke column.footer()
+                                .appendTo( $(column.header()).empty() )
+                                .on( 'change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+
+                                    column
+                                        .search( val ? '^'+val+'$' : '', true, false )
+                                        .draw();
+                                } );
+
+                                column.data().unique().sort().each( function ( d, j ) {
+                                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                                }
+                            );
+                        }
+                    } );
+                }
+            });
         });
     </script>
 @endsection

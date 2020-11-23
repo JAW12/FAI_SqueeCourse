@@ -21,29 +21,17 @@
                         The amount will be determined from the membership plan of your choice. Please transfer according to the amount specified.
                     </div>
                     <div class="list-group shadow-sm mt-3">
-                        <li class="list-group-item list-group-item-action mb-0 disabled">
-                            <div class="d-flex">
+                        <li class="list-group-item list-group-item-action mb-0 disabled ">
+                            <div class="d-flex mt-3 mb-3">
                                 <p class="text-muted mr-2">Rp</p>
-                                <h3 class="text-dark mt-2">{{ $harga }}</h3>
+                                <h2 class="text-dark mt-2">{{ $harga }}</h2>
                                 <div class="ml-auto my-auto">
                                     <h5 class="mb-0"><i class="fa fa-credit-card"></i></h5>
                                 </div>
                             </div>
                         </li>
                         <li href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex">
-                                <div>
-                                    <p class="mb-0">BCA</p>
-                                    <p class="h5 font-weight-bold mb-0">8000392936</p>
-                                    <p class="mb-0">Jem Angkasa</p>
-                                </div>
-                                <div class="ml-auto my-auto">
-                                    <img src="{{asset('images/contoh/bank.png')}}" width="70" alt="">
-                                </div>
-                            </div>
-                        </li>
-                        <li href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex">
+                            <div class="d-flex mt-2 mb-2">
                                 <div>
                                     <p class="mb-0">BCA</p>
                                     <p class="h5 font-weight-bold mb-0">0882037563</p>
@@ -55,7 +43,7 @@
                             </div>
                         </li>
                         <li href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex">
+                            <div class="d-flex mt-2 mb-2">
                                 <div>
                                     <p class="mb-0">BNI</p>
                                     <p class="h5 font-weight-bold mb-0">1060011124842</p>
@@ -67,7 +55,7 @@
                             </div>
                         </li>
                         <li href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex">
+                            <div class="d-flex mt-2 mb-2">
                                 <div>
                                     <p class="mb-0">BRI</p>
                                     <p class="h5 font-weight-bold mb-0">020601087166506</p>
@@ -79,7 +67,7 @@
                             </div>
                         </li>
                         <li href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex">
+                            <div class="d-flex mt-2 mb-2">
                                 <div>
                                     <p class="mb-0">Mandiri</p>
                                     <p class="h5 font-weight-bold mb-0">1050014597516</p>
@@ -94,7 +82,7 @@
                     <a href="{{ url('membership') }}" class="btn btn-danger mt-3 mb-3 shadow-sm">Cancel</a>
                 </div>
                 <div class="col-12 col-lg-5">
-                    <div class="rounded bg-white shadow-sm p-3">
+                    <div class="rounded bg-white shadow-sm p-3 mb-1">
                         <h5>Confirm Your Payment</h5>
                         <p>Please do your payment confirmation when you already did the payment.</p>
                         <hr>
