@@ -107,7 +107,7 @@ class QuizController extends Controller
         $result3=$addsoal3->save();
         ///////soal 4
         $addsoal4 = new Question();
-        $addsoal4->row_id_kuis=$tempid;
+        $addsoal4->row_id_kuis=$baru;
         $addsoal4->pertanyaan=$request->soal4;
         $addsoal4->pilihan_a=$request->pilihan4a;
         $addsoal4->pilihan_b=$request->pilihan4b;
