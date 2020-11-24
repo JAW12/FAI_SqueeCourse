@@ -72,11 +72,26 @@ class UserController extends Controller
         //row id user
         $row_id_user = Auth::id();
         //get datas
-        $cek = "";
         $date_now = date("yy-m-d");
         $date_10=date("yy-m-d", strtotime("$date_now +10 days"));
         $transaction = Transaction::where('row_id_user', '=', $row_id_user)->get();
         return view('user.history.transaction',["trans"=>$transaction,"date"=>$date_now,"date_10"=>$date_10]);
+    }
+
+    public function receipt($id){
+        $transaction = Transaction::where('id',$id)->get();
+        $nomorNota = "N".date("Ymd", strtotime($transaction[0]->created_at)).$transaction[0]->id.$transaction[0]->row_id_user.$transaction[0]->status_transaksi;
+        $expire = date("Y-m-d",strtotime($transaction[0]->waktu_expired_membership));
+        if($transaction[0]->jenis_membership == 1){
+            $jenis = "Silver";
+        }
+        elseif ($transaction[0]->jenis_membership == 2) {
+            $jenis = "Gold";
+        }
+        elseif ($transaction[0]->jenis_membership == 3){
+            $jenis = "Platinum";
+        }
+        return view('user.history.receipt',["trans"=>$transaction,"nota"=>$nomorNota,"jenis"=>$jenis,"expire"=>$expire]);
     }
 
     public function register(Request $request) {

@@ -6,7 +6,7 @@
     <td class="align-middle click-col text-primary">
         {{ $episode->judul }}
     </td>
-    <td class="align-middle click-col">
+    <td class="align-middle click-col px-4">
         @if ($episode->status_berbayar === 0)
             Free
         @elseif ($episode->status_berbayar === 1)

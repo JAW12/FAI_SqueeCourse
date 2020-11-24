@@ -150,6 +150,39 @@ class TransactionController extends Controller
         return redirect()->route('transaction.pending');
     }
 
+    public function detail($id){
+        $transaction = Transaction::where('id', '=', $id)->get();
+        $split=explode(" ",$transaction[0]->waktu_expired_membership);
+        if($transaction[0]->jenis_membership == 1){
+            $jenis = "Silver";
+        }
+        elseif ($transaction[0]->jenis_membership == 2) {
+            $jenis = "Gold";
+        }
+        elseif ($transaction[0]->jenis_membership == 3){
+            $jenis = "Platinum";
+        }
+        $bank = $transaction[0]->bank_tujuan;
+        $asal = $transaction[0]->bank_asal . "(" . $transaction[0]->nomor_rekening . ")";
+        if($bank != "CC"){
+            $tujuan = $transaction[0]->bank_tujuan;
+        }
+        else{
+            $tujuan = "Midtrans";
+        }
+        if($transaction[0]->status_transaksi == "1"){
+            $status = "Pending";
+        }
+        elseif ($transaction[0]->status_transaksi == "2"){
+            $status = "Accepted";
+        }
+        elseif ($transaction[0]->status_transaksi == "3"){
+            $status = "Rejected";
+        }
+        return view('admin.transaction.detail',["nama"=>$transaction[0]->user->nama, "split"=>$split[0], "jenis"=>$jenis, "asal"=>$asal, "tujuan"=>$tujuan, "status"=>$status, "jumlah"=>$transaction[0]->total_pembayaran]);
+
+    }
+
     public function initPaymentGateway()
     {
         //Set your Merchant Server Key

@@ -26,13 +26,13 @@
             <table class="table table-bordered table-light table-hover dt">
                 <thead class="thead-dark align-middle">
                     {{-- <th class="align-middle text-center">#</th> --}}
-                    <th class="align-middle text-center">Title</th>
-                    <th class="align-middle text-center">Type</th>
-                    <th class="align-middle text-center">Completion Status</th>
-                    <th class="align-middle text-center">Difficulty</th>
+                    <th class="align-middle text-center py-2" name="title">Title</th>
+                    <th class="align-middle text-center" name="type">Type</th>
+                    <th class="align-middle text-center" name="status">Completion Status</th>
+                    <th class="align-middle text-center" name="level">Difficulty</th>
                     {{-- <th class="align-middle text-center">Last Updated At</th> --}}
-                    <th class="align-middle text-center">Displayed Status</th>
-                    <th class="align-middle text-center">Action</th>
+                    <th class="align-middle text-center" name="display">Displayed Status</th>
+                    <th class="align-middle text-center" name="action">Action</th>
                 </thead>
                 <tbody>
                     @if (count($dataSeries) <= 0)
@@ -47,17 +47,16 @@
                         @endforeach
                     @endif
                 </tbody>
-                <tfoot>
+                {{-- <tfoot class="thead-dark">
                     <tr>
-                        <th class="align-middle text-center">Title</th>
+                        <th class="align-middle text-center py-3">Title</th>
                         <th class="align-middle text-center">Series Type</th>
                         <th class="align-middle text-center">Completion Status</th>
                         <th class="align-middle text-center">Difficulty</th>
-                        {{-- <th class="align-middle text-center">Last Updated At</th> --}}
                         <th class="align-middle text-center">Displayed Status</th>
-                        {{-- <th class="align-middle text-center">Action</th> --}}
+                        <th class="align-middle text-center">Action</th>
                     </tr>
-                </tfoot>
+                </tfoot> --}}
             </table>
         </div>
     </div>
@@ -117,25 +116,35 @@
         }
 
         $(document).ready(function(){
-            $('.dt').DataTable({
+            var table = $('.dt').DataTable({
                 initComplete: function () {
                     this.api().columns().every( function () {
                         var column = this;
-                        var select = $('<select><option value=""></option></select>')
-                            .appendTo( $(column.footer()).empty() )
-                            .on( 'change', function () {
-                                var val = $.fn.dataTable.util.escapeRegex(
-                                    $(this).val()
-                                );
+                        var headercol = this.header();
+                        var name = $(headercol).attr("name");
+                        //console.log(name);
+                        if(name == "action"){
+                            $(headercol).html("Action");
+                        }
+                        else{
+                            var select = $('<select class="form-control"><option value="">All ' + name + '</option></select>')
+                            // kalo yang awal di append ke column.footer()
+                                .appendTo( $(column.header()).empty() )
+                                .on( 'change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
 
-                                column
-                                    .search( val ? '^'+val+'$' : '', true, false )
-                                    .draw();
-                            } );
+                                    column
+                                        .search( val ? '^'+val+'$' : '', true, false )
+                                        .draw();
+                                } );
 
-                        column.data().unique().sort().each( function ( d, j ) {
-                            select.append( '<option value="'+d+'">'+d+'</option>' )
-                        } );
+                                column.data().unique().sort().each( function ( d, j ) {
+                                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                                }
+                            );
+                        }
                     } );
                 }
             });

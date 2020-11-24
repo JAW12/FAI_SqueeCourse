@@ -92,6 +92,7 @@
                     <th class="align-middle text-center">#</th>
                     <th class="align-middle text-center">Membership Option</th>
                     <th class="align-middle text-center">Expire Date</th>
+                    <th class="align-middle text-center">See Detail</th>
                 </tr>
             </thead>
             <tbody class="bg-transparent">
@@ -106,6 +107,7 @@
                             <td class="align-middle">Platinum</td>
                         @endif
                         <td class="align-middle">{{ $item->waktu_expired_membership }}</td>
+                        <td class="align-middle"><a href="{{$item->id}}/detail" class="btn btn-info btn-block">Detail</a>
                     </tr>
                 @endforeach
             </tbody>
