@@ -27,9 +27,9 @@
                     {{ count($series->episodes) }} Episodes
                     &middot;
 
-                    @if ($series->status_complete === 0)
+                    @if ($series->status_complete == 0)
                         Ongoing
-                    @elseif ($series->status_complete === 1)
+                    @elseif ($series->status_complete == 1)
                         Completed
                     @endif
                 </small>

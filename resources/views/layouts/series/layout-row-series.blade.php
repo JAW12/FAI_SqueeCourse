@@ -4,25 +4,25 @@
         {{ $series->judul }}
     </td>
     <td class="align-middle click-col">
-        @if ($series->status_berbayar === 0)
+        @if ($series->status_berbayar == 0)
             Free
-        @elseif ($series->status_berbayar === 1)
+        @elseif ($series->status_berbayar == 1)
             Premium
         @endif
     </td>
     <td class="align-middle click-col">
-        @if ($series->status_complete === 0)
+        @if ($series->status_complete == 0)
             Ongoing
-        @elseif ($series->status_complete === 1)
+        @elseif ($series->status_complete == 1)
             Completed
         @endif
     </td>
     <td class="align-middle click-col">
-        @if ($series->tingkat_kesulitan === 1)
+        @if ($series->tingkat_kesulitan == 1)
             Beginner &nbsp; &nbsp;
-        @elseif ($series->tingkat_kesulitan === 2)
+        @elseif ($series->tingkat_kesulitan == 2)
             Intermediate &nbsp; &nbsp;
-        @elseif ($series->tingkat_kesulitan === 3)
+        @elseif ($series->tingkat_kesulitan == 3)
             Advanced &nbsp; &nbsp;
         @endif
     </td class="align-middle click-col">

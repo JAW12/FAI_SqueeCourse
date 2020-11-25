@@ -30,7 +30,7 @@
                     @if (isset($dataSeries) && count($dataSeries) > 0)
                         @foreach ($dataSeries as $series)
                             <option value="{{ $series->id }}"
-                                {{ $episode->series->id === $series->id ? 'selected':'' }}>
+                                {{ $episode->series->id == $series->id ? 'selected':'' }}>
                                 {{ $series->judul }}
                             </option>
                         @endforeach

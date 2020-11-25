@@ -32,11 +32,11 @@
                         </h6>
                         <h6 class="text-secondary ml-4">
                             <i class="fa fa-level-up"></i>
-                            @if ($dataSeriesHeader->tingkat_kesulitan === 1)
+                            @if ($dataSeriesHeader->tingkat_kesulitan == 1)
                                 Beginner
-                            @elseif ($dataSeriesHeader->tingkat_kesulitan === 2)
+                            @elseif ($dataSeriesHeader->tingkat_kesulitan == 2)
                                 Intermediate
-                            @elseif ($dataSeriesHeader->tingkat_kesulitan === 3)
+                            @elseif ($dataSeriesHeader->tingkat_kesulitan == 3)
                                 Advanced
                             @endif
                         </h6>

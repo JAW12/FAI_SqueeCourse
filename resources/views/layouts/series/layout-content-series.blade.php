@@ -56,19 +56,19 @@
                             </p>
                             <p class="col-xs-12 col-lg-3">
                                 <i class="fas fa-level-up-alt mr-2"></i>
-                                @if ($dataSeries->tingkat_kesulitan === 1)
+                                @if ($dataSeries->tingkat_kesulitan == 1)
                                     Beginner
-                                @elseif ($dataSeries->tingkat_kesulitan === 2)
+                                @elseif ($dataSeries->tingkat_kesulitan == 2)
                                     Intermediate
-                                @elseif ($dataSeries->tingkat_kesulitan === 3)
+                                @elseif ($dataSeries->tingkat_kesulitan == 3)
                                     Advanced
                                 @endif
                             </p>
                             <p class="col-xs-12 col-lg-3">
                                 <i class="fas fa-money-check-alt mr-2"></i>
-                                @if ($dataSeries->status_berbayar === 0)
+                                @if ($dataSeries->status_berbayar == 0)
                                     Free Series
-                                @elseif ($dataSeries->status_berbayar === 1)
+                                @elseif ($dataSeries->status_berbayar == 1)
                                     Premium
                                 @endif
                             </p>
@@ -96,9 +96,9 @@
                 <div class="col-xs-12 col-md-6">
                     <div class="list-group shadow-sm">
                         <p class="list-group-item list-group-item-action mb-0 disabled"><i class="fa fa-exclamation-circle text-danger mr-2"></i><b>
-                            @if ($dataSeries->status_complete === 0)
+                            @if ($dataSeries->status_complete == 0)
                                 Series on progress
-                            @elseif ($dataSeries->status_complete === 1)
+                            @elseif ($dataSeries->status_complete == 1)
                                 Completed Series
                             @endif
                         </b></p>
@@ -133,15 +133,15 @@
                                         <h5>
                                             {{ $rowquiz->nama }}
                                         </h5>
-                                       
+
                                     </div>
-                                
+
                                 </div>
                             </a>
                     @endforeach
                 @endif
                 </div>
-               
+
             @endif
         </div>
     </div>
