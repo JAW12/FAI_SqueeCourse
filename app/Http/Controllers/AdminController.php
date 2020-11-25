@@ -305,6 +305,7 @@ class AdminController extends Controller
         }
     }
     public function addSeries(){
+     
         $dataLabels = Label::orderBy('nama')->get();
 
         // dd($dataLabels);
@@ -334,11 +335,61 @@ class AdminController extends Controller
         $data =Quiz::orderBy('created_at', 'desc')->get();
         return view('admin.quiz.list',['data'=>$data]);
     }
+    public function savetocart(Request $request){
+        $arrcart=session()->get('cartsoal');
+        $nomersoal=$request->nomersoal;
+        $pertanyaan=$request->pertanyaan;
+        $pilihana=$request->pilihana;
+        $pilihanb=$request->pilihanb;
+        $pilihanc=$request->pilihanc;
+        $pilihand=$request->pilihand;
+        $kunci_jawaban=$request->kunci_jawaban;
+        $arrcart[$nomersoal]['pertanyaan']=$pertanyaan;
+        $arrcart[$nomersoal]['pilihan_a']=$pilihana;
+        $arrcart[$nomersoal]['pilihan_b']=$pilihanb;
+        $arrcart[$nomersoal]['pilihan_c']=$pilihanc;
+        $arrcart[$nomersoal]['pilihan_d']=$pilihand;
+        $arrcart[$nomersoal]['kunci_jawaban']=$kunci_jawaban;
+        session()->put('cartsoal',$arrcart);
+    }
+    public function showsoal(){
+        $arrcart = session()->get('cartsoal');
+        $cartnomer=session()->get('cartnomer');
+        $arr=[];
+        $arr[]=$arrcart[$cartnomer];
+        return json_encode($arr);
+    }
     public function addQuiz(){
+        session()->forget('cartsoal');  
+        if(!session()->get('cartsoal')) {
+            $arr = []; 
+            $arr[0]['pertanyaan']     = ""; 
+            $arr[0]['pilihan_a']      = "";
+            $arr[0]['pilihan_b']      = "";
+            $arr[0]['pilihan_c']      = "";
+            $arr[0]['pilihan_d']      = "";
+            $arr[0]['kunci_jawaban']  = "";
+            session()->put('cartsoal', $arr); 
+            session()->put('cartnomer', 0); 
+        }
         $data =Series::where('status_complete', '=', 1)->whereNull('row_id_kuis')->get();
         return view('admin.quiz.add', [
             "data"          => $data
         ]);
+    }
+    public function setnomersoal(Request $request){
+        $nomersoal  = $request->nomersoal;
+        $arrcart    = session()->get('cartsoal'); 
+        if($nomersoal >= count($arrcart)) {
+            $arrcart[$nomersoal]['pertanyaan']     = ""; 
+            $arrcart[$nomersoal]['pilihan_a']      = "";
+            $arrcart[$nomersoal]['pilihan_b']      = "";
+            $arrcart[$nomersoal]['pilihan_c']      = "";
+            $arrcart[$nomersoal]['pilihan_d']      = "";
+            $arrcart[$nomersoal]['kunci_jawaban']  = "";
+            session()->put('cartsoal', $arrcart);  
+        }
+        session()->put('cartnomer',$nomersoal);
     }
     public function editQuiz($id){
         $data =Series::where('row_id_kuis', '=', $id)->get();

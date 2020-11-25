@@ -152,6 +152,8 @@ class SeriesController extends Controller
     }
 
     public function quiz($slug){
+
+
         $dataSeries = Series::where("slug", $slug)->first();
         $dataQuiz=Quiz::where('id',$dataSeries->row_id_kuis)->get();
         foreach($dataQuiz as $rowquiz)
@@ -159,10 +161,17 @@ class SeriesController extends Controller
             $temp= $rowquiz->id;
         }
         
+        
         $datapertanyaan=Question::where('row_id_kuis',$temp)->get();
-        return view('series.quiz',[
-            'datapertanyaan' =>$datapertanyaan
-        ]);
+        $datasoal=HUserKuis::where('row_id_user','=',Auth::id())->where('row_id_kuis', '=', $temp)->get();
+        if(count($datasoal)>0){
+            return redirect('/series/'.$slug.'/hasilquiz');
+        }else{
+            return view('series.quiz',[
+                'datapertanyaan' =>$datapertanyaan
+            ]);
+        }
+      
     }
 
     public function watchlist($slugSeries){
@@ -203,23 +212,16 @@ class SeriesController extends Controller
         }
     }
 
-    public function submit(Request $request){
+    public function submit(Request $request, $slugquiz){
         $benar=0;
-        for ($i=0; $i < 4; $i++) { 
+        $temp=$request->temp;
+        $nilai1soal=100/$temp;
+        for ($i=0; $i < $temp; $i++) { 
             $jawabanuser=$request->input("pilihan".$i);
             $jawabanasli=$request->input("jawaban".$i);
             if($jawabanuser==$jawabanasli){
-                $benar=$benar+25;
+                $benar=$benar+$nilai1soal;
             }
-            if($i==0){
-                $jawaban0=$jawabanuser;
-            }else if($i==1){
-                $jawaban1=$jawabanuser;
-            }else if($i==2){
-                $jawaban2=$jawabanuser;
-            }else if($i==3){
-                $jawaban3=$jawabanuser;
-            }   
         }
         $temp_id_soal=$request->input("tempidkuis");
         $attr = $request->all();
@@ -228,34 +230,35 @@ class SeriesController extends Controller
         $attr['nilai']=$benar;;
         $post=HUserKuis::create($attr);
         $baru= $post->id;
-
-        //kuis 1
-        $userkuis= new DUserKuis();
-        $userkuis->row_id_pengambilan_kuis= $baru;
-        $userkuis->row_id_soal=$temp_id_soal;
-        $userkuis->jawaban_user=$jawaban0;
-        $result=$userkuis->save();
-        //kuis 2
-        $userkuis2= new DUserKuis();
-        $userkuis2->row_id_pengambilan_kuis= $baru;
-        $userkuis2->row_id_soal=$temp_id_soal;
-        $userkuis2->jawaban_user=$jawaban1;
-        $result2=$userkuis2->save();
-        //kuis 3
-        $userkuis3= new DUserKuis();
-        $userkuis3->row_id_pengambilan_kuis= $baru;
-        $userkuis3->row_id_soal=$temp_id_soal;
-        $userkuis3->jawaban_user=$jawaban2;
-        $result3=$userkuis3->save();
-        //kuis 4
-        $userkuis4= new DUserKuis();
-        $userkuis4->row_id_pengambilan_kuis= $baru;
-        $userkuis4->row_id_soal=$temp_id_soal;
-        $userkuis4->jawaban_user=$jawaban3;
-        $result4=$userkuis4->save();
-        return redirect('/history/quiz')->with("success");;
+        for ($i=0; $i < $temp; $i++) { 
+            $tempbaru=$request->input('tempida'.$i);
+            $userkuis= new DUserKuis();
+            $userkuis->row_id_pengambilan_kuis= $baru;
+            $userkuis->row_id_soal=$tempbaru;
+            $userkuis->jawaban_user=$request->input("pilihan".$i);
+            $result=$userkuis->save();
+        }
+        return redirect('/series/'.$slugquiz.'/hasilquiz');
     }
-
+    public function hasilquiz($slugquiz){
+        $dataSeries = Series::where("slug", $slugquiz)->first();
+        $dataQuiz=Quiz::where('id',$dataSeries->row_id_kuis)->get();
+        foreach($dataQuiz as $rowquiz)
+        {
+            $temp= $rowquiz->id;
+        }
+        $datapertanyaan=Question::where('row_id_kuis','=' ,$temp)->get();
+        $datahkuis=HUserKuis::where('row_id_user', '=', Auth::id())->where('row_id_kuis', '=', $temp)->get();
+        foreach ($datahkuis as $row_data) {
+            $temppid=$row_data->id;
+        }
+        $datajawaban=DUserKuis::where('row_id_pengambilan_kuis','=',$temppid)->get();
+        return view('series.hasilquiz',[
+            'datapertanyaan' =>$datapertanyaan,
+            'datajawaban'=>$datajawaban,
+            'datahkuis'=>$datahkuis
+        ]);
+    }
     public function add(Request $request){
         $customMessages = [
             "judul.min" => "Series title must at least have 4 characters",

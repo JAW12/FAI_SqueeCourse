@@ -4,6 +4,7 @@
 @endsection
 @section('content')
 <div class="container my-5">
+    @include('layouts.alert')
     <form class="mt-4" method="post">
     @csrf
     @if (count($data) > 0)
@@ -22,142 +23,167 @@
             @endforeach
         </select>
     </div>
+   
+
+    
     <div class="form-group my-4">
-        <label>Soal 1</label>
-        <input type="text" name="soal1" required class="form-control my-2" placeholder="Soal">
+        <input type="hidden" name="nomersoal" id="nomersoal"  class="form-control my-2" placeholder="Soal" readonly='readonly' value={{ session()->get('cartnomer') }}>
+    </div>
+    <div class="form-group my-4">
+        <input type="text" name="pertanyaan" id="pertanyaan" class="form-control my-2" placeholder="Soal">
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">A</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan A" name='pilihan1a' aria-label="Judul" aria-describedby="Judul">
         </div>
-        <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Pilihan A" name='pilihana' id='pilihana'aria-label="Judul" aria-describedby="Judul">
+    </div>
+    <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">B</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan B" name='pilihan1b' aria-label="Judul" aria-describedby="Judul">
         </div>
-        <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Pilihan B" name='pilihanb'  id='pilihanb' aria-label="Judul" aria-describedby="Judul">
+    </div>
+    <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">C</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan C" name='pilihan1c' aria-label="Judul" aria-describedby="Judul">
         </div>
-        <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Pilihan C" name='pilihanc'  id='pilihanc' aria-label="Judul" aria-describedby="Judul">
+    </div>
+    <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">D</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan D" name='pilihan1d' aria-label="Judul" aria-describedby="Judul">
         </div>
-        <div class="form-group my-4">
-        <label>Jawaban Nomor 1</label>
-        <input type="text" name="jawaban1" required class="form-control my-2" placeholder="A/B/C/D">
+        <input type="text" class="form-control" placeholder="Pilihan D" name='pilihand'  id='pilihand' aria-label="Judul" aria-describedby="Judul">
     </div>
 
-    <div class="form-group my-4">
-        <label>Soal 2</label>
-        <input type="text" name="soal2" required class="form-control my-2" placeholder="Soal">
-    </div>
-    <div class="input-group mb-3">
+     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">A</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan A" name='pilihan2a' aria-label="Judul" aria-describedby="Judul">
+            <label class="input-group-text" for="inputGroupSelect01">Jawaban</label>
         </div>
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">B</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan B" name='pilihan2b' aria-label="Judul" aria-describedby="Judul">
-        </div>
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">C</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan C" name='pilihan2c' aria-label="Judul" aria-describedby="Judul">
-        </div>
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">D</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan D" name='pilihan2d' aria-label="Judul" aria-describedby="Judul">
-        </div>
-        <div class="form-group my-4">
-        <label>Jawaban Nomor 2</label>
-        <input type="text" name="jawaban2" required class="form-control my-2" placeholder="A/B/C/D">
+        <select class="custom-select"  name="jawaban" id="jawaban" placeholder="Choose categories">
+            <option value="A"selected>A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+        </select>
     </div>
 
-    <div class="form-group my-4">
-        <label>Soal 3</label>
-        <input type="text" name="soal3" required class="form-control my-2" placeholder="Soal">
-    </div>
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">A</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan A" name='pilihan3a' aria-label="Judul" aria-describedby="Judul">
-        </div>
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">B</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan B" name='pilihan3b' aria-label="Judul" aria-describedby="Judul">
-        </div>
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">C</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan C" name='pilihan3c' aria-label="Judul" aria-describedby="Judul">
-        </div>
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">D</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan D" name='pilihan3d' aria-label="Judul" aria-describedby="Judul">
-        </div>
-        <div class="form-group my-4">
-        <label>Jawaban Nomor 3</label>
-        <input type="text" name="jawaban3" required class="form-control my-2" placeholder="A/B/C/D">
-    </div>
-
-    <div class="form-group my-4">
-        <label>Soal 4</label>
-        <input type="text" name="soal4" required class="form-control my-2" placeholder="Soal">
-    </div>
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">A</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan A" name='pilihan4a' aria-label="Judul" aria-describedby="Judul">
-        </div>
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">B</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan B" name='pilihan4b' aria-label="Judul" aria-describedby="Judul">
-        </div>
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">C</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan C" name='pilihan4c' aria-label="Judul" aria-describedby="Judul">
-        </div>
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">D</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Pilihan D" name='pilihan4d' aria-label="Judul" aria-describedby="Judul">
-        </div>
-        <div class="form-group my-4">
-        <label>Jawaban Nomor 4</label>
-        <input type="text" name="jawaban4" required class="form-control my-2" placeholder="A/B/C/D">
-    </div>
-    <input type='submit' class="btn btn-success" style="width:100px; border-radius: 50px;" name="btnadd"value="Add" >
+    <input type='button' class="btn btn-success" style="width:100px; border-radius: 50px;" name="btnnext" onclick='gotonext()' value="Save">
+    <input type='submit' class="btn btn-success" style="width:100px; border-radius: 50px;" name="btnadd"value="Submit" >
     @else
         <div class="h3 text-center mr-5 mt-5">No Series Complete</div>
     @endif
     </form>
 </div>
   
+<script language='javascript'>
+var myurl   = "<?php echo URL::to('/'); ?>";
+var crt     = "<?php echo csrf_token(); ?>";
+
+function savetocart () {
+    var nomersoal   = $("#nomersoal").val(); 
+    var pertanyaan  = $("#pertanyaan").val();
+    var pilihana  = $("#pilihana").val();
+    var pilihanb  = $("#pilihanb").val();
+    var pilihanc  = $("#pilihanc").val();
+    var pilihand  = $("#pilihand").val();
+    var kunci_jawaban  = $("#kunci_jawaban").val();
+    $.get(myurl + '/admin/quiz/savetocart', 
+		{nomersoal:nomersoal,
+        pertanyaan:pertanyaan,
+        pilihana:pilihana,
+        pilihanb:pilihanb,
+        pilihanc:pilihanc,
+        pilihand:pilihand,
+        kunci_jawaban:kunci_jawaban }, 
+        function(result) { 
+            
+        }
+    );
+}
+
+function gotoprev() {
+    var nomersoal   = $("#nomersoal").val(); 
+    var pertanyaan  = $("#pertanyaan").val();
+    var pilihana  = $("#pilihana").val();
+    var pilihanb  = $("#pilihanb").val();
+    var pilihanc  = $("#pilihanc").val();
+    var pilihand  = $("#pilihand").val();
+    var kunci_jawaban  = $("#jawaban").val();
+    $.get(myurl + '/admin/quiz/savetocart', 
+		{nomersoal:nomersoal,
+        pertanyaan:pertanyaan,
+        pilihana:pilihana,
+        pilihanb:pilihanb,
+        pilihanc:pilihanc,
+        pilihand:pilihand,
+        kunci_jawaban:kunci_jawaban }, 
+        function(result) { 
+            //alert(result); 
+            //alert(nomersoal); 
+            if(nomersoal>0){
+                nomersoal-=1;
+                $.get(myurl+'/admin/quiz/setnomersoal',
+                    {nomersoal:nomersoal},
+                    function (result){
+                        $("#nomersoal").val(nomersoal); 
+                        showsoal();
+                    }                    
+                );
+            }
+        }
+    );
+}
+
+function gotonext() {
+    var nomersoal   = $("#nomersoal").val(); 
+    var pertanyaan  = $("#pertanyaan").val();
+    var pilihana  = $("#pilihana").val();
+    var pilihanb  = $("#pilihanb").val();
+    var pilihanc  = $("#pilihanc").val();
+    var pilihand  = $("#pilihand").val();
+    var kunci_jawaban  = $("#jawaban").val();
+    alert(kunci_jawaban); 
+    $.get(myurl + '/admin/quiz/savetocart', 
+		{nomersoal:nomersoal,
+        pertanyaan:pertanyaan,
+        pilihana:pilihana,
+        pilihanb:pilihanb,
+        pilihanc:pilihanc,
+        pilihand:pilihand,
+        kunci_jawaban:kunci_jawaban }, 
+        function(result) { 
+            nomersoal = parseInt(nomersoal) + 1; 
+            $.get(myurl+'/admin/quiz/setnomersoal',
+                {nomersoal:nomersoal},
+                function (result){
+                    $("#nomersoal").val(nomersoal); 
+                    showsoal();
+                }                    
+            );
+        }
+    );
+}
+
+function showsoal() {
+    $.get(myurl + '/admin/quiz/showsoal', 
+		{ }, 
+        function(result) { 
+            var arr = JSON.parse(result); 
+            for(var a = 0; a < arr.length; a++) {
+                $("#pertanyaan").val(arr[a].pertanyaan); 
+                $("#pilihana").val(arr[a].pilihan_a); 
+                $("#pilihanb").val(arr[a].pilihan_b);
+                $("#pilihanc").val(arr[a].pilihan_c);
+                $("#pilihand").val(arr[a].pilihan_d);
+                $("#kunci_jawaban").val(arr[a].jawaban);
+            }
+	    }
+    );
+}
+showsoal(); 
+</script>
+
+
 @endsection

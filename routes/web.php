@@ -142,6 +142,8 @@ Route::prefix('series')->group(function(){
         Route::get('quiz', [SeriesController::class, 'quiz'])->name('series.quiz');
         // post untuk submit quiz
         Route::post('quiz', [SeriesController::class, 'submit']);
+        //get untuk hasil quiz
+        Route::get('hasilquiz',[SeriesController::class,'hasilquiz']);
     });
 });
 
@@ -310,6 +312,10 @@ Route::prefix('admin')->group(function(){
 
         // KHUSUS QUIZ
         Route::prefix('quiz')->group(function(){
+            // untuk ajax 
+            Route::get('showsoal', [AdminController::class, 'showsoal'])->name('admin.showsoal');
+            Route::get('savetocart', [AdminController::class, 'savetocart'])->name('admin.save');
+            Route::get('setnomersoal', [AdminController::class, 'setnomersoal'])->name('admin.save');
             // halaman dashboard daftar quiz
             Route::get('/', [AdminController::class, 'quizzes'])->name('admin.quizzes');
 

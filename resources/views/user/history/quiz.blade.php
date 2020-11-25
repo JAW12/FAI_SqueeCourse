@@ -9,7 +9,7 @@
 <div class="container-fluid grey py-4">
     <div class="container mb-5" style="max-width:90%;">
             <div class="flex-1 md:px-4">
-                <h1 class="text-gray-600 mb-2 font-semibold">Transactions</h1>
+                <h1 class="text-gray-600 mb-2 font-semibold">History Quiz</h1>
                 @if (count($hasil)>0)
                     <table class="table table-bordered table-hover mb-2 dt">
                         <thead class="thead-dark align-middle">

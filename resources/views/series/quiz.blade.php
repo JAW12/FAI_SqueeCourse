@@ -13,6 +13,7 @@
         <form method="POST">
             @foreach($datapertanyaan as $rowpertanyaan)
             @csrf
+            <input type='hidden' name='temp' value='{{count($datapertanyaan)}}'>
             <input type='hidden'name='tempidkuis'value="{{$rowpertanyaan->row_id_kuis}}">
             <div class="form-group my-4">
                 <label>Pertanyaan</label>
@@ -20,10 +21,11 @@
                 <input type="hidden" name='soal{{$tempno}}' disabled value="{{ $rowpertanyaan->pertanyaan }}" placeholder="Let's start learning">
             </div>  
                 <div class="input-group my-2">
-               
+                <input type='hidden' name='tempida{{$tempno}}' value="{{$rowpertanyaan->id}}">
                     <div class="input-group-prepend">
                     <label>A</label>
                         <div class="input-group-text">
+
                         <input type="radio" name='pilihan{{$tempno}}' value='A'>{{$rowpertanyaan->pilihan_a}}
                         </div>
                     </div>
@@ -57,7 +59,7 @@
                 $tempno= $tempno+1;
             @endphp
           
-        @endforeach
+            @endforeach
             <button type="submit" class="btn btn-dark w-100 mb-4 float-right" value="Submit">
                Submit
             </button>
