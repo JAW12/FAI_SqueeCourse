@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
+use Midtrans;
 
 class TransactionController extends Controller
 {
@@ -18,15 +19,15 @@ class TransactionController extends Controller
     public function form($paket){
         $nama = Auth::user()->nama;
         if($paket == "Silver"){
-            $hasil_rupiah = "Rp " . number_format(120000,2,',','.');
+            $hasil_rupiah = number_format(120000,2,',','.');
             return view('user.payment', ['paket' => $paket, 'harga' => $hasil_rupiah, 'nama' => $nama]);
         }
         if($paket == "Gold"){
-            $hasil_rupiah = "Rp " . number_format(288000,2,',','.');
+            $hasil_rupiah = number_format(288000,2,',','.');
             return view('user.payment', ['paket' => $paket, 'harga' => $hasil_rupiah, 'nama' => $nama]);
         }
         if($paket == "Platinum"){
-            $hasil_rupiah = "Rp " . number_format(504000,2,',','.');
+            $hasil_rupiah = number_format(504000,2,',','.');
             return view('user.payment', ['paket' => $paket, 'harga' => $hasil_rupiah, 'nama' => $nama]);
         }
     }

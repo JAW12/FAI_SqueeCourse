@@ -36,7 +36,7 @@
                                             $cek = "a";
                                         }
                                     @endphp
-                                    <td>{{$split[0]}}</td>
+                                    <td class="align-middle">{{$split[0]}}</td>
                                     @if($item->status_transaksi == 3)
                                         <td class="align-middle">This membership is rejected</td>
                                         <td class="align-middle"><button onclick="myFunction('receipt/{{ $item->id }}')" class="btn btn-info btn-block" disabled>Print</button>
