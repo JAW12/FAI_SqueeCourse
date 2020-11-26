@@ -1,5 +1,5 @@
 @extends('layouts.user')
-@section('title', Auth::user()->nama);
+@section('title', Auth::user()->nama)
 @section('content')
     <div class="container-fluid linear">
         @if(Auth::user()->id == $user->id)

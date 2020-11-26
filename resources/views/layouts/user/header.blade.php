@@ -79,7 +79,7 @@
                 <div id="collapseProfile" style="display:none">
                     <a class="dropdown-item p-3" href="{{ route("watchlist") }}"><i class="fa fa-clock"></i> Your Watchlist</a>
                     <a class="dropdown-item p-3" href="{{route('settings.edit')}}"><i class="fa  fa-user"></i> Change Your Profile</a>
-                    <a class="dropdown-item p-3" href="#"><i class="fa fa-lock"></i> Change Password</a>
+                    <a class="dropdown-item p-3" href="{{route('settings.password')}}"><i class="fa fa-lock"></i> Change Password</a>
                 </div>
                 <div class="dropdown-divider"></div>
                 <div class="dropdown-header" id="clickMember">Membership <i class="fa fa-caret-down"></i></div>

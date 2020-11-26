@@ -7,6 +7,7 @@
     <title>@yield('title')</title>
 
     @include('layouts.head')
+
     <style>
         #header{
             min-height: 55vh;

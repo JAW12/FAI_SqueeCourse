@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Squee Course Blog');
+@section('title', 'Squee Course Blog')
 @section('content')
     @include('blog.layouts.navigation')
     <div class="container mt-3">
