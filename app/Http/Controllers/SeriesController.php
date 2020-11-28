@@ -168,8 +168,14 @@ class SeriesController extends Controller
             if(count($datasoal)>0){
                 return redirect('/series/'.$slug.'/hasilquiz');
             }else{
+                $datauser=User::where('id','=',Auth::id())->get();
+                foreach ($datauser as $rowuser) {
+                    $verif=$rowuser->email_verified_at;
+                }
+                echo $verif;
                 return view('series.quiz',[
-                    'datapertanyaan' =>$datapertanyaan
+                    'datapertanyaan' =>$datapertanyaan,
+                    'verif'=>$verif
                 ]);
             }
         }

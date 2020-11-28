@@ -4,12 +4,19 @@
 @endsection
 @section('content')
 <div class="container py-5">
+  
+    @if ($verif == Null)
+                    <div class="col-12 text-center align-content-center text-light p-5 my-5">
+                        <p class="h1 my-3">🙏🏻</p>
+                        <div class="my-3">
+                        <h1 class="h1 text-center" Style="Color:black">  Sorry, but you need to verify your email first</h1>
+                        </div>
+    @else
     @include('layouts.alert')
     <h1 class="h1 text-center">Quiz</h1>
     @php
         $tempno=0;
     @endphp
-   
     <form method="POST">
         @foreach($datapertanyaan as $rowpertanyaan)
         @csrf
@@ -61,4 +68,5 @@
         </button>
     </form>
 </div>
+@endif
 @endsection

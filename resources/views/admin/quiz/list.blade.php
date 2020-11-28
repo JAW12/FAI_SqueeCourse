@@ -12,6 +12,11 @@
                 Add Quiz
             </a>
         </div>
+        <div class="container-fluid">
+            <h1 class="h1 text-center my-4">
+                Squee Course Quiz
+            </h1>
+        </div>
             @if (count($data) > 0)
                 <table class="table table-bordered table-light table-hover mb-2 dt">
                     <thead class="thead-dark align-middle">
