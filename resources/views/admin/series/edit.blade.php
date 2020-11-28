@@ -17,7 +17,7 @@
             <div class="col-12 text-center">
                 <img class="img-responsive w-75" src="{{
                     strpos($dataSeries->url_foto_banner, 'https://') === false ?
-                    asset("storage/images/$dataSeries->url_foto_banner") : $dataSeries->url_foto_banner  }}">
+                    asset("storage/images/$dataSeries->url_foto_banner")  . "?" .time() : $dataSeries->url_foto_banner  }}">
             </div>
         </div>
         <form method="POST" enctype="multipart/form-data">
