@@ -10,16 +10,16 @@
     <div class="h3 mt-3">Add Blog</div>
         <form class="mt-4" method="post">
             @csrf
+                  <label>Judul</label>
+
             <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">Judul</label>
-                </div>
+           
                 <input type="text" class="form-control" placeholder="Judul" name='txtjudul' aria-label="Judul" aria-describedby="Judul">
             </div>
+                  <label>Categories</label>
+
             <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">Categories</label>
-                </div>
+                
                 <select class="custom-select" id="categoriselect" name="categoriselect" placeholder="Choose categories">
                     <option disabled selected>Choose One!</option>
                     @foreach($category as $category)
@@ -27,10 +27,9 @@
                     @endforeach
                 </select>
             </div>
+                  <label>Tag</label>
             <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="tags">Tag</label>
-                </div>
+               
                 <select class="custom-select" id="tags" name="tags[]" placeholder="Choose Tag" multiple>
                     <option disabled selected>Choose One!</option>
                     @foreach($label as $label)
@@ -38,10 +37,11 @@
                     @endforeach
                 </select>
             </div>
+            <label>Isi</label>
             <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">Isi</label>
-                </div>
+           
+                 
+              
                <textarea name="body" id="body" class="form-control" style='height:200px;'></textarea>
                 </div>
             <input type='submit' class="btn btn-success" style="width:100px; border-radius: 50px;" name="btnadd"value="Add" >

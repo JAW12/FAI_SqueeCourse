@@ -11,12 +11,12 @@
     <div class="form-group my-4">
         <label>Title</label>
         <input type='hidden'name='id' value="{{$rowjudul->id}}">
-        <input type="text" name="judul" value="{{$rowjudul->nama}}" class="form-control my-2" placeholder="Learn Laravel 8">
+        <input type="text" disabled name="judul" value="{{$rowjudul->nama}}" class="form-control my-2" placeholder="Learn Laravel 8">
     </div>
     @endforeach
     <div class="form-group my-4">
         <label>Series</label>
-        <select name="series" required class="form-control">
+        <select name="series" disabled required class="form-control">
             @foreach ($data as $rowdata)
                 <option value="{{ $rowdata->id }}">
                     {{ $rowdata->judul }}
@@ -33,37 +33,37 @@
     @endphp
         <div class="form-group my-4">
             <label>Soal {{$tempcheck}}</label>
-            <input type="text" name='soal{{$tempcheck}}'value='{{$rowsoal->pertanyaan}}'required class="form-control my-2" placeholder="Soal">
+            <input type="text"disabled name='soal{{$tempcheck}}'value='{{$rowsoal->pertanyaan}}'required class="form-control my-2" placeholder="Soal">
         </div>
         <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">A</label>
             </div>
-            <input type="text" class="form-control" value='{{$rowsoal->pilihan_a}}'name='pilihan{{$tempcheck}}a' placeholder="Pilihan A" aria-label="Judul" aria-describedby="Judul">
+            <input type="text" disabled class="form-control" value='{{$rowsoal->pilihan_a}}'name='pilihan{{$tempcheck}}a' placeholder="Pilihan A" aria-label="Judul" aria-describedby="Judul">
         </div>
         <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">B</label>
             </div>
-            <input type="text" class="form-control" placeholder="Pilihan B" value='{{$rowsoal->pilihan_b}}'name='pilihan{{$tempcheck}}b' aria-label="Judul" aria-describedby="Judul">
+            <input type="text"disabled  class="form-control" placeholder="Pilihan B" value='{{$rowsoal->pilihan_b}}'name='pilihan{{$tempcheck}}b' aria-label="Judul" aria-describedby="Judul">
         </div>
         <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">C</label>
             </div>
-            <input type="text" class="form-control" placeholder="Pilihan C" value='{{$rowsoal->pilihan_c}}'name='pilihan{{$tempcheck}}c' aria-label="Judul" aria-describedby="Judul">
+            <input type="text" disabled class="form-control" placeholder="Pilihan C" value='{{$rowsoal->pilihan_c}}'name='pilihan{{$tempcheck}}c' aria-label="Judul" aria-describedby="Judul">
         </div>
         <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">D</label>
             </div>
-            <input type="text" class="form-control" placeholder="Pilihan D" name='pilihan{{$tempcheck}}d' value='{{$rowsoal->pilihan_d}}'aria-label="Judul" aria-describedby="Judul">
+            <input type="text"disabled class="form-control" placeholder="Pilihan D" name='pilihan{{$tempcheck}}d' value='{{$rowsoal->pilihan_d}}'aria-label="Judul" aria-describedby="Judul">
         </div>
         <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">Jawaban</label>
         </div>
-        <select class="custom-select" name='jawaban{{$tempcheck}}' id="jawaban{{$tempcheck}}" placeholder="Choose categories">
+        <select class="custom-select" disabled name='jawaban{{$tempcheck}}' id="jawaban{{$tempcheck}}" placeholder="Choose categories">
             @if($rowsoal->kunci_jawaban=="A")
             <option value="A"selected>A</option>
             <option value="B">B</option>
@@ -86,13 +86,68 @@
             <option value="D"selected>D</option>
             @endif
         </select>
+       
         </div>
+       
     @endforeach
-    <a href="{{URL::to('admin/quiz')}}/{{$rowjudul->id}}/{{'delete'}}"> <button type="button" class="btn btn-info" style="width: 75px;">Delete</button></a>
+        <button type="button"  mode="delete"  class="btn btn-danger btnDelete"
+        formaction="{{ url("/admin/quiz/" . $rowjudul->id ."/delete")}}"  style="width: 75px;">Delete
+        </button>
     @else
         <div class="h3 text-center mr-5 mt-5">No Series Complete</div>
     @endif
     </form>
 </div>
-  
+  {{-- Modal --}}
+<div class="modal fade" id="modalConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">
+                    Modal title
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+                <form method="post">
+                @csrf
+                    <button type="submit" class="btn" id="btnAction" formaction="#">
+                        Save changes
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+@section('script')
+    <script>
+        function setModalMode(mode, action){
+            if(mode == "delete"){
+                $("#modalTitle").html('Delete Quiz')
+
+                $("#btnAction").html('Delete');
+                $("#btnAction").addClass('btn-danger');
+            }
+            $("#modalBody").html('Are you sure you want to '
+                    + mode + ' Quiz?');
+            $("#btnAction").attr('formaction', action);
+            $("#modalConfirmation").modal('show');
+        }
+        $(document).on('click', ".btnDelete", function(){
+            console.log(this);
+            let action = $(this).attr('formaction');
+            let mode = $(this).attr("mode");
+            setModalMode(mode, action);
+        })
+
+    </script>
 @endsection

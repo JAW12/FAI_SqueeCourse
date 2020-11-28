@@ -119,9 +119,8 @@ function gotoprev() {
         pilihanc:pilihanc,
         pilihand:pilihand,
         kunci_jawaban:kunci_jawaban }, 
+  
         function(result) { 
-            //alert(result); 
-            //alert(nomersoal); 
             if(nomersoal>0){
                 nomersoal-=1;
                 $.get(myurl+'/admin/quiz/setnomersoal',
@@ -144,7 +143,6 @@ function gotonext() {
     var pilihanc  = $("#pilihanc").val();
     var pilihand  = $("#pilihand").val();
     var kunci_jawaban  = $("#jawaban").val();
-    alert(kunci_jawaban); 
     $.get(myurl + '/admin/quiz/savetocart', 
 		{nomersoal:nomersoal,
         pertanyaan:pertanyaan,

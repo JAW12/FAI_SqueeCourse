@@ -11,18 +11,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     function edit(Request $request){
-        if($request->btndelete){
-            $tempid=$request->txttemp;
-            $delete = LabelPost::withTrashed()->where('row_id_post', '=', $tempid)->delete();
-            $deletepost=Post::withTrashed()->where('id','=',$tempid)->delete();
-            $blogactive=Post::where('status_aktif','=','1')->get();
-            $category=category::all();
-            return view('admin.blog.list', [
-                'blogactive' => $blogactive,
-                'category'=>$category
-            ]);
-        }
-        else if($request->btnupdate){
+       if($request->btnupdate){
             $tempid=$request->txttemp;
             $delete = LabelPost::withTrashed()->where('row_id_post', '=', $tempid)->delete();
             foreach($request->tags as $item)
@@ -43,12 +32,9 @@ class PostController extends Controller
                     'row_id_kategori'=>$tempcategory
                 ]  
             );
-            $blogactive=Post::where('status_aktif','=','1')->get();
-            $category=category::all();
-            return view('admin.blog.list', [
-                'blogactive' => $blogactive,
-                'category'=>$category
-            ]);
+            $url_path = "/admin/blog/";
+            return redirect($url_path)
+                ->with("success", "This Blog has been succesfully Edit");
         }
     }
 
@@ -84,12 +70,9 @@ class PostController extends Controller
             $labelpost->row_id_post=$baru;
             $result=$labelpost->save();
         }
-        $blogactive=Post::where('status_aktif','=','1')->get();
-        $category=category::all();
-        return view('admin.blog.add',[
-            "category"=>Category::get(),
-            "label"=>Label::get()
-        ]);
+        $url_path = "/admin/blog/";
+        return redirect($url_path)
+            ->with("success", "This Blog has been succesfully add");
     }
 
     function category($slug){

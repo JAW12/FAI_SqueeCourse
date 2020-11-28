@@ -28,10 +28,11 @@
         @if(isset($posts) && count($posts) > 0)
         <div class="row no-gutters" id="isiPost">
                 @foreach ($posts as $post)
+               
                     <div class="post col-12 col-md-6 col-lg-4">
                         <div class="card h-100 mx-1 my-1">
                             <div class="card-body">
-                                <a href="" class="text-dark text-decoration-none">
+                                <a href="{{URL::to('blog')}}/{{$post->slug}}" class="text-dark text-decoration-none">
                                     <h5 class="card-title mb-1">{{Str::limit($post->judul, 30)}}</h5>
                                 </a>
                                 <a href="{{route('blog.category', $post->category->slug)}}" class="badge badge-pill badge-primary mb-3">{{$post->category->nama}}</a>
@@ -40,7 +41,7 @@
                                 @endforeach
                                 <p class="card-text">{{Str::limit($post->isi, 100)}}</p>
                                 <div class="text-right">
-                                    <a href="{{URL::to('blog')}}/{{$post->slug}}" class="text-decoration-none">Read more</a>
+                                <a href="{{URL::to('blog')}}/{{$post->slug}}" class="text-decoration-none">Read more</a>
                                 </div>
                             </div>
                         </div>

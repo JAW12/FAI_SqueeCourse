@@ -31,7 +31,9 @@ class QuizController extends Controller
       $result1=$addsoal1->save();
     }
       $data =Quiz::orderBy('created_at', 'desc')->get();
-      return view('admin.quiz.list',['data'=>$data]);
+      $url_path = "/admin/quiz";
+      return redirect($url_path)
+      ->with("success", "This Quis has been succesfully Edit");
         
    }
     public function add(Request $request){

@@ -152,25 +152,29 @@ class SeriesController extends Controller
     }
 
     public function quiz($slug){
-
-
-        $dataSeries = Series::where("slug", $slug)->first();
-        $dataQuiz=Quiz::where('id',$dataSeries->row_id_kuis)->get();
-        foreach($dataQuiz as $rowquiz)
-        {
-            $temp= $rowquiz->id;
-        }
-        
-        
-        $datapertanyaan=Question::where('row_id_kuis',$temp)->get();
-        $datasoal=HUserKuis::where('row_id_user','=',Auth::id())->where('row_id_kuis', '=', $temp)->get();
-        if(count($datasoal)>0){
-            return redirect('/series/'.$slug.'/hasilquiz');
+        if (! Auth::check()) {
+            return redirect()->route('login');
         }else{
-            return view('series.quiz',[
-                'datapertanyaan' =>$datapertanyaan
-            ]);
+            $dataSeries = Series::where("slug", $slug)->first();
+            $dataQuiz=Quiz::where('id',$dataSeries->row_id_kuis)->get();
+            foreach($dataQuiz as $rowquiz)
+            {
+                $temp= $rowquiz->id;
+            }
+            
+            
+            $datapertanyaan=Question::where('row_id_kuis',$temp)->get();
+            $datasoal=HUserKuis::where('row_id_user','=',Auth::id())->where('row_id_kuis', '=', $temp)->get();
+            if(count($datasoal)>0){
+                return redirect('/series/'.$slug.'/hasilquiz');
+            }else{
+                return view('series.quiz',[
+                    'datapertanyaan' =>$datapertanyaan
+                ]);
+            }
         }
+
+       
       
     }
 

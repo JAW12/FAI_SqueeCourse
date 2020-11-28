@@ -269,6 +269,21 @@ class AdminController extends Controller
                 ->with("error", "You have failed in deleting series " . $series->judul);
         }
     }
+    public function deletePost($slug){
+        $postnya=Post::where('slug','=',$slug)->get();
+        foreach($postnya as $rowpost){
+            $tempid=$rowpost->id;
+        }
+        $delete = LabelPost::withTrashed()->where('row_id_post', '=', $tempid)->delete();
+        $deletepost=Post::withTrashed()->where('id','=',$tempid)->delete();
+        $blogactive=Post::where('status_aktif','=','1')->get();
+        $category=category::all();
+        return view('admin.blog.list', [
+            'blogactive' => $blogactive,
+            'category'=>$category
+        ]);
+       
+    }
     public function deleteQuiz($id){
         Series::where('row_id_kuis', '=', $id)
         ->update(

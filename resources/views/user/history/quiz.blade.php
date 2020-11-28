@@ -14,9 +14,9 @@
                     <table class="table table-bordered table-hover mb-2 dt">
                         <thead class="thead-dark align-middle">
                           <tr>
-                            <th class="align-middle text-center">Nama</th>
-                            <th class="align-middle text-center">Nilai</th>
-                            <th class="align-middle text-center">Join Quiz</th>
+                            <th class="align-middle text-center">Name</th>
+                            <th class="align-middle text-center">Score</th>
+                            <th class="align-middle text-center">Quiz Submitted At</th>
                           </tr>
                         </thead>
                         <tbody class="bg-transparent">

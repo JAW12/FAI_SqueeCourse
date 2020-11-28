@@ -10,7 +10,7 @@
                 <tr>
                     <th class="align-middle text-center">Username</th>
                     <th class="align-middle text-center">Email</th>
-                    <th class="align-middle text-center">Nama</th>
+                    <th class="align-middle text-center">Name</th>
                     <th class="align-middle text-center">Action</th>
                 </tr>
             </thead>

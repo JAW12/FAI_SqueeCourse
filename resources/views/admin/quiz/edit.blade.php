@@ -4,10 +4,11 @@
 @endsection
 @section('content')
 <div class="container my-5">
+@include('layouts.alert')
     <form class="mt-4" method="post">
     @csrf
     @if (count($data) > 0)
-    <input type='hidden'name='temp'value='{{count($data)}}'>
+   
     @foreach ($namajudul as $rowjudul)
     <div class="form-group my-4">
         <label>Title</label>
@@ -17,18 +18,16 @@
     @endforeach
     <div class="form-group my-4">
         <label>Series</label>
-        <select name="series" required class="form-control">
-            @foreach ($data as $rowdata)
-                <option value="{{ $rowdata->id }}">
-                    {{ $rowdata->judul }}
-                </option>
-            @endforeach
-        </select>
+        @foreach ($data as $rowdata)
+            <input type="text"disabled value=" {{ $rowdata->judul }}" class="form-control my-2" placeholder="Learn Laravel 8">
+        @endforeach
     </div>   
     @php
         $tempcheck=0;
     @endphp
+    <input type='hidden'name='temp'value='{{count($pertnyaan)}}'>
     @foreach ($pertnyaan as $rowsoal)
+  
     @php
         $tempcheck= $tempcheck+1;
     @endphp

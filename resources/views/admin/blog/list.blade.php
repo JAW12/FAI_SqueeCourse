@@ -3,7 +3,12 @@
     List Blog
 @endsection
 @section('content')
-    <a href="/admin/blog/add" class="btn btn-success">Add Blog</a>
+@include('layouts.alert')
+        <div class="container-fluid text-right">
+            <a class="btn btn-dark" href="/admin/blog/add" >
+                Add Quiz
+            </a>
+        </div>
      <div class="container ml-5" style="width: 80%">
         <h1 class="mb-3 mt-4">List Blog</h1>
         <table class="table table-sm table-bordered table-hover mb-2 dt">

@@ -122,7 +122,7 @@ Route::prefix('series')->group(function(){
         // tambahkan ke watchlist
         Route::get('/watchlist', [SeriesController::class, 'watchlist'])->name('series.watchlist');
 
-        Route::prefix('episode/{slugepisode}')
+        Route::prefix(',/{slugepisode}')
         ->group(function(){
             // halaman buka episode (nonton)
             Route::get('/', [SeriesController::class, 'episode'])->name('series.episode');
@@ -333,7 +333,7 @@ Route::prefix('admin')->group(function(){
                 Route::post('edit', [QuizController::class, 'edit']);
 
                 // hapus quiz
-                Route::get('delete', [AdminController::class, 'deleteQuiz'])->name('admin.quiz.delete');
+                Route::post('delete', [AdminController::class, 'deleteQuiz'])->name('admin.quiz.delete');
             });
         });
 
@@ -394,7 +394,7 @@ Route::prefix('admin')->group(function(){
                 Route::post('edit', [PostController::class, 'edit']);
 
                 // hapus episode
-                Route::get('delete', [AdminController::class, 'deletePost'])->name('admin.blog.delete');
+                Route::post('delete', [AdminController::class, 'deletePost'])->name('admin.blog.delete');
             });
         });
     });

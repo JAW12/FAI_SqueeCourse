@@ -23,34 +23,30 @@
                 <div class="input-group my-2">
                 <input type='hidden' name='tempida{{$tempno}}' value="{{$rowpertanyaan->id}}">
                     <div class="input-group-prepend">
-                    <label>A</label>
                         <div class="input-group-text">
 
-                        <input type="radio" name='pilihan{{$tempno}}' value='A'>{{$rowpertanyaan->pilihan_a}}
+                        <input type="radio" name='pilihan{{$tempno}}' value='A'>A. {{$rowpertanyaan->pilihan_a}}
                         </div>
                     </div>
                 </div>
                 <div class="input-group my-2">
-                <label>B</label>
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                        <input type="radio" name='pilihan{{$tempno}}' value='B'>{{$rowpertanyaan->pilihan_b}}
+                        <input type="radio" name='pilihan{{$tempno}}' value='B'>B. {{$rowpertanyaan->pilihan_b}}
                         </div>
                     </div>
                 </div>
                 <div class="input-group my-2">
-                <label>C</label>
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                        <input type="radio" name='pilihan{{$tempno}}' value='C'>{{$rowpertanyaan->pilihan_c}}
+                        <input type="radio" name='pilihan{{$tempno}}' value='C'>C. {{$rowpertanyaan->pilihan_c}}
                         </div>
                     </div>
                 </div>
                 <div class="input-group my-2">
-                <label>D</label>
                     <div class="input-group-prepend">
                     <div class="input-group-text">
-                    <input type="radio" name='pilihan{{$tempno}}' value='D'>{{$rowpertanyaan->pilihan_d}}
+                    <input type="radio" name='pilihan{{$tempno}}' value='D'>D. {{$rowpertanyaan->pilihan_d}}
                        </div>
                     </div>
                 </div>
