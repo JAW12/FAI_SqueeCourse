@@ -3,10 +3,8 @@
     History Quiz 
 @endsection
 @section('content')
-<div class="my-2">
-            @include('layouts.alert')
-</div>
-<div class="container-fluid grey py-4">
+@include('layouts.alert')
+<div class="container-fluid py-4">
     <div class="container mb-5" style="max-width:90%;">
             <div class="flex-1 md:px-4">
                 <h1 class="text-gray-600 mb-2 font-semibold">History Quiz</h1>
@@ -34,8 +32,7 @@
                         </tbody>
                     </table>
                 @else
-                    You don't have any History QUiz.
-                    <a href="/membership" class="underline">Go make one</a>
+                    You don't have any History Quiz.
                 @endif
             </div>
     </div>

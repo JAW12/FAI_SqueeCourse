@@ -38,7 +38,7 @@
                     <div class="mt-5 text-light">
                         <div class="row">
                             <p class="col-xs-12 col-lg-3">
-                                <i class="fa fa-clock-o mr-2"></i>
+                                <i class="fas fa-clock mr-2"></i>
                                 {{ round($dataSeries->total_durasi / 60) }}
                                 minutes
                             </p>

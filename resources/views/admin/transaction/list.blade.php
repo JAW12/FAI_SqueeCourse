@@ -7,9 +7,13 @@
     @endif
 @endsection
 @section('content')
-    <div class="container">
+    <div class="container py-5">
         <br>
-        <div class="h3">List of Transactions</div>
+        @if (isset($cek))
+            <div class="h1 text-center">List of Pending Transactions</div>
+        @else
+            <div class="h1 text-center">List of Transactions</div>
+        @endif
         @if (isset($cek) && count($data) > 0)
             <a href="all/accept" class="btn btn-success mb-3">Accept all</a>
             <a href="all/reject" class="btn btn-danger mb-3">Reject all</a>
@@ -81,10 +85,7 @@
                         var column = this;
                         var headercol = this.header();
                         var name = $(headercol).attr("name");
-                        if(name == "status"){
-                            $(headercol).html("Status");
-                        }
-                        else if(name == "detail"){
+                        if(name == "detail"){
                             $(headercol).html("See Detail");
                         }
                         else{

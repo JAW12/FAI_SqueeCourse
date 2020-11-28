@@ -3,8 +3,8 @@
     List Member
 @endsection
 @section('content')
-<div class="container ml-5" style="width: 80%">
-        <h1 class="mb-3 mt-4">Member Transaction History</h1>
+<div class="container ml-5 py-5" style="width: 80%">
+        <h1 class="mb-3 mt-4 text-center">List of Member</h1>
         <table class="table table-sm table-bordered table-hover mb-2 dt">
             <thead class="thead-dark align-middle">
                 <tr>

@@ -27,39 +27,39 @@
 
     
     <div class="form-group my-4">
-        <input type="hidden" name="nomersoal" id="nomersoal"  class="form-control my-2" placeholder="Soal" readonly='readonly' value={{ session()->get('cartnomer') }}>
+        <input type="hidden" name="nomersoal" id="nomersoal"  class="form-control my-2" placeholder="Question" readonly='readonly' value={{ session()->get('cartnomer') }}>
     </div>
     <div class="form-group my-4">
-        <input type="text" name="pertanyaan" id="pertanyaan" class="form-control my-2" placeholder="Soal">
+        <input type="text" name="pertanyaan" id="pertanyaan" class="form-control my-2" placeholder="Question">
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">A</label>
         </div>
-        <input type="text" class="form-control" placeholder="Pilihan A" name='pilihana' id='pilihana'aria-label="Judul" aria-describedby="Judul">
+        <input type="text" class="form-control" placeholder="Choice A" name='pilihana' id='pilihana'aria-label="Judul" aria-describedby="Judul">
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">B</label>
         </div>
-        <input type="text" class="form-control" placeholder="Pilihan B" name='pilihanb'  id='pilihanb' aria-label="Judul" aria-describedby="Judul">
+        <input type="text" class="form-control" placeholder="Choice B" name='pilihanb'  id='pilihanb' aria-label="Judul" aria-describedby="Judul">
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">C</label>
         </div>
-        <input type="text" class="form-control" placeholder="Pilihan C" name='pilihanc'  id='pilihanc' aria-label="Judul" aria-describedby="Judul">
+        <input type="text" class="form-control" placeholder="Choice C" name='pilihanc'  id='pilihanc' aria-label="Judul" aria-describedby="Judul">
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">D</label>
         </div>
-        <input type="text" class="form-control" placeholder="Pilihan D" name='pilihand'  id='pilihand' aria-label="Judul" aria-describedby="Judul">
+        <input type="text" class="form-control" placeholder="Choice D" name='pilihand'  id='pilihand' aria-label="Judul" aria-describedby="Judul">
     </div>
 
      <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Jawaban</label>
+            <label class="input-group-text" for="inputGroupSelect01">Answer</label>
         </div>
         <select class="custom-select"  name="jawaban" id="jawaban" placeholder="Choose categories">
             <option value="A"selected>A</option>
@@ -69,8 +69,8 @@
         </select>
     </div>
 
-    <input type='button' class="btn btn-success" style="width:100px; border-radius: 50px;" name="btnnext" onclick='gotonext()' value="Save">
-    <input type='submit' class="btn btn-success" style="width:100px; border-radius: 50px;" name="btnadd"value="Submit" >
+    <input type='button' class="btn btn-success" style="width:100px;" name="btnnext" onclick='gotonext()' value="Save">
+    <input type='submit' class="btn btn-success" style="width:100px;" name="btnadd"value="Submit" >
     @else
         <div class="h3 text-center mr-5 mt-5">No Series Complete</div>
     @endif

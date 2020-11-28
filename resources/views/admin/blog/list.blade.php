@@ -4,18 +4,20 @@
 @endsection
 @section('content')
 @include('layouts.alert')
-        <div class="container-fluid text-right">
+    
+     <div class="container ml-5 py-5" style="width: 80%">
+         <div class="container-fluid text-right">
             <a class="btn btn-dark" href="/admin/blog/add" >
-                Add Quiz
+                Add Blog
             </a>
         </div>
-     <div class="container ml-5" style="width: 80%">
-        <h1 class="mb-3 mt-4">List Blog</h1>
+        <h1 class="mb-3 mt-4 text-center">List Blog</h1>
+        
         <table class="table table-sm table-bordered table-hover mb-2 dt">
             <thead class="thead-dark align-middle">
                 <tr>
-                    <th class="align-middle text-center">Categori</th>
-                    <th class="align-middle text-center">Judul</th>
+                    <th class="align-middle text-center">Category</th>
+                    <th class="align-middle text-center">Title</th>
                     <th class="align-middle text-center">Action</th>
                 </tr>
             </thead>

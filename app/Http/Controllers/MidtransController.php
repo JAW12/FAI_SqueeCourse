@@ -45,7 +45,7 @@ class MidtransController extends Controller
 
         //kembali ke halaman
         if($result){
-            return redirect()->route('home');
+            return redirect()->route('history.transaction');
         }
     }
 
@@ -64,7 +64,7 @@ class MidtransController extends Controller
         $trans->status_transaksi = 2;
         $result = $trans->save();
         if($result){
-            return redirect()->route('home');
+            return redirect()->route('history.transaction');
         }
 	}
 
@@ -95,7 +95,7 @@ class MidtransController extends Controller
         $trans->status_transaksi = 3;
         $result = $trans->save();
         if($result){
-            return redirect()->route('home');
+            return redirect()->route('history.transaction')->with('error', 'Payment failed');
         }
     }
 

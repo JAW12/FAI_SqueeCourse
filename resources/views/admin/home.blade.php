@@ -10,7 +10,7 @@
         <a href="{{route('admin.episodes')}}" class="btn btn-lg btn-outline-dark shadow-sm mt-2">
             Active Episodes <span class="badge badge-light">{{$episodes->where('deleted_at', null)->count()}}</span>
         </a>
-        <a href="#" class="btn btn-lg btn-outline-dark shadow-sm mt-2">
+        <a href="{{route('admin.quizzes')}}" class="btn btn-lg btn-outline-dark shadow-sm mt-2">
             Active Quizzes <span class="badge badge-light">{{$quizzes->where('deleted_at', null)->count()}}</span>
         </a>
         <a href="{{route('transaction.pending')}}" class="btn btn-lg btn-outline-dark shadow-sm mt-2">

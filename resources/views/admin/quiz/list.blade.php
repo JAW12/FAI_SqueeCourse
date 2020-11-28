@@ -3,12 +3,12 @@
     List Quiz
 @endsection
 @section('content')
-    <div class="container">
+    <div class="container py-5">
         <div class="my-2">
             @include('layouts.alert')
         </div>
         <div class="container-fluid text-right">
-            <a class="btn btn-dark" href="/admin/quiz/add" >
+            <a class="btn btn-dark mb-2" href="/admin/quiz/add" >
                 Add Quiz
             </a>
         </div>

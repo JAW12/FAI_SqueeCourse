@@ -69,7 +69,7 @@ class EpisodeController extends Controller
             $result = $result && $seriEp->save();
 
             if ($result) {
-                return redirect()->route('admin.episodes');
+                return redirect()->route('admin.episodes')->with('success', 'New episode has been succesfully added');
             }
             else{
                 return redirect()->back()
@@ -117,11 +117,11 @@ class EpisodeController extends Controller
                         "/episode/" . $episode->slug . "/edit";
             if($result){
                 return redirect($url_path)
-                    ->with("success", "This series has been succesfully edited");
+                    ->with("success", "This episode has been succesfully edited");
             }
             else{
                 return redirect($url_path)
-                    ->with("error", "Uh oh! Editing series has encountered some troubles. Please try again later");
+                    ->with("error", "Uh oh! Editing episode has encountered some troubles. Please try again later");
             }
         }
         else{

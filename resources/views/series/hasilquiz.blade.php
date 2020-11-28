@@ -3,7 +3,7 @@
     Quiz
 @endsection
 @section('content')
-<div class="container my-5">
+<div class="container py-5">
         @include('layouts.alert')
         <h1 class="h1 text-center">Quiz</h1>
         @php
@@ -13,7 +13,7 @@
         <form method="POST">
             @foreach($datahkuis as $rowhkuis)
                 <div class="form-group my-4">
-                <h1 class="font-weight-bolder">Nilai {{$rowhkuis->nilai}}</h1>
+                <h1 class="font-weight-bolder">Score: {{$rowhkuis->nilai}}</h1>
                 </div>
             @endforeach
             @foreach($datapertanyaan as $rowpertanyaan)
@@ -21,7 +21,7 @@
             <input type='hidden' name='temp' value='{{count($datapertanyaan)}}'>
             <input type='hidden'name='tempidkuis'value="{{$rowpertanyaan->row_id_kuis}}">
             <div class="form-group my-4">
-                <label>Pertanyaan</label>
+                <label>Question</label>
                 <h1 class="font-weight-bolder">{{$rowpertanyaan->pertanyaan}}</h1>
                 <input type="hidden" name='soal{{$tempno}}' disabled value="{{ $rowpertanyaan->pertanyaan }}" placeholder="Let's start learning">
             </div>  
@@ -33,28 +33,28 @@
                     <div class="input-group my-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                            <input type="radio" name='pilihan{{$tempno}}'checked value='A'>A. {{$rowpertanyaan->pilihan_a}}
+                            <input type="radio" name='pilihan{{$tempno}}'checked value='A' class='mr-3'>A. {{$rowpertanyaan->pilihan_a}}
                             </div>
                         </div>
                     </div>
                     <div class="input-group my-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                            <input type="radio" name='pilihan{{$tempno}}' value='B'>B. {{$rowpertanyaan->pilihan_b}}
+                            <input type="radio" name='pilihan{{$tempno}}' value='B' class='mr-3'>B. {{$rowpertanyaan->pilihan_b}}
                             </div>
                         </div>
                         </div>
                     <div class="input-group my-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                            <input type="radio" name='pilihan{{$tempno}}' value='C'>C. {{$rowpertanyaan->pilihan_c}}
+                            <input type="radio" name='pilihan{{$tempno}}' value='C' class='mr-3'>C. {{$rowpertanyaan->pilihan_c}}
                             </div>
                         </div>
                     </div>
                     <div class="input-group my-2">
                         <div class="input-group-prepend">
                         <div class="input-group-text">
-                        <input type="radio" name='pilihan{{$tempno}}' value='D'>D. {{$rowpertanyaan->pilihan_d}}
+                        <input type="radio" name='pilihan{{$tempno}}' value='D' class='mr-3'>D. {{$rowpertanyaan->pilihan_d}}
                         </div>
                         </div>
                     </div>
@@ -62,28 +62,28 @@
                     <div class="input-group my-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                            <input type="radio" name='pilihan{{$tempno}}' selected value='A'>A. {{$rowpertanyaan->pilihan_a}}
+                            <input type="radio" name='pilihan{{$tempno}}' selected value='A' class='mr-3'>A. {{$rowpertanyaan->pilihan_a}}
                             </div>
                         </div>
                     </div>
                     <div class="input-group my-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                            <input type="radio" name='pilihan{{$tempno}}' checked value='B'>B. {{$rowpertanyaan->pilihan_b}}
+                            <input type="radio" name='pilihan{{$tempno}}' checked value='B' class='mr-3'>B. {{$rowpertanyaan->pilihan_b}}
                             </div>
                         </div>
                         </div>
                     <div class="input-group my-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                            <input type="radio" name='pilihan{{$tempno}}' value='C'>C. {{$rowpertanyaan->pilihan_c}}
+                            <input type="radio" name='pilihan{{$tempno}}' value='C' class='mr-3'>C. {{$rowpertanyaan->pilihan_c}}
                             </div>
                         </div>
                     </div>
                     <div class="input-group my-2">
                         <div class="input-group-prepend">
                         <div class="input-group-text">
-                        <input type="radio" name='pilihan{{$tempno}}' value='D'>D. {{$rowpertanyaan->pilihan_d}}
+                        <input type="radio" name='pilihan{{$tempno}}' value='D' class='mr-3'>D. {{$rowpertanyaan->pilihan_d}}
                         </div>
                         </div>
                     </div>
@@ -91,21 +91,21 @@
                     <div class="input-group my-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                            <input type="radio" name='pilihan{{$tempno}}' value='A'>A. {{$rowpertanyaan->pilihan_a}}
+                            <input type="radio" name='pilihan{{$tempno}}' value='A' class='mr-3'>A. {{$rowpertanyaan->pilihan_a}}
                             </div>
                         </div>
                     </div>
                     <div class="input-group my-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                            <input type="radio" name='pilihan{{$tempno}}' value='B'>B. {{$rowpertanyaan->pilihan_b}}
+                            <input type="radio" name='pilihan{{$tempno}}' value='B' class='mr-3'>B. {{$rowpertanyaan->pilihan_b}}
                             </div>
                         </div>
                         </div>
                     <div class="input-group my-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                            <input type="radio" name='pilihan{{$tempno}}'checked value='C'>C. {{$rowpertanyaan->pilihan_c}}
+                            <input type="radio" name='pilihan{{$tempno}}'checked value='C' class='mr-3'>C. {{$rowpertanyaan->pilihan_c}}
                             </div>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
 
                         <div class="input-group-prepend">
                         <div class="input-group-text">
-                        <input type="radio" name='pilihan{{$tempno}}' value='D'>D. {{$rowpertanyaan->pilihan_d}}
+                        <input type="radio" name='pilihan{{$tempno}}' value='D' class='mr-3'>D. {{$rowpertanyaan->pilihan_d}}
                         </div>
                         </div>
                     </div>
@@ -121,21 +121,21 @@
                     <div class="input-group my-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                            <input type="radio" name='pilihan{{$tempno}}'  value='A'>{{$rowpertanyaan->pilihan_a}}
+                            <input type="radio" name='pilihan{{$tempno}}'  value='A' class='mr-3'>{{$rowpertanyaan->pilihan_a}}
                             </div>
                         </div>
                     </div>
                     <div class="input-group my-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                            <input type="radio" name='pilihan{{$tempno}}' value='B'>B. {{$rowpertanyaan->pilihan_b}}
+                            <input type="radio" name='pilihan{{$tempno}}' value='B' class='mr-3'>B. {{$rowpertanyaan->pilihan_b}}
                             </div>
                         </div>
                         </div>
                     <div class="input-group my-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                            <input type="radio" name='pilihan{{$tempno}}' value='C'>C. {{$rowpertanyaan->pilihan_c}}
+                            <input type="radio" name='pilihan{{$tempno}}' value='C' class='mr-3'>C. {{$rowpertanyaan->pilihan_c}}
                             </div>
                         </div>
                     </div>
@@ -143,13 +143,13 @@
                     <label>D</label>
                         <div class="input-group-prepend">
                         <div class="input-group-text">
-                        <input type="radio" name='pilihan{{$tempno}}'checked value='D'>D. {{$rowpertanyaan->pilihan_d}}
+                        <input type="radio" name='pilihan{{$tempno}}'checked value='D' class='mr-3'>D. {{$rowpertanyaan->pilihan_d}}
                         </div>
                         </div>
                     </div>
                     @endif
                     <div class="form-group my-4">
-                        <h1 class="font-weight-bolder">Jawaban : {{$rowpertanyaan->kunci_jawaban}}</h1>
+                        <h1 class="font-weight-bolder">Answer : {{$rowpertanyaan->kunci_jawaban}}</h1>
                     </div>
                 @php
                     $tempno= $tempno+1;

@@ -12,17 +12,12 @@
             @csrf
             @foreach($blogpilih as $blogpilih)
             <input type='hidden'name='txttemp'value="{{$blogpilih->id}}">
-            <div class="input-group mb-3">
-            
-            <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">Judul</label>
-                </div>
-                <input type="text" class="form-control" placeholder="Judul" value='{{$blogpilih->judul}}'name='txtjudul'aria-label="Judul" aria-describedby="Judul">
+            <div class="mb-3">
+                <label>Title</label>
+                <input type="text" class="form-control" placeholder="Title" value='{{$blogpilih->judul}}'name='txtjudul'aria-label="Judul" aria-describedby="Judul">
             </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">Categories</label>
-                </div>
+            <div class="mb-3">
+                <label>Categories</label>
                 <select class="custom-select" id="categoriselect" name="categoriselect" placeholder="Choose categories">
                     <option disabled selected>Choose One!</option>
                     @foreach($category as $category)
@@ -33,10 +28,8 @@
                     @endforeach
                 </select>
             </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="tags">Tag</label>
-                </div>
+            <div class="mb-3">
+            <label>Label</label>
                 <select class="custom-select  select2" id="tags" name="tags[]" placeholder="Choose Tag" multiple>
                     <option disabled selected>Choose One!</option>
                     @foreach($label as $label)
@@ -58,14 +51,11 @@
                     @endforeach
                 </select>
             </div>
-           
-            <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">Isi</label>
-                </div>
+            <div class="mb-3">
+                  <label>Content</label>
                <textarea name="body" id="body"  class="form-control" style='height:200px;'>{{$blogpilih->isi}}</textarea>
-                </div>
-            <input type='submit' class="btn btn-success" style="width:100px; border-radius: 50px;" name="btnupdate"value="Update" >
+            </div>
+            <input type='submit' class="btn btn-success" style="width:100px;" name="btnupdate"value="Update" >
             <button type="button"  mode="delete"  class="btn btn-danger btnDelete"
             formaction="{{ url("/admin/blog/" . $blogpilih->slug ."/delete")}}"  style="width: 75px;">Delete
             </button>
@@ -107,7 +97,7 @@
     <script>
         function setModalMode(mode, action){
             if(mode == "delete"){
-                $("#modalTitle").html('Delete Quiz')
+                $("#modalTitle").html('Delete Blog')
 
                 $("#btnAction").html('Delete');
                 $("#btnAction").addClass('btn-danger');

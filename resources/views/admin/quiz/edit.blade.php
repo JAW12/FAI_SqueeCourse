@@ -88,7 +88,7 @@
         </select>
         </div>
     @endforeach
-    <input type='submit' class="btn btn-success" style="width:100px; border-radius: 50px;" name="btnupdate"value="Update" >
+    <input type='submit' class="btn btn-success" style="width:100px;" name="btnupdate"value="Update" >
     @else
         <div class="h3 text-center mr-5 mt-5">No Series Complete</div>
     @endif

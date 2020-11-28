@@ -116,7 +116,7 @@ class TransactionController extends Controller
         }
         else{
             if($result){
-                return redirect()->route('home');
+                return redirect()->route('history.transaction');
             }
         }
 
