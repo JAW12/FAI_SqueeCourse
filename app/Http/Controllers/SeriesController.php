@@ -172,7 +172,6 @@ class SeriesController extends Controller
                 foreach ($datauser as $rowuser) {
                     $verif=$rowuser->email_verified_at;
                 }
-                echo $verif;
                 return view('series.quiz',[
                     'datapertanyaan' =>$datapertanyaan,
                     'verif'=>$verif

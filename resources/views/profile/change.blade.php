@@ -2,14 +2,10 @@
 @section('title', 'Change Your Password')
 @section('style')
     <style>
-        .alert{
-            margin-bottom: 15px !important;
-        }
     </style>
 @endsection
 @section('content')
     <div class="container pt-3">
-        @include('layouts.alert')
         <h3>Change Your Password</h3>
         <form method="post" class="mt-3 pb-5">
             @csrf

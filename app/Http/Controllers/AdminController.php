@@ -178,7 +178,7 @@ class AdminController extends Controller
         ]);
     }
     function blog(){
-        $blogactive=Post::where('status_aktif','=','1')->get();
+        $blogactive=Post::all();
         $category=category::all();
         return view('admin.blog.list', [
             'blogactive' => $blogactive,

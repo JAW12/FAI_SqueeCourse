@@ -3,7 +3,7 @@
     Add Blog
 @endsection
 @section('content')
-<div class="container">
+<div class="container pb-5">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
@@ -44,7 +44,7 @@
               
                <textarea name="body" id="body" class="form-control" style='height:200px;'></textarea>
                 </div>
-            <input type='submit' class="btn btn-success" style="width:100px; border-radius: 50px;" name="btnadd"value="Add" >
+            <input type='submit' class="btn btn-success" style="width:100px;" name="btnadd"value="Add" >
             </div>
         </form>
 @endsection

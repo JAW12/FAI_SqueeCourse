@@ -26,7 +26,7 @@
             </div>
         </div>
         @if(isset($posts) && count($posts) > 0)
-        <div class="row no-gutters" id="isiPost">
+        <div class="row no-gutters mt-3" id="isiPost">
                 @foreach ($posts as $post)
                
                     <div class="post col-12 col-md-6 col-lg-4">
@@ -48,7 +48,7 @@
                     </div>
                 @endforeach
         </div>
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-12 d-flex justify-content-center">
                 {{$posts->links('pagination::bootstrap-4')}}
             </div>

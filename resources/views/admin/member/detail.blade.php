@@ -86,32 +86,34 @@
     {{-- history for that member --}}
     <div class="container ml-5" style="width: 80%">
         <h1 class="mb-3 mt-4">Member Transaction History</h1>
-        <table class="table table-sm table-bordered table-hover mb-2 dt">
-            <thead class="thead-dark align-middle">
-                <tr>
-                    <th class="align-middle text-center">#</th>
-                    <th class="align-middle text-center">Membership Option</th>
-                    <th class="align-middle text-center">Expire Date</th>
-                    <th class="align-middle text-center">See Detail</th>
-                </tr>
-            </thead>
-            <tbody class="bg-transparent">
-                @foreach ($transaction as $item)
+        <div class="table-responsive">
+            <table class="table table-sm table-bordered table-hover mb-2 dt">
+                <thead class="thead-dark align-middle">
                     <tr>
-                        <th class="align-middle text-center">{{ $loop->iteration }}. </th>
-                        @if ($item->jenis_membership == 1)
-                            <td class="align-middle">Silver</td>
-                        @elseif($item->jenis_membership == 2)
-                            <td class="align-middle">Gold</td>
-                        @else
-                            <td class="align-middle">Platinum</td>
-                        @endif
-                        <td class="align-middle">{{ $item->waktu_expired_membership }}</td>
-                        <td class="align-middle"><a href="{{$item->id}}/detail" class="btn btn-info btn-block">Detail</a>
+                        <th class="align-middle text-center">#</th>
+                        <th class="align-middle text-center">Membership Option</th>
+                        <th class="align-middle text-center">Expire Date</th>
+                        <th class="align-middle text-center">See Detail</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="bg-transparent">
+                    @foreach ($transaction as $item)
+                        <tr>
+                            <th class="align-middle text-center">{{ $loop->iteration }}. </th>
+                            @if ($item->jenis_membership == 1)
+                                <td class="align-middle">Silver</td>
+                            @elseif($item->jenis_membership == 2)
+                                <td class="align-middle">Gold</td>
+                            @else
+                                <td class="align-middle">Platinum</td>
+                            @endif
+                            <td class="align-middle">{{ $item->waktu_expired_membership }}</td>
+                            <td class="align-middle"><a href="{{$item->id}}/detail" class="btn btn-info btn-block">Detail</a>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 
 @endsection

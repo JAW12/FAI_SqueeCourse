@@ -19,6 +19,7 @@
             <a href="all/reject" class="btn btn-danger mb-3">Reject all</a>
         @endif
             @if (count($data) > 0)
+            <div class="table-responsive">
                 <table class="table table-bordered table-light table-hover mb-2 dt">
                     <thead class="thead-dark align-middle">
                     @if (isset($cek))
@@ -27,7 +28,7 @@
                             <th class="align-middle text-center" name="name">Name</th>
                             <th class="align-middle text-center" name="from">From</th>
                             <th class="align-middle text-center" name="amount">Amount</th>
-                            <th class="align-middle text-center" name="status">Status</th>
+                            <th class="align-middle text-center" name="statusall">Status</th>
                         </tr>
                     @else
                         <tr>
@@ -71,6 +72,7 @@
                         @endif
                     </tbody>
                 </table>
+            </div>
             @else
                 <div class="h3 text-center mr-5 mt-5">No Transaction Data Found</div>
             @endif
@@ -87,6 +89,9 @@
                         var name = $(headercol).attr("name");
                         if(name == "detail"){
                             $(headercol).html("See Detail");
+                        }
+                        else if(name == "statusall"){
+                            $(headercol).html("Status");
                         }
                         else{
                             var select = $('<select class="form-control"><option value="">All ' + name + '</option></select>')

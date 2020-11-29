@@ -8,6 +8,7 @@
             <div class="flex-1 md:px-4">
                 <h1 class="text-gray-600 mb-2 font-semibold">Transactions</h1>
                 @if (count($trans)>0)
+                <div class="table-responsive">
                     <table class="table table-bordered table-hover mb-2 dt">
                         <thead class="thead-dark align-middle">
                           <tr>
@@ -56,6 +57,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
                 @else
                     You don't have any transaction.
                     <a href="/membership" class="underline">Go make one</a>

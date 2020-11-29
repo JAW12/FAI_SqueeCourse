@@ -18,12 +18,13 @@
             </h1>
         </div>
             @if (count($data) > 0)
+            <div class="table-responsive">
                 <table class="table table-bordered table-light table-hover mb-2 dt">
                     <thead class="thead-dark align-middle">
                     <tr>
                         <th class="align-middle text-center">Id</th>
                         <th class="align-middle text-center">Name</th>
-                        <th class="align-middle text-center">Created_at</th>
+                        <th class="align-middle text-center">Created At</th>
                         <th class="align-middle text-center">Action</th>
                     </tr>
                     </thead>
@@ -41,6 +42,7 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
             @else
                 <div class="h3 text-center mr-5 mt-5">No Quiz Data Found</div>
             @endif

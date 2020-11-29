@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', 'Detail Blog')
 @section('content')
     @include('blog.layouts.navigation')
     @foreach($postnya as $rowpost)
